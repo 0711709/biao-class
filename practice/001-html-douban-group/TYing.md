@@ -1,4 +1,4 @@
-[Typing ](www.keybr.com)
+[Typing ](https://www.keybr.com/)
 
 头部
     广告区

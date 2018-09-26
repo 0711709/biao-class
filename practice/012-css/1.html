@@ -1,0 +1,73 @@
+<style>
+    a,
+    button,
+    .btn {
+        border: 1px solid gray;
+        color: black;
+    }
+
+    a,
+    .btn {
+        background: rgb(221, 221, 221);
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .a,
+    .c {
+        border: black solid;
+    }
+
+    .b,
+    .c {
+        color: tomato;
+    }
+
+    h1 >strong {
+        color: red;
+    }
+</style>
+
+<a href="#">我是假按钮</a>
+<button>我是真按钮</button>
+<span class="btn">我有心做按钮</span>
+
+<div class="a">A</div>
+<div class="b">B</div>
+<div class="c">C</div>
+
+
+<style>
+    div {
+        padding: 10px;
+        /*层级直观*/
+    }
+
+    #grandpa > div {
+        /*子选择*/
+        border: 2px solid rgb(83, 17, 17);
+        color: tomato;
+    }
+</style>
+
+<div id="grandpa">
+    我是爷爷
+    <div>
+        我是爸爸
+        <div>
+            我是儿子
+        </div>
+    </div>
+    <span>
+        我是爸爸
+        <div>
+            我是儿子
+        </div>
+    </span>
+</div>
+
+
+<h1>This is <strong>very</strong> <strong>very</strong> important.</h1>
+<h1>This is <em>really <strong>very</strong></em> important.</h1>

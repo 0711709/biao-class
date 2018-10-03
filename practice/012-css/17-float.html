@@ -1,0 +1,39 @@
+<style>
+    div {
+        box-sizing: border-box;
+    }
+
+    .row::before,
+    .row::after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+
+    .row {
+        border: solid 2px tomato;
+        background: rgb(244, 124, 114)
+    }
+
+    .col{
+        width: 50%;
+        border: solid;
+        float: left;
+        height: 100px;
+        background: rgb(244, 124, 114)
+    }
+    .r {
+        padding: 40px;
+    }
+</style>
+
+<div class="row">
+    <div class="col">
+        <div class="col r">AA</div>
+        <div class="col r">BB</div>
+    </div>
+    <div class="col">
+        <div class="col r">AA</div>
+        <div class="col r">BB</div>
+    </div>
+</div>

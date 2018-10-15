@@ -1,199 +1,199 @@
 <style>
-    *{
+    * {
         box-sizing: border-box;
     }
-
+    
     body {
         margin: 0;
         font-family: sans-serif;
     }
-
+    
     a {
         text-decoration: none;
         color: white;
     }
-
-    button, input {
+    
+    button,
+    input {
         border: 1px solid rgba(0, 0, 0, .15);
         padding: 13px 15px;
         outline: 0;
         color: #444;
         border-radius: 3px;
     }
-
+    
     .col {
         float: left;
     }
-
+    
     .row::before,
     .row::after {
         content: "";
         display: block;
         clear: both;
     }
-
+    
     .col-1 {
         width: 4.1666666666666666%;
     }
-
+    
     .col-2 {
         width: 8.3333333333333333%;
     }
-
+    
     .col-3 {
         width: 12.5%;
     }
-
+    
     .col-4 {
         width: 16.666666666666666%
     }
-
+    
     .col-5 {
         width: 20.83333333333333%
     }
-
+    
     .col-6 {
         width: 25%
     }
-
+    
     .col-7 {
         width: 29.16666666666666%
     }
-
+    
     .col-8 {
         width: 33.33333333333333%
     }
-
+    
     .col-9 {
         width: 37.5%
     }
-
+    
     .col-10 {
         width: 41.66666666666666%
     }
-
+    
     .col-11 {
         width: 45.833333333333333%
     }
-
+    
     .col-12 {
         width: 50%
     }
-
+    
     .col-13 {
         width: 54.166666666666666%
     }
-
+    
     .col-14 {
         width: 58.333333333333333%
     }
-
+    
     .col-15 {
         width: 62.5%
     }
-
+    
     .col-16 {
         width: 66.6666666666666666%
     }
-
+    
     .col-17 {
         width: 70.8333333333333333%
     }
-
+    
     .col-18 {
         width: 75%
     }
-
+    
     .col-19 {
         width: 79.16666666666666666%
     }
-
+    
     .col-20 {
         width: 83.33333333333333333%
     }
-
+    
     .col-21 {
         width: 87.5%
     }
-
+    
     .col-22 {
         width: 91.66666666666666666%
     }
-
+    
     .col-23 {
         width: 95.833333333333333333%
     }
-
+    
     .col-24 {
         width: 100%
     }
-
+    
     .text-right {
         text-align: right;
     }
-
+    
     .text-left {
         text-align: left;
     }
-
+    
     .container {
-        max-width: 1150px;
+        max-width: 1160px;
         margin-left: auto;
         margin-right: auto;
         overflow: auto;
     }
-
+    
     .centered {
         text-align: center;
     }
-
-    .input-group > * {
+    
+    .input-group>* {
         border-radius: 0;
         border-right-width: 0;
     }
-
-    .input-group > *:first-child {
+    
+    .input-group>*:first-child {
         border-radius: 3px 0 0 3px;
     }
-
-     .input-group > *:last-child {
+    
+    .input-group>*:last-child {
         border-radius: 0 3px 3px 0;
         border-right-width: 1px;
     }
+    
     .header {
         color: #fff;
         background: #666;
         background-image: url(https://s1.ljcdn.com/feroot/pc/asset/img/home/bannerV2.jpg);
-        -webkit-background-size: cover;
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
     }
-
+    
     .nav {
         margin-top: 20px;
     }
-
+    
     .nav a {
         padding: 5 9px;
         display: inline-block;
     }
-
+    
     .nav .auth {
-        font-size: 13px;  
+        font-size: 13px;
     }
-
+    
     .nav .auth a {
         padding-left: 0;
     }
-
+    
     .nav .link-group {
         font-weight: 700;
         font-size: 16px;
     }
-
-
-    #logo  {
+    
+    #logo {
         /* background: rgba(0, 0, 0, .2); */
         width: 137px;
         height: 66px;
@@ -204,7 +204,7 @@
         top: 6px;
         right: -8px;
     }
-
+    
     .location {
         background: rgba(0, 0, 0, .25);
         display: inline-block;
@@ -217,7 +217,7 @@
         position: relative;
         top: -18px;
     }
-
+    
     .location-icon {
         display: inline-block;
         width: 13px;
@@ -225,37 +225,35 @@
         background-image: url(https://s1.ljcdn.com/feroot/pc/asset/img/home/spriteV2_new.png?index=20170526);
         background-position: -189px -20px;
     }
-
-
+    
     .header .title h1 {
         margin-top: 110px;
         margin-bottom: 0;
         font-size: 68px;
     }
-
+    
     .header .title .slide {
         margin-bottom: 20px;
         font-size: 20px;
         text-align: center;
     }
-
+    
     .header .search {
         margin: 40px;
-        max-width: 800px;
+        max-width: 750px;
         margin-left: auto;
         margin-right: auto;
-
     }
-
+    
     .search-cat {
         margin-bottom: 10px;
     }
-
+    
     .search .cat {
         padding-right: 13px;
         font-weight: 600;
     }
-
+    
     .search .pointer {
         position: relative;
         top: 2px;
@@ -266,45 +264,122 @@
         border-width: 0 10px 10px 10px;
         border-color: transparent transparent #ffffff transparent;
     }
+    
     .search form {
         font-size: 0;
         height: 50px;
     }
-
-    .search input, .search button {
+    
+    .search input,
+    .search button {
         vertical-align: top;
         height: 55px;
     }
+    
     .search input {
         width: 80%;
     }
-
+    
     .search button {
         width: 20%;
-       color: rgba(255, 255, 255, .7);
-       background: #00ae66;
-       font-size: 18px;
+        color: rgba(255, 255, 255, .7);
+        background: #00ae66;
+        font-size: 18px;
     }
-
+    
     .header .anno {
         margin-top: 150px;
         font-size: 12px;
         margin-bottom: 30px;
     }
+    
     .header .anno a {
         padding-right: 18px;
     }
-
     
+    .service {
+        padding: 45px;
+    }
+    
+    .service .thumbnail img {
+        width: 76px;
+        height: 65px;
+    }
+    
+    .service .detail .title {
+        margin-top: 20px;
+        font-size: 18px;
+        color: #394043
+    }
+    
+    .service .detail .desc {
+        font-size: 12px;
+        color: #b0b3b4;
+        padding: 5px 90px;
+    }
+    
+    .app {
+        background-image: url(https://s1.ljcdn.com/feroot/pc/asset/img/home/bg-app.jpg);
+        background-position: top center;
+        background-size: cover;
+        padding-top: 55px;
+        padding-bottom: 55px;
+    }
+
+    .app .title {
+        background-image: url(https://s1.ljcdn.com/feroot/pc/asset/img/home/spriteV2_new.png?index=20170526); 
+        background-position: -448px -379px;
+        width: 286px;
+        height: 118px;
+        margin-top: 50px;
+    }
+
+    .app .desc {
+        width: 500px;
+        line-height: 22px;
+        margin-top: 30px;
+        margin-bottom: 35px;
+        font-size: 14px;
+    }
+
+
+    .app .download {
+        width: 500px;
+        margin-top: 40px;
+        margin-bottom: 50px;
+    }
+
+
+    .app .download .iphone {
+        display: inline-block;
+        background-image: url(https://s1.ljcdn.com/feroot/pc/asset/img/home/spriteV2_new.png?index=20170526); 
+        background-position: -20px -139px;
+        width: 134px;
+        height: 44px;
+    }
+
+    .app .download .android {
+        display: inline-block;
+        background-image: url(https://s1.ljcdn.com/feroot/pc/asset/img/home/spriteV2_new.png?index=20170526); 
+        background-position: -20px -197px;
+        width: 134px;
+        height: 44px;
+        margin-top: 12px;
+    }
+
+    .app .download .qr-code{
+        width: 102px;
+        height: 102px;
+    }
+
+    .app .download .qr-code img{
+        border: 0;
+        vertical-align: top;
+        width: 100%;
+    }
+
+
 </style>
-
-
-
-
-
-
-
-
 
 <div class="header">
     <div class="container">
@@ -360,5 +435,72 @@
             <a href="">房地产中介诚信服务承诺及保证书</a>
             <a href="">致广大用户</a>
         </div>
+    </div>
+</div>
+<div class="main">
+    <div class="row service">
+        <div class="container">
+            <div class="col col-8 centered">
+                <a href="">
+                    <div class="thumbnail">
+                        <img src="https://image1.ljcdn.com/materials/list/2016-11-23/phpe022WE.png" alt="">
+                    </div>
+                    <div class="detail">
+                        <div class="title">找二手房</div>
+                        <div class="desc">真实二手房源，链家承诺真实在售所见即真</div>
+                    </div>
+                </a>
+            </div>
+            <div class="col col-8 centered">
+                <a href="">
+                    <div class="thumbnail">
+                        <img src="https://image1.ljcdn.com/materials/list/2016-07-21/php4TtmtO.png" alt="">
+                    </div>
+                    <div class="detail">
+                        <div class="title">地图找房</div>
+                        <div class="desc">为您精准定位，位置周边配套设施一览无余</div>
+                    </div>
+                </a>
+            </div>
+            <div class="col col-8 centered">
+                <a href="">
+                    <div class="thumbnail">
+                        <img src="https://image1.ljcdn.com/materials/list/2017-02-16/phphnmv10.png" alt="">
+                    </div>
+                    <div class="detail">
+                        <div class="title">房屋估价</div>
+                        <div class="desc">基于海量成交数据，帮您合理定价预估市值</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="app">
+        <div class="container">
+            <div class="title"></div>
+            <div class="desc">集二手、新房、租房功能于一体，随时随地任性找房。IM匿名咨询让您放心，消息动态推送让您省心，服务承诺让您安心，数据百科锦囊让您感受贴心漫漫找房路，我们努力为您想更多。</div>
+            <div class="row  download">
+                <div class="col col-7">
+                    <a href="" class="iphone"></a>
+                    <a href="" class="android"></a>
+                </div>
+                <div class="col qr-code">
+                    <img src="https://ajax.api.lianjia.com/qr/getDownloadQr?location=site_middle&ljweb_channel_key=site_index" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-group">
+        <div class="row top"></div>
+    </div>
+    <div class="card-group"></div>
+    <div class="card-group"></div>
+    <div class="row slogan"></div>
+</div>
+<div class="footer">
+    <div class="container">
+        <div class="row"></div>
+        <div class="row"></div>
+        <div class="row"></div>
     </div>
 </div>

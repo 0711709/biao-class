@@ -141,28 +141,5 @@
         overflow: hidden;
     }
 
-    .global-nav {
-        background: rgb(51, 51, 51);
-        height: 40px;
-        line-height: 40px;
-        font-size: 12px;
-    }
 
-    .global-nav a {
-        color: #b0b0b0;
-        display: inline-block;
-    }
-    
-    .global-nav .pipe {
-        display: inline-block;
-        width: 1px;
-        height: 1em;
-        background: #424242;
-        margin: 0 5px;
-        position: relative;
-        top: 2px;
-    }
 
-    .global-nav .shop-car {
-        margin-left: 15px;
-    }

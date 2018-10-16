@@ -1,0 +1,84 @@
+      /* 全局导航样式 */
+   
+   .global-nav {
+        background: rgb(51, 51, 51);
+        height: 40px;
+        line-height: 40px;
+        font-size: 12px;
+    }
+
+    .global-nav a {
+        color: #b0b0b0;
+        display: inline-block;
+    }
+    
+    .global-nav .pipe {
+        display: inline-block;
+        width: 1px;
+        height: 1em;
+        background: #424242;
+        margin: 0 5px;
+        position: relative;
+        top: 2px;
+    }
+
+    .global-nav .shop-car {
+        margin-left: 15px;
+    }
+
+    /* 首屏样式 */
+
+    .first-screen {
+        margin-top: 22px;
+        line-height: 55px;
+    }
+
+    .first-screen .nav-page .logo {
+        background: url(https://s01.mifile.cn/i/mi-logo.png) no-repeat 50% 50%;
+        background-color: #ff6700;
+        display: inline-block;
+        width: 55px;
+        height: 55px;
+    }
+
+    .first-screen .nav-page .doodle {
+        background: url(http://i8.mifile.cn/v1/a1/b7acecd8-729b-dc3a-6a93-1eeb82cd0846.webp) no-repeat 50% 50%;
+        display: inline-block;
+        width: 165px;
+        height: 55px;
+        margin-left: 14px;
+    }
+
+    .first-screen .nav-page .link a {
+        font-size: 16px; 
+        color: #333;
+        padding: 0 10px;
+    }
+
+    .first-screen .nav-page form{
+        width: 296px;
+        font-size: 0;
+    }
+
+    .first-screen .nav-page form input {
+        padding: 15px;
+        width: 245px;
+        height: 50px;
+        outline: none;
+        border: 1px solid #e0e0e0;
+        border-right: 0;
+    }
+
+    .first-screen .nav-page form button {
+        padding: 10px;
+        width: 48px;
+        height: 50px;
+        border: 1px solid #e0e0e0;
+        background: #fff
+    }
+
+    .first-screen .nav-page form input,
+    .first-screen .nav-page form button {
+        vertical-align: top;
+    }
+

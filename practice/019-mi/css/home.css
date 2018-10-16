@@ -1,83 +1,141 @@
-      /* 全局导航样式 */
-   
-   .global-nav {
-        background: rgb(51, 51, 51);
-        font-size: 12px;
-    }
+/* 全局导航样式 */
 
-    .global-nav a {
-        color: #b0b0b0;
-        display: inline-block;
-        padding: 12px 0;
-    }
-    
-    .global-nav .pipe {
-        display: inline-block;
-        width: 1px;
-        height: 1em;
-        background: #424242;
-        margin: 0 3px;
-        position: relative;
-        top: 2px;
-    }
+.global-nav {
+    background: rgb(51, 51, 51);
+    font-size: 12px;
+}
 
-    .global-nav .shop-car {
-        margin-left: 15px;
-    }
+.global-nav a {
+    color: #b0b0b0;
+    display: inline-block;
+    padding: 12px 0;
+}
 
-    /* 首屏样式 */
+.global-nav .pipe {
+    display: inline-block;
+    width: 1px;
+    height: 1em;
+    background: #424242;
+    margin: 0 3px;
+    position: relative;
+    top: 2px;
+}
 
-    .first-screen {
-        margin-top: 22px;
-        line-height: 55px;
-    }
+.global-nav .shop-car {
+    margin-left: 15px;
+}
 
-    .first-screen .nav-page .logo {
-        background: url(https://s01.mifile.cn/i/mi-logo.png) no-repeat 50% 50%;
-        background-color: #ff6700;
-        display: inline-block;
-        width: 55px;
-        height: 55px;
-    }
 
-    .first-screen .nav-page .doodle {
-        background: url(http://i8.mifile.cn/v1/a1/b7acecd8-729b-dc3a-6a93-1eeb82cd0846.webp) no-repeat 50% 50%;
-        display: inline-block;
-        width: 165px;
-        height: 55px;
-        margin-left: 14px;
-    }
+/* 首屏导航栏样式 */
 
-    .first-screen .nav-page .link a {
-        font-size: 16px; 
-        color: #333;
-        padding: 0 7.5px;
-    }
+.first-screen {
+    margin-top: 22px;   
+}
 
-    .first-screen .nav-page form{
-        width: 296px;
-        font-size: 0;
-    }
+.first-screen .nav-page .logo {
+    background: url(https://s01.mifile.cn/i/mi-logo.png) no-repeat 50% 50%;
+    background-color: #ff6700;
+    display: inline-block;
+    width: 55px;
+    height: 55px;
+}
 
-    .first-screen .nav-page form input {
-        padding: 15px;
-        width: 245px;
-        height: 50px;
-        outline: none;
-        border: 1px solid #e0e0e0;
-        border-right: 0;
-    }
+.first-screen .nav-page .doodle {
+    background: url(http://i8.mifile.cn/v1/a1/b7acecd8-729b-dc3a-6a93-1eeb82cd0846.webp) no-repeat 50% 50%;
+    display: inline-block;
+    width: 165px;
+    height: 55px;
+    margin-left: 14px;
+}
 
-    .first-screen .nav-page form button {
-        padding: 10px;
-        width: 48px;
-        height: 50px;
-        border: 1px solid #e0e0e0;
-        background: #fff
-    }
+.first-screen .nav-page .link a {
+    font-size: 16px;
+    color: #333;
+    padding: 0 7.5px;
+    line-height: 55px;
+}
 
-    .first-screen .nav-page form input,
-    .first-screen .nav-page form button {
-        vertical-align: top;
-    }
+.first-screen .nav-page form {
+    width: 296px;
+    font-size: 0;
+}
 
+.first-screen .nav-page form input {
+    padding: 15px;
+    width: 245px;
+    height: 50px;
+    outline: none;
+    border: 1px solid #e0e0e0;
+    border-right: 0;
+}
+
+.first-screen .nav-page form button {
+    padding: 10px;
+    width: 48px;
+    height: 50px;
+    border: 1px solid #e0e0e0;
+    background: #fff
+}
+
+.first-screen .nav-page form input,
+.first-screen .nav-page form button {
+    vertical-align: top;
+}
+
+
+/* 首屏slide样式 */
+
+.slide {
+    margin-top: 20px;
+    background-image: url(https://i1.mifile.cn/a4/xmad_15338982677936_eQTJk.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+
+.slide .cat-group {
+    background: rgba(0,0,0,0.6);
+    padding: 20px 0;
+}
+
+.slide .fl .cat {
+    display: block;
+    color: #fff;
+    padding: 11px 30px;
+}
+
+.slide .fl .cat:hover {
+    background-color: #ff6700;
+}
+
+/* .slide .cat-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url(../img/arrow-48.png);
+    background-size: cover;
+    background-position: center;
+} */
+
+/* 首屏快速通道样式 */
+
+.top-prom {
+    margin-top: 14px;
+}
+
+.top-prom .shortcut {
+    background-color: #5f5750;
+}
+
+.top-prom .shortcut a {
+    color: rgba(255,255,255,0.7);
+}
+
+.top-prom .prom a {
+    display: inline-block;
+    margin-left: 14px;
+}
+
+.top-prom img {
+    width: 100%;
+}

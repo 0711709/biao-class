@@ -7,6 +7,10 @@ body {
     font-family: sans-serif;
 }
 
+img {
+    width: 100%;
+}
+
 a {
     text-decoration: none;
 }
@@ -139,4 +143,12 @@ a {
     margin-right: auto;
     margin-left: auto;
     overflow: hidden;
+}
+
+.muted {
+    opacity: .5;
+}
+
+.deleted {
+    text-decoration-line: line-through;
 }

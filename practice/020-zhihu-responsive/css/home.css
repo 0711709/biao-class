@@ -1,0 +1,191 @@
+.nav {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 1px 3px rgba(26,26,26,.1);
+}
+
+.logo {
+    fill: #0084ff;
+}
+
+
+.nav a {
+    padding: 0.66666666666rem 0;
+    vertical-align: middle;
+}
+
+.nav .link a {
+    margin-right: 1.4rem;
+}
+
+.nav .user a {
+    margin-left: 2rem;
+    fill: #8590a6;;
+}
+
+.nav form input,
+.nav form button {
+    margin: 0.5rem 0;
+    padding: 0.6rem;
+    line-height: 1.1;
+    font-size: 14px;
+    font-weight: 400;
+    border: solid 1px #ebebeb;;
+    border-radius: 4px;
+}
+
+.nav form input {
+    outline: none;
+    width: 70%;
+    background: #f6f6f6;
+}
+
+.nav form button{
+    width: 16%;
+    display: inline-block;
+    margin-left: 4.5%;
+    margin-right: 9.5%; 
+    background-color: #0084ff;
+    color: white;
+}
+
+.main {
+    margin-top: 0.7rem;
+}
+
+.main .active > *,
+.main .slide > *:not(.footer){
+    background-color: rgb(255, 255, 255);
+    border-radius: 1px;
+    box-shadow: 0 1px 3px rgba(26,26,26,.1);
+}
+
+.main .active {
+    padding-right: 0.7rem;
+}
+
+.main .active .header,
+.main .active .time-line > * {
+    border-bottom: 1px solid #f0f2f7;
+}
+
+.main .header a {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 1.2rem 0;
+    margin: 0 1.2rem;
+    color: black;
+}
+
+.main .header a:first-of-type {
+    border-bottom: solid #0084ff 3px;
+}
+
+.main .time-line .card {
+    padding: 1.2rem;
+}
+
+.main .time-line .title a{
+    font-size: 18px;
+    font-weight: 600;
+    color: black;
+}
+
+.main .card .context,
+.main .card .info {
+    margin-top: 0.6rem;
+}
+
+.main .card .info a,
+.main .card .info svg {
+   vertical-align: bottom; 
+   color: #77839c; 
+}
+
+
+.main .card .info svg {
+    margin-right: 4px;
+}
+
+.main .card .info a {
+    /* margin-right: 0.6rem; */
+    padding: 0.4rem 0.8rem;
+}
+
+.main .card .info .agree {
+    vertical-align: baseline;
+}
+
+.main .card .info .disagree {
+    margin-right: 0;
+    vertical-align: baseline;
+}
+
+.main .card .info .button {
+    background-color: rgba(0,132,255,.1);
+    color: #0084ff;
+    border-radius: 3px;
+    fill: #0084ff;
+}
+
+.main .card .info a:first-of-type {
+    margin-right: 0.4rem;
+}
+
+.main .card .context a {
+        color: #175199;
+}
+
+.main .slide > * {
+    margin-bottom: 0.7rem;
+}
+.slide a {
+    color: #8590a6;
+}
+
+.slide svg {
+    display: block;
+    margin: auto;
+}
+
+.slide .cat {
+    text-align: center;
+}
+
+.slide .cat svg {
+    margin-bottom: 0.6rem;
+}
+
+.slide .cat a {
+    margin: 1.4rem 0;
+}
+
+.slide .me a {
+    display: block;
+    padding: 0.7rem 1.4rem;
+}
+
+.slide .footer a {
+    margin-right: 0.5rem;
+    padding: 0.4rem 0.2rem;
+    font-size: 13px;
+}
+
+.Zi--Live {
+    fill:rgb(255, 207, 0);
+}
+
+.Zi--Ebook {
+    fill:rgb(67, 212, 128);
+}
+
+.Zi--Org {
+    fill:rgb(0, 132, 255);
+}
+
+.Zi--Edit {
+    fill:rgb(0, 132, 255);
+}
+
+.Zi--Infinity{
+    fill:rgb(84, 120, 240);
+}

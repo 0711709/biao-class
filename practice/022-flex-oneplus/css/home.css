@@ -1,0 +1,332 @@
+.nav .container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav a {
+    color: #828282;
+    font-size: 14px;
+    display: inline-block;
+    padding: 1em 0;
+}
+
+.nav .logo svg {
+    fill: #eb0028;
+}
+
+.nav .link-group a{
+    margin: 0 2.2em;
+    border-bottom: white solid 2px;
+}
+
+ .nav .link-group a:hover {
+    border-bottom: #eb0028 solid 2px;
+}
+
+  .nav .auth a {        
+    display: inline-block;
+    border-bottom: white solid 2px;
+    margin: 0 1.2em;
+}
+
+.nav .auth a:hover {
+    border-bottom: #828282 solid 2px;
+}
+
+.nav .auth a svg {
+    fill: #828282;
+}
+
+.slider {
+    background-image: url(https://image01.oneplus.cn/shop/201809/30/1635/4cb3486e8d48c78737b5f248a9873eac.jpg);
+    background-size: cover;
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+}
+
+.slider .content {
+    margin: 250px 150px;
+}
+
+.slider .title {
+    font-size: 24px;
+    font-family: SlateForOnePlusLight;
+}
+
+.slider .point {
+    font-size: 48px;
+}
+
+.slider .join {
+    margin: 20px 0;
+}
+
+.slider .join a {
+    border: 1px solid #fff;
+    display: inline-block;
+    height: 50px;
+    line-height: 44px;
+    color: inherit;
+    padding: 0 50px;
+}
+
+.arrow-left,
+.arrow-right {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(216, 216, 216, 0.2);
+    transition: background-color 0.5s ease;
+    position: absolute;
+}
+
+.arrow-left::before,
+.arrow-right::before {
+    content: '';
+    display: block;
+    border-left: 2px solid #101920;
+    border-top: 2px solid #101920;
+    opacity: 0.5;
+    transition: 0.25s;
+    width: 13px;
+    height: 13px;
+    position: absolute; 
+}
+
+.arrow-left:hover,
+.arrow-right:hover{
+    background-color: rgba(216, 216, 216, 0.8);
+}
+
+.arrow-left::before {
+    left: 21px;
+    top: 19px;
+    transform: rotate(-45deg);
+}
+
+.arrow-right::before {
+    left: 16px;
+    top: 19px;
+    transform: rotate(135deg);
+}
+
+.arrow-left {
+    left: 4%;
+    top: 50%
+}
+
+.arrow-right {
+    right: 4%;
+    top: 50%
+}
+
+.active {
+    display: flex;
+}
+
+.active a {
+    color: inherit;
+}
+
+.active .item {
+    position: relative;
+}
+
+.active img {
+    max-width: 100%;
+    display:block
+}
+
+.active span {
+    position: absolute;
+    font-weight: 400;
+    font-size: 24px;
+    top: 7.8125%;
+    left: 5.46875%;
+}
+
+.shot {
+    background: url(https://image01.oneplus.cn/shop/201809/26/880/8070f60cb10b64a0bcf03d98242947ca.jpg) no-repeat center;
+    background-size: cover;
+    height: 37.5vw;
+    display: flex;
+    text-align: center;
+}
+
+.shot .container {
+    margin: auto;
+}
+
+.shot .container .title {
+    font-size: 48px;
+    color: #fff;
+}
+
+.shot .container button {
+    width: 130px;
+    height: 45px;
+    line-height: 1.1;
+    cursor: pointer;
+    font-size: 14px;
+    border: 2px solid #fff;
+    background: none;
+    color: #fff;
+    text-align: center;
+    transition: color .15s ease 0s;
+    margin-top: 45px;
+    position: relative;
+    z-index: 1;
+}
+
+.shot .container button:hover {
+    color: #000;
+}
+
+.shot .container button:before {
+    content: "";
+    width: 0px;
+    height: 45px;
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-color: #fff;
+    transition: width .15s ease 0s;
+    z-index: -1;
+}
+
+.shot .container button:hover:before {
+    width: 130px;
+}
+
+.card-group {
+    background: #f6f6f6;
+    overflow: hidden;
+}
+
+.card-group .container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 90px;
+    margin-bottom: 90px;
+}
+
+.card-group .card {
+    background: #fff;
+}
+
+.card-group .card:hover {
+    box-shadow: 0 17px 50px 0 rgba(0,0,0,.19);
+    transform: translate3d(0,-2px,0);
+    transition: all .3s cubic-bezier(.55,0,.1,1);
+}
+
+.card-group .card .desc {
+    margin: 2rem 1.5rem 3rem 1.5rem;
+} 
+
+.card-group .card h4 {
+    font-weight: 400;
+    line-height: 2;
+    font-size: 18px;
+    color: #333;
+    margin: 0;
+}
+
+.card-group .card p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+    color: #828282;
+}
+
+.service {
+    border-bottom: 1px solid #e4e4e4;
+}
+
+.service .container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.service .cat {
+    padding: 35px 0;
+}
+
+.service .cat a {
+    color: #565b62;
+    display: inline-block;
+}
+
+.service .cat .icon {
+    display: block;
+    background-repeat: no-repeat;
+    height: 80px;
+    width: 80px;
+    margin: 0 auto 20px auto ;
+}
+
+.service .cat .i-7{
+    background-image: url(https://statics.oneplus.cn/v2/img/common/serviceIcons-sd81bbaa639.png);
+    background-position: 0 -400px;
+}
+
+.service .cat .i-15{
+    background-image: url(https://statics.oneplus.cn/v2/img/common/serviceIcons-sd81bbaa639.png);
+    background-position: 0 0;
+}
+
+.service .cat .i-30{
+    background-image: url(https://statics.oneplus.cn/v2/img/common/serviceIcons-sd81bbaa639.png);
+    background-position: 0 -240px;
+}
+
+.service .cat .i-99{
+    background-image: url(https://statics.oneplus.cn/v2/img/common/serviceIcons-sd81bbaa639.png);
+    background-position: 0 -560px;
+}
+
+.footer .container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+
+.footer .contact > *,
+.footer .contact .tel,
+.footer .link-group .title {
+    font-size: 16px;
+    margin: 20px;
+}
+
+.footer .link-group a {
+    display: block;
+    color: #828282;
+    font-size: 14px;
+    margin: 20px;
+}
+
+.footer .contact {
+    text-align: center;
+}
+
+.footer .contact .tel {
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.footer .contact button {
+    width: 100%;
+    margin: 0;
+    color: #828282;
+    background: none;
+    line-height: 1.2;
+    height: 3.5em;
+    background-color: transparent;
+    border: #101920 1px solid;
+}
+
+.footer .contact .work-time {
+    color: #828282;
+}

@@ -1,0 +1,93 @@
+<style>
+    * {
+    box-sizing: border-box;
+    }
+    
+    body {
+    margin: 0;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .container {
+        max-width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .card-group {
+        background: #f6f6f6;
+        overflow: hidden;
+    }
+
+    .card-group .container {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 50px;
+        margin-bottom: 80px;
+        
+    }
+
+    .card-group .card {
+        background: #fff;
+    }
+
+    .card-group .card:hover {
+        box-shadow: 0 17px 50px 0 rgba(0,0,0,.19);
+        transform: translate3d(0,-2px,0);
+        transition: all .3s cubic-bezier(.55,0,.1,1);
+    }
+
+    .card-group .card .desc {
+        margin: 2rem 1.5rem 3rem 1.5rem;
+    } 
+
+    .card-group .card h4 {
+        font-weight: 400;
+        line-height: 2;
+        font-size: 18px;
+        color: #333;
+        margin: 0;
+    }
+
+    .card-group .card p {
+        font-size: 14px;
+        line-height: 1.5;
+        margin: 0;
+        color: #828282;
+    }
+</style>
+
+<div class="card-group">
+    <div class="container">
+        <div class="card">
+            <a href="">
+                <img src="https://image01.oneplus.cn/shop/201810/22/849/22910d18ae0add39b63a33abfbf7fb87.jpg" alt="">
+                <div class="desc">
+                    <h4>博客</h4>
+                    <p>百万土豆大叔 Kevin Abosch 和 OnePlus 的影像之缘</p>
+                </div>
+            </a>
+        </div>
+        <div class="card">
+            <a href="">
+                <img src="https://image01.oneplus.cn/shop/201810/10/644/50a4a33de2e2f5e036f5796e55232aec.jpg" alt="">
+                <div class="desc">
+                    <h4>新闻</h4>
+                    <p>OnePlus 6T，来了。</p>
+                </div>
+            </a>
+        </div>
+        <div class="card">
+            <a href="">
+                <img src="https://image01.oneplus.cn/shop/201810/17/1834/ab3aa0a023b295546c47212406ef232c.jpg" alt="">
+                <div class="desc">
+                    <h4>技巧</h4>
+                    <p>OnePlus 6 使用技巧</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

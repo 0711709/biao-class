@@ -15,16 +15,16 @@
     fill: #eb0028;
 }
 
-.nav .link-group a{
+.nav .link-nav a{
     margin: 0 2.2em;
     border-bottom: white solid 2px;
 }
 
- .nav .link-group a:hover {
+ .nav .link-nav a:hover {
     border-bottom: #eb0028 solid 2px;
 }
 
-  .nav .auth a {        
+.nav .auth a {        
     display: inline-block;
     border-bottom: white solid 2px;
     margin: 0 1.2em;
@@ -329,4 +329,54 @@
 
 .footer .contact .work-time {
     color: #828282;
+}
+
+.meta {
+    background-color: #f9f9f9;
+    overflow: hidden;
+}
+
+.meta .info,
+.meta .verify {
+    display: flex;
+    justify-content: space-between;
+}
+
+.meta a {
+    display: inline-block;
+    /* color: inherit; */
+}
+
+.meta .info {
+    padding: 50px 30px;
+}
+
+.meta .info .text-left a {
+    color: #101920;
+    font-weight: 300;
+}
+
+.meta .info .text-right a {
+    color: #828282;
+    font-size: 13px;
+    margin: 0 10px;
+}
+
+.meta .verify {
+    padding: 30px;
+}
+
+.meta .verify {
+    border-top: 1px solid rgba(0,0,0,.1);
+}
+
+.meta .verify .text-left div {
+    color: #999;
+    font-size: 12px;
+}
+
+.meta .verify .text-left a {
+    padding: 10px 0;
+    color: #101920;
+    font-weight: 300;
 }

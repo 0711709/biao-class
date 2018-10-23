@@ -6,9 +6,9 @@
 
 .nav a {
     color: #828282;
-    font-size: 14px;
-    display: inline-block;
-    padding: 1em 0;
+    font-size: 0.93333rem;
+    font-weight: 300;
+    padding: 1rem 0;
 }
 
 .nav .logo svg {
@@ -16,7 +16,7 @@
 }
 
 .nav .link-nav a{
-    margin: 0 2.2em;
+    margin: 0 2.2rem;
     border-bottom: white solid 2px;
 }
 
@@ -27,7 +27,7 @@
 .nav .auth a {        
     display: inline-block;
     border-bottom: white solid 2px;
-    margin: 0 1.2em;
+    margin: 0 1.2rem;
 }
 
 .nav .auth a:hover {
@@ -46,17 +46,21 @@
     position: relative;
 }
 
+.slider .container {
+    display: flex;
+}
+
 .slider .content {
     margin: 250px 150px;
 }
 
 .slider .title {
-    font-size: 24px;
+    font-size: 1.6rem;
     font-family: SlateForOnePlusLight;
 }
 
 .slider .point {
-    font-size: 48px;
+    font-size: 3.2rem;
 }
 
 .slider .join {
@@ -66,16 +70,16 @@
 .slider .join a {
     border: 1px solid #fff;
     display: inline-block;
-    height: 50px;
-    line-height: 44px;
+    height: 3.33333rem;
+    line-height: 3rem;
     color: inherit;
-    padding: 0 50px;
+    padding: 0 3.3333rem;
 }
 
 .arrow-left,
 .arrow-right {
-    width: 50px;
-    height: 50px;
+    width: 3.33333333333rem;
+    height: 3.33333333333rem;
     border-radius: 50%;
     background: rgba(216, 216, 216, 0.2);
     transition: background-color 0.5s ease;
@@ -90,8 +94,8 @@
     border-top: 2px solid #101920;
     opacity: 0.5;
     transition: 0.25s;
-    width: 13px;
-    height: 13px;
+    width: 0.87rem;
+    height: 0.87rem;
     position: absolute; 
 }
 
@@ -101,14 +105,14 @@
 }
 
 .arrow-left::before {
-    left: 21px;
-    top: 19px;
+    left: 1.4rem;
+    top: 1.2666666667rem;
     transform: rotate(-45deg);
 }
 
 .arrow-right::before {
-    left: 16px;
-    top: 19px;
+    left: 1.06666666667rem;
+    top: 1.2666666667rem;
     transform: rotate(135deg);
 }
 
@@ -128,6 +132,7 @@
 
 .active a {
     color: inherit;
+    display: block;
 }
 
 .active .item {
@@ -136,13 +141,13 @@
 
 .active img {
     max-width: 100%;
-    display:block
+    display: block;
 }
 
 .active span {
     position: absolute;
     font-weight: 400;
-    font-size: 24px;
+    font-size: 1.6rem;
     top: 7.8125%;
     left: 5.46875%;
 }
@@ -160,7 +165,7 @@
 }
 
 .shot .container .title {
-    font-size: 48px;
+    font-size: 3.2rem;
     color: #fff;
 }
 
@@ -169,13 +174,13 @@
     height: 45px;
     line-height: 1.1;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 0.9333333rem;
     border: 2px solid #fff;
     background: none;
     color: #fff;
     text-align: center;
     transition: color .15s ease 0s;
-    margin-top: 45px;
+    margin-top: 3rem;
     position: relative;
     z-index: 1;
 }
@@ -229,13 +234,13 @@
 .card-group .card h4 {
     font-weight: 400;
     line-height: 2;
-    font-size: 18px;
+    font-size: 1.2rem;
     color: #333;
     margin: 0;
 }
 
 .card-group .card p {
-    font-size: 14px;
+    font-size: 0.93333rem;
     line-height: 1.5;
     margin: 0;
     color: #828282;
@@ -296,7 +301,7 @@
 .footer .contact > *,
 .footer .contact .tel,
 .footer .link-group .title {
-    font-size: 16px;
+    font-size: 1.06666667rem;
     margin: 20px;
 }
 
@@ -312,7 +317,7 @@
 }
 
 .footer .contact .tel {
-    font-size: 20px;
+    font-size: 1.333333333rem;
     font-weight: 300;
 }
 
@@ -342,11 +347,6 @@
     justify-content: space-between;
 }
 
-.meta a {
-    display: inline-block;
-    /* color: inherit; */
-}
-
 .meta .info {
     padding: 50px 30px;
 }
@@ -358,7 +358,7 @@
 
 .meta .info .text-right a {
     color: #828282;
-    font-size: 13px;
+    font-size: 0.866666667rem;
     margin: 0 10px;
 }
 
@@ -372,7 +372,7 @@
 
 .meta .verify .text-left div {
     color: #999;
-    font-size: 12px;
+    font-size: o.8rem;
 }
 
 .meta .verify .text-left a {

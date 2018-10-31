@@ -1,0 +1,33 @@
+/* artical css */
+
+.artical {
+    padding-right: 3rem;
+}
+
+.artical .title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #555;
+}
+
+.artical .time {
+    margin: 0.7rem 0;
+    color: #6E7173;
+}
+
+.artical .desc {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #444;
+}
+
+.artical .more {
+    margin: 0.5rem 0;
+}
+
+.artical .more a {
+    color: #444;
+    padding: 5px 8px;
+    border-radius: 5px;
+    border: 1px solid #444;
+}

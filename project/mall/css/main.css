@@ -72,7 +72,7 @@
     padding: 2rem 0;
 }
 
-.header {
+.cat .header {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
@@ -131,4 +131,37 @@
 .keyboard {
     background-color:#f9f9f9;
     overflow: hidden;
+}
+
+/* footer css */
+
+.footer {
+    margin-top: 2rem;
+    background-color: #040507;
+    color: #ddd;
+}
+.footer .meta,
+.footer .info {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 2rem;
+}
+
+.footer .header {
+    margin: 2rem 0 1rem 0;
+    color: #fecb00;
+    font-size: 14px;
+}
+
+.footer .info a {
+    display: block;
+    margin: 0.5rem 0;
+    font-size: 13px;
+}
+
+.footer .meta {
+    font-size: 12px;
+    color: #999;
+    padding-top: 1rem;
+    border-top: 1px solid #fecb00;
 }

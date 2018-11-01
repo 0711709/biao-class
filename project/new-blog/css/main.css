@@ -112,4 +112,16 @@
     padding: 3px 0;
 }
 
+/* footer css */
 
+
+.footer {
+    margin-top: 3rem;
+    padding: 3rem;
+    border-top: 1px solid #bbb;
+}
+
+.footer span {
+    font-size: 13px;
+    color: #444;
+}

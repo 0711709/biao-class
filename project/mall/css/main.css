@@ -29,7 +29,7 @@
 .nav form input {
     outline: none;
     padding: 3px 18px;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     border-radius: 3px;
 
 }
@@ -38,4 +38,54 @@
     position: absolute;
     left: 2px;
     top: 3px;
+}
+
+/* prom css */
+
+.prom {
+    background: #040507;
+    overflow: hidden;
+}
+
+.prom .title {
+    font-size: 30px;
+    font-weight: 300;
+    color: #ddd;
+    margin-top: 4rem;
+    padding: 0.5rem;
+}
+
+.prom .feature {
+    padding: 2rem;
+    color: #1cd4fc;
+    font-size: 13px;
+}
+
+.prom .imge {
+    display: flex;
+}
+
+/* cat css */
+
+.cat {
+    margin-top: 4rem;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.header .title {
+    font-size: 25px;
+    font-weight: 600;
+    color: #444;
+}
+
+.header .more {
+    font-size: 13px;
+    color: #444;
 }

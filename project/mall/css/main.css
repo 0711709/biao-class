@@ -9,12 +9,12 @@
 .nav .container {
     display: flex;
     align-items: center;
-    justify-content: space-between
+    justify-content: space-between;
 }
 
 .nav .container a {
     padding: 1rem 0;
-    color: #666;
+    color: #444;
     font-weight: 600;
 }
 
@@ -76,6 +76,7 @@
     justify-content: space-between;
     align-items: baseline;
     padding: 0.4rem 0;
+    margin: 0 1rem;
     border-bottom: 1px solid #ddd;
 }
 
@@ -88,4 +89,40 @@
 .header .more {
     font-size: 13px;
     color: #444;
+}
+
+/* card css */
+
+.card-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.card {
+    margin-top: 1rem;
+}
+
+.card a:hover {
+    box-shadow: 0 17px 50px 0 rgba(0,0,0,.19);
+    transform: translate3d(0,-2px,0);
+    transition: all .8s cubic-bezier(.55,0,.1,1);
+}
+
+
+.card .title {
+    font-size: 14px;
+    color: #444;
+    margin: 1rem 0.3rem;
+}
+
+.card .desc {
+    font-size: 13px;
+    color: #666;
+    margin: 1rem 0.3rem;
+}
+
+
+.card {
+    padding: 0 1rem;
 }

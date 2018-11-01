@@ -68,7 +68,8 @@
 /* cat css */
 
 .cat {
-    margin-top: 4rem;
+    margin-top: 2rem;
+    padding: 2rem 0;
 }
 
 .header {
@@ -125,4 +126,9 @@
 
 .card {
     padding: 0 1rem;
+}
+
+.keyboard {
+    background-color:#f9f9f9;
+    overflow: hidden;
 }

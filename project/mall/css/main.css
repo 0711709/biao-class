@@ -94,9 +94,15 @@
 
 /* card css */
 
+.card span {
+    display: inline-block;
+}
+
+
 .card-group {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 
@@ -120,7 +126,7 @@
 .card .desc {
     font-size: 13px;
     color: #666;
-    margin: 1rem 0.3rem;
+    margin:1rem 0.3rem;
 }
 
 
@@ -144,6 +150,7 @@
 .footer .info {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     padding-bottom: 2rem;
 }
 

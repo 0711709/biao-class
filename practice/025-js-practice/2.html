@@ -1,0 +1,33 @@
+<script>
+    let f = ['a1', 'a2', ['b1', 'b2', ['c1', 'c2', 'c3'], 'b3'], 'a3'];
+    let ar1 = [];
+    let x = 0;
+    let ar2 = [];
+    let y = 0;
+    let ar3 = [];
+    let z = 0;
+    for (let i = 0; i < f.length; i++) {
+        if (typeof f[i] == "string") {
+            ar1[x] = f[i];
+            x++;
+        } else {   
+            for (let m = 0; m < f[i].length; m++) {
+                if (typeof f[i][m] == "string") {
+                    ar2[y] = f[i][m];
+                    y++;
+                } else {
+                    for (let n = 0; n < f[i][m].length; n++) {
+                        if (typeof f[i][m][n] == "string") {
+                            ar3[z] = f[i][m][n];
+                            z++;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    console.log(ar1);
+    console.log(ar2);
+    console.log(ar3);
+</script>

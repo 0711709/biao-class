@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .border {
+        box-sizing: border-box;
+        display: inline-block;
+        padding: 10px;
+        background-color: black;
+        font-size: 30px;
+        color: red;
+        border: 2px solid red;
+    }
+
+    .num {
+        color: red;
+        font-size: 10px;
+    }
+</style>
+
+<body>
+    <div class="border">修脚 贴膜 <span class="num">1人用了都说好</span></div>
+    <script>
+        const border = document.querySelector('.border');
+        const number = document.querySelector('.num');
+        let num = 0;
+        setInterval(function () {
+            let visible = getComputedStyle(border).color == "rgb(255, 0, 0)";
+            if (visible) {
+                border.style.color = "black";
+                border.style.borderColor = "black";
+                number.style.color = "black";
+
+            } else {
+                border.style.color = "red";
+                border.style.borderColor = "red";
+                number.style.color = "red";
+            }
+            num++;
+            document.getElementsByClassName('num')[0].innerHTML = num + "人用了都说好";
+        }, 500);
+        
+    </script>
+</body>
+
+</html>

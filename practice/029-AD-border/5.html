@@ -40,14 +40,12 @@
             } else {
                 border.style.color = "red";
                 border.style.borderColor = "red";
-                if (i == arr.length - 1) {
+                i++;
+                if (i == arr.length )
                     i = 0;
-                    text.innerHTML = arr[i];
-                } else {
-                    i++;
-                    text.innerHTML = arr[i];
-                }
-            }
+                text.innerHTML = arr[i];
+            }  
+            
         }, 500);
     </script>
 </body>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    :root {
+        font-size: 15px;
+    }
+
+    .border {
+        box-sizing: border-box;
+        display: inline-block;
+        padding: 10px;
+        background-color: black;
+        font-size: 2rem;
+        color: red;
+        border: 2px solid red;
+    }
+</style>
+
+<body>
+    <div class="border">修脚</div>
+    <script>
+        const border = document.querySelector('.border');
+        const number = document.querySelector('.num');
+        let text = document.getElementsByClassName("border")[0];
+        setInterval(function () {
+            let visible = getComputedStyle(border).color == "rgb(255, 0, 0)";
+            let size = getComputedStyle(border).fontSize;
+            if (visible) {
+                border.style.color = "black";
+                border.style.borderColor = "black";  
+            } else {
+                border.style.color = "red";
+                border.style.borderColor = "red";
+                if (text.innerHTML == '修脚') {
+                    text.innerHTML = "贴膜";
+                } else {
+                    text.innerHTML = "修脚";
+                };
+            }    
+        }, 500);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function cook(what, number, toobe) {
+            console.log("吃：" + what());
+            console.log(number() + "个人吃");
+            console.log("忌口是：" + "不吃" + toobe());
+        }
+
+        function egg() {
+            return "鸡蛋";
+        }
+        function three() {
+            return "3";
+        }
+        function la() {
+            return "辣椒";
+        }
+
+        cook(egg, three, la);
+
+
+        function each(list) {
+            for (let i = 0; i < list.length; i++) {
+
+            }
+        }
+
+
+        function eachNumber(arr, fn) {
+            for (let i = 0; i < arr.length; i++) {
+                let it = arr[i];
+                if (typeof it != 'number')
+                    throw it + '不是number类型';
+                fn(it);
+            }
+        }
+
+        function evenNumber(arr) {
+            let result = [];
+            eachNumber(arr, function (it) {
+                if (!(it % 2))
+                    result.push(it);
+            });
+            return result;
+        }
+        let evenList = evenNumber([1, 2, 3, 4]);
+        console.log(evenList);
+
+
+
+        if (1) {
+            console.log(true);
+        }
+
+
+        function numberModifier(num, fn) {
+            // 类型检查
+            if (typeof num != 'number')
+                throw '请传入数字类型';
+
+            // 返回回调函数的运行结果
+            fn(num);
+        }
+
+        function increment(num) {
+            //  ES5版本
+            return numberModifier(num, function (it) {
+                return ++it;
+                
+            });
+            // return num;
+            // return numberModifier(num, it => ++it);
+        }
+
+        console.log(increment(1));
+    </script>
+</body>
+
+</html>

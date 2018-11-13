@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function numberModifier(num, fn) {
+            if (typeof num === "number") {
+                return fn(num);
+            } else {
+                console.log("throw '请输入数字类型'");
+            }
+        }
+
+        function increment(num) {
+            return numberModifier(num, function (parm) { return ++parm; });
+        };
+
+        console.log(increment(1));
+
+        function double(num) {
+            numberModifier(num, function (parm) {
+                console.log(parm * 2);
+            })
+        }
+
+        double(2);
+
+        function decuple(num) {
+            numberModifier(num, function (parm) {
+                console.log(parm * 10);
+            })
+        }
+        decuple(10);
+
+        function list(num) {
+            numberModifier(num, function (parm) {
+                let arr = [];
+                for (let i = 1; i <= parm; i++) {
+                    arr.push(i);
+                }
+                console.log(arr);
+            })
+        };
+        list(4);
+
+
+        function eachNumber(arr, fn) {
+            for (let i = 0; i < arr.length; i++) {
+                fn(arr[i]);
+            }
+        };
+
+        function evenNumber(arr) {
+            let evenArr = [];
+            eachNumber(arr, function (it) {
+                if (it % 2 === 0)
+                    evenArr.push(it);
+            })
+            return evenArr;
+        }
+
+        console.log(evenNumber([1, 2, 3, 4]));
+
+        function oddNumber(arr) {
+            let oddarr = [];
+            eachNumber(arr, function (it) {
+                if (it % 2 === 1)
+                    oddarr.push(it);
+            })
+            return oddarr;
+        }
+        console.log(oddNumber([1, 2, 3, 4]));
+
+        function sum(arr) {
+            let result = 0;
+            eachNumber(arr, function (it) {
+                result += it;
+            })
+            return result;
+        }
+        console.log(sum([1, 2, 3, 4]));
+
+        function max(arr) {
+            let result = 0;
+            eachNumber(arr, function (it) {
+                if (result < it)
+                    result = it;
+            })
+            return result;
+        }
+        console.log(max([6, 2, 3, 4]));
+
+        function min(arr) {
+            let result = arr[0];
+            eachNumber(arr, function (it) {
+                if (result > it)
+                    result = it;
+            })
+            return result;
+        }
+        console.log(min([6, 2, 3, 4]));
+
+
+        function eachStr(arr, fn) {
+            for (let i = 0; i < arr.length; i++) {
+                fn(arr[i]);
+            }
+        }
+
+        function getYo(arr) {
+            let result = [];
+            eachStr(arr, function (it) {
+                if (it.startsWith("yo"))
+                    result.push(it);
+            })
+            return result;
+        }
+
+        console.log(getYo(['a', 'yo', 'yoo']));
+
+        function shortStr(arr) {
+            let result = [];
+            eachStr(arr, function (it) {
+                if (it.length == 1)
+                    result.push(it);
+            })
+            return result;
+        }
+        console.log(shortStr(['a', 'yo', 'yoo']));
+
+        function join(arr) {
+            let result = '';
+            eachStr(arr, function (it) {
+                result += it;
+            })
+            return result;
+        }
+
+        console.log(join(['a', 'yo', 'yoo']));
+
+        function search(arr, str) {
+            let result = [];
+            eachStr(arr, function (it) {
+                if (it.startsWith(str))
+                    result.push(it);
+            })
+            return result;
+        }
+
+        console.log(search(['背背山', '六六坡', '背背路'], '背背'));
+
+
+        function exclude(arr, str) {
+            let result = [];
+            eachStr(arr, function (it) {
+                if (!it.startsWith(str))
+                    result.push(it);
+            })
+            return result;
+        }
+
+        console.log(exclude(['背背山', '六六坡', '背背路'], '背背'));
+
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function add(x, y) {
+            return x + y;
+        }
+        console.log(add(1, 2));
+
+        function printer(arr) {
+            for (let i = 0; i < arr.length; i++) {
+                console.log(arr[i]);
+            }
+        }
+
+        printer(["a", "b", "c"]);
+
+
+        function printerBreak(arr, breaker) {
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] === breaker)
+                    break;
+                console.log(arr[i]);
+            }
+        }
+
+        let list = [
+            '王花花',
+            '刘备备',
+            '李拴蛋',
+            '赵可爽',
+        ];
+        printerBreak(list, "李拴蛋");
+
+        function printerJump(arr, jump) {
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] === jump)
+                    continue;
+                console.log(arr[i]);
+            }
+        }
+        printerJump(list, "李拴蛋");
+
+
+
+        function a(c) {
+            c();
+        }
+
+        function b() {
+            console.log("1");
+        }
+        
+        a(b);
+    </script>
+</body>
+
+</html>

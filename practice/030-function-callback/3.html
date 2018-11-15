@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    :root {
+        font-size: 15px;
+    }
+
+    .border {
+        display: inline-block;
+        box-sizing: border-box;
+        border: 2px solid red;
+        background-color: black;
+        padding: 10px;
+    }
+
+    .inner {
+        color: red;
+        font-size: 2rem;
+    }
+</style>
+
+<body>
+    <div class="border">
+        <span class="inner">修脚 贴膜</span>
+    </div>
+
+    <script>
+        const border = document.querySelector(".border");
+        const inner = border.querySelector(".inner");
+        let size = 1;
+
+        boot();
+
+        function boot() {
+            startFlash();
+        }
+
+        function startFlash() {
+            setInterval(() => {
+                toggleBorder();
+                toggleText(enlarge);
+            }, 500);
+        }
+        console.log(isVisible());
+        function isVisible() {
+            return getComputedStyle(inner).opacity != "0";
+            console.log(inner.style.opacity);
+        }
+
+        function toggleText(onShow, onHide) {
+            if (isVisible()) {
+                inner.style.opacity = "0";
+                onHide && onHide();
+            }else {
+                inner.style.opacity = "1";
+                onShow && onShow();
+            }
+        }
+
+        // function toggleText() {
+        //     inner.style.opacity = isVisible() ? "0" : "1";
+        // }
+
+        function toggleBorder() {
+            border.style.borderColor = isVisible() ? "transparent" : "red";
+        }
+
+        function enlarge() {
+                size < 3 ? size++ : size = 1;
+                inner.style.fontSize = size * 2 + "rem";
+        }
+
+
+
+
+
+    </script>
+</body>
+
+</html>

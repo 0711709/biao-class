@@ -26,7 +26,48 @@
 <body>
     <div class="border">修脚</div>
     <script>
-       
+        const border = document.querySelector(".border");
+        let arr = ["修脚", "贴膜", "洗头", "收旧手机", "收旧航母", "换菜刀", "换脸盆"];
+        let num = 0;
+
+        boot();
+
+        function boot() {
+            startFlash();
+        };
+
+        function isVisible() {
+            return getComputedStyle(border).color == "rgb(255, 0, 0)";
+        }
+
+        function toggleText(onShow, onHide) {
+            if (isVisible()) {
+                border.style.color = "black";
+                onHide && onHide();
+            } else {
+                border.style.color = "red";
+                onShow && onShow();
+            }
+        }
+
+        function toggleBorder() {
+            border.style.borderColor = isVisible() ? "black" : "red";
+        }
+
+        function service() {
+            num++;
+            if (num >= arr.length)
+                num = 0;
+            border.innerHTML = arr[num];
+        }
+
+        function startFlash() {
+            setInterval(() => {
+                toggleBorder();
+                toggleText(service);
+            }, 500);
+        }
+
     </script>
 </body>
 

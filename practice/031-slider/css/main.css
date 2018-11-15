@@ -1,0 +1,22 @@
+div {
+    box-sizing: border-box;
+}
+
+img {
+    width: 100%;
+}
+
+.container {
+    max-width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.slider {
+    position: relative;
+}
+
+.item {
+    position: absolute;
+    transition: all .4s;
+}

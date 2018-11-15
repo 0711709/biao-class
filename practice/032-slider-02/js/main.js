@@ -8,23 +8,19 @@ function boot() {
 };
 
 function slider() {
-    setInterval(function () {
-        current--;
-        if (current < 0) {
-            reset();
-            current = item.length - 1;
-            setTimeout(() => {
-                item[current].style.opacity = "0";
-            }, 500);
-        } else{
-            item[current].style.opacity = "0";
-        }   
-    }, 1000)
+   setInterval(() => {
+       current--;
+       if (current == 0) {
+           current = item.length;
+           reset();
+       } else {
+           item[current].style.opacity = "0";
+       }
+   },1000)
 }
 
 function reset() {
-    for(let i = 0; i < item.length; i++){
+    for (let i = 0; i < item.length; i++){
         item[i].style.opacity = "1";
     }
 }
-

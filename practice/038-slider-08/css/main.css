@@ -1,0 +1,64 @@
+html {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+img {
+    width: 100%;
+    display: block;
+}
+
+.container {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+.slider {
+    position: relative;
+    overflow: hidden;
+}
+
+
+.item {
+    position: absolute;
+    transition: left 1s;
+}
+
+.btn {
+    display: inline-block;
+    outline: none;
+    border: 0;
+    background-color: #333;
+    padding: 20px;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 3;
+}
+
+#btnLeft {
+    top: 43%;
+    left: 2%;
+}
+
+#btnRight {
+    top: 43%;
+    right: 2%;
+}
+
+
+.arrow {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-right: 2px #888 solid;
+    border-top: 2px #888 solid;
+}
+
+.arrow.left {
+    transform: rotate(-135deg);
+}
+
+.arrow.right {
+    transform: rotate(45deg);
+}

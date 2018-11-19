@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    button {
+        font-size: 16px;
+        padding: 5px;
+        background-color: #aaa;
+        outline: none;
+        border: 0;
+        display: block;
+    }
+
+    .more {
+        background-color: #999;
+        display: inline-block;
+    }
+
+    .item {
+        font-size: 14px;
+        padding: 3px;
+    }
+
+    .item:hover {
+        background: #bbb;
+        color: #444;
+    }
+
+    [hidden] {
+        display: none !important;
+    }
+</style>
+
+<body>
+    <div class="demo">
+        <button id="btn">查看更多</button>
+        <div class="more">
+            <div class="item">搜一搜</div>
+            <div class="item">扫一扫</div>
+            <div class="item">看一看</div>
+            <div class="item">加好友</div>
+        </div>
+    </div>
+    <script>
+        let btn = document.querySelector("#btn");
+        let more = document.querySelector(".more")
+        console.log(btn);
+        console.log(more)
+        console.log(!more.hidden)
+
+        //点击显示或隐藏
+        window.addEventListener("keyup", (event) => {
+            // more.style.display = (getComputedStyle(more).display === "inline-block") ? "none" : "inline-block";
+            if(event.key == "h")
+                more.hidden = !more.hidden;h
+            // more.hidden = !more.hidden
+
+        })
+
+    </script>
+</body>
+
+</html>

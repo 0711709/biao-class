@@ -9,49 +9,46 @@ window.onload = function () {
     let height = window.getComputedStyle(img[0]).height;
     let width = window.getComputedStyle(img[0]).width;
 
-    let pre = 0;
-    let current = 0;
-    let next = 0;
-    let preFront = 0;
+    let pre = 0; //前一页
+    let current = 0; //当前页
+    let next = 0; //下一页
+    let preFront = 0; //前前一页
+
+    let auto = 1500; //自动滚动速度
 
     //获取图片尺寸
     getSize();
     boot();
 
     //鼠标点击函数
-    document.getElementById("btnLeft").onclick = function () { moveLeft() };
-    document.getElementById("btnRight").onclick = function () { moveRight() };
+    document.getElementById("btnLeft").onclick = function () { moveClick(left) };
+    document.getElementById("btnRight").onclick = function () { moveClick(right) };
 
     //启动函数
     function boot() {
-        sliderShow();
+        sliderShow(left,auto);
     }
 
     //轮播函数
-    function sliderShow() {
-        getLeftIndex();
+    function sliderShow(mode, speed) {
+        getIndex();
         ready();
-        move()
+        move(mode, speed);
     }
 
     //自动滚动
-    function move() {
+    function move(fn, speed) {
         //等图片就位后再执行滚动操作
         setInterval(() => {
-            moveLeft();
-        }, 2000);
+            getIndex();
+            fn();
+        }, speed);
     }
 
-    //往左滚动
-    function moveLeft() {
-        getLeftIndex();
-        left();
-    }
-
-    //往右滚动
-    function moveRight() {
-        getRightIndex();
-        right();
+    //点击滚动
+    function moveClick(fn) {
+        getIndex();
+        fn();
     }
 
     //滚动前的准备工作
@@ -92,15 +89,10 @@ window.onload = function () {
         current = pre;
     }
 
-    //获取往左移动的图片序号
-    function getLeftIndex() {
+    //获取移动前的图片序号
+    function getIndex() {
         pre = (current == 0) ? (item.length - 1) : (current - 1);
         next = (current == item.length - 1) ? 0 : (current + 1)
-    }
-
-    //获取往右移动的图片序号
-    function getRightIndex() {
-        pre = (current == 0) ? (item.length - 1) : (current - 1);
         preFront = (pre == 0) ? (item.length - 1) : (pre - 1);
     }
 

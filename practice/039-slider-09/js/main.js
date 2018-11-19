@@ -14,7 +14,7 @@ window.onload = function () {
     let next = 0; //下一页
     let preFront = 0; //前前一页
 
-    let auto = 1500; //自动滚动速度
+    let auto = 2000; //自动滚动速度
 
     //获取图片尺寸
     getSize();

@@ -53,6 +53,7 @@
         console.log(btn);
         console.log(more)
         console.log(!more.hidden)
+        more.hidden = true;
 
         //点击显示或隐藏
         // btn.addEventListener("click", () => {
@@ -62,10 +63,10 @@
 
         //鼠标进入动作
         btn.addEventListener("mouseenter", () => {
-            more.hidden = true;
+            more.hidden = false;
         })
         btn.addEventListener("mouseleave", () => {
-            more.hidden = false;
+            more.hidden = true;
         })
 
     </script>

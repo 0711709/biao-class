@@ -16,8 +16,7 @@ window.onload = function () {
 
     let auto = 2000; //自动滚动速度
 
-    //获取图片尺寸
-    setSize();
+
     boot();
 
     //鼠标点击函数
@@ -26,10 +25,13 @@ window.onload = function () {
 
     //启动函数
     function boot() {
-        sliderShow(left,auto);
+        //获取图片尺寸
+        setSize();
+        sliderShow(left, auto);
     }
 
     //轮播函数
+    //mode 可选参数有 left, right
     function sliderShow(mode, speed) {
         getIndex();
         ready();

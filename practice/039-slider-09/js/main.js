@@ -17,7 +17,7 @@ window.onload = function () {
     let auto = 2000; //自动滚动速度
 
     //获取图片尺寸
-    getSize();
+    setSize();
     boot();
 
     //鼠标点击函数
@@ -96,8 +96,8 @@ window.onload = function () {
         preFront = (pre == 0) ? (item.length - 1) : (pre - 1);
     }
 
-    //确定图片尺寸
-    function getSize() {
+    //设置图片尺寸
+    function setSize() {
         slider.style.height = height;
         for (let i = 0; i < img.length; i++) {
             img[i].style.width = width;

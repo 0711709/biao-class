@@ -44,32 +44,31 @@
 </body>
 
 <script>
-    //声明变量
     let trigger, popup, mask;
 
-    //位置参数, 类型为字符串
+    //确定弹出层位置
+    //可选参数有 "topLeft", "topCenter", "topRight", "centerLeft", 
+    // "center", "centerRight", "bottomLeft", "bottomCenter","bottomRight"
     let position = "center";
-    //可选参数有 , , "rightTop", "leftCenter", 
-    // "rightCenter", "leftBottom", "centerBottom","rightBottom"
 
-    let xPosition = 0;
-    let yPosition = 0;
     //xPosition 调整横向位置 默认为0
     //yPosition 调整纵向位置 默认为0
+    let xPosition = 0;
+    let yPosition = 0;
 
     //启动弹出层函数
-    popupboot("#trigger", "#popup");
+    popupBoot("#trigger", "#popup");
 
     //根据 selectorA selectorB 选择插入位置
-    function popupboot(selectorA, selectorB) {
+    function popupBoot(selectorA, selectorB) {
         //确定选择器
         trigger = document.querySelector(selectorA);
         popup = document.querySelector(selectorB);
 
-        //添加插件类名
+         //准备弹出层
         initPopup();
 
-        //添加元素
+        //准备遮罩
         initMask();
 
         //添加打开事件
@@ -79,13 +78,13 @@
         bindClose();
     }
 
-    //添加插件类名
+    //准备弹出层
     function initPopup() {
         popup.classList.add("biao-popup");
         popup.hidden = true
     }
 
-    //添加元素
+    //准备遮罩
     function initMask() {
         mask = document.createElement("div");
         document.body.appendChild(mask);
@@ -129,41 +128,41 @@
 
 
         switch (position) {
-            case "leftTop":
-                popup.style.left = 0 + xPosition;
-                popup.style.top = 0 + yPosition;
+            case "topLeft":
+                popup.style.left = 0 + xPosition + "px";
+                popup.style.top = 0 + yPosition + "px";
                 break;
-            case "centerTop":
+            case "topCenter":
                 popup.style.left = windowWidth / 2 - width / 2 + xPosition + "px";
-                popup.style.top = 0 + yPosition;
+                popup.style.top = 0 + yPosition + "px";
                 break;
-            case "rightTop":
-                popup.style.right = 0 + xPosition;
-                popup.style.top = 0 + yPosition;
+            case "topRight":
+                popup.style.right = 0 + xPosition + "px";
+                popup.style.top = 0 + yPosition + "px";
                 break;
-            case "leftCenter":
-                popup.style.left = 0 + xPosition;
+            case "centerLeft":
+                popup.style.left = 0 + xPosition + "px";
                 popup.style.top = windowHeight / 2 - height / 2 + yPosition + "px";
                 break;
             case "center":
                 popup.style.left = windowWidth / 2 - width / 2 + xPosition + "px";
                 popup.style.top = windowHeight / 2 - height / 2 + yPosition + "px";
                 break;
-            case "rightCenter":
-                popup.style.right = 0 + xPosition;
+            case "centerRight":
+                popup.style.right = 0 + xPosition + "px";
                 popup.style.top = windowHeight / 2 - height / 2 + yPosition + "px";
                 break;
-            case "leftBottom":
-                popup.style.left = 0 + xPosition;
-                popup.style.bottom = 0 + yPosition;
+            case "bottomLeft":
+                popup.style.left = 0 + xPosition + "px";
+                popup.style.bottom = 0 + yPosition + "px";
                 break;
-            case "centerBottom":
+            case "bottomCenter":
                 popup.style.left = windowWidth / 2 - width / 2 + xPosition + "px";
-                popup.style.bottom = 0 + yPosition;
+                popup.style.bottom = 0 + yPosition + "px";
                 break;
-            case "rightBottom":
-                popup.style.right = 0 + xPosition;
-                popup.style.bottom = 0 + yPosition;
+            case "bottomRight":
+                popup.style.right = 0 + xPosition + "px";
+                popup.style.bottom = 0 + yPosition + "px";
                 break;
         }
 

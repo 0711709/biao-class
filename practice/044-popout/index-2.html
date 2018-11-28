@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    table {
+        border: 1px solid;
+        width: 35%;
+        border-collapse: collapse;
+
+    }
+
+    th,
+    td {
+        text-align: left;
+        border: 1px solid;
+        padding: 5px;
+    }
+</style>
+
+<body>
+    <h1>花名册</h1>
+    <table id="table">
+        <thead id="tr">
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>分数</th>
+            <th>操作</th>
+        </thead>
+        <tbody id="tbody">
+        </tbody>
+    </table>
+</body>
+<script>
+    let users = [{
+        name: "王花花",
+        gender: "女",
+        score: "90"
+    },
+    {
+        name: "张国立",
+        gender: "男",
+        score: "65"
+    },
+    {
+        name: "赵柯爽",
+        gender: "女",
+        score: "75"
+    },
+    {
+        name: "李三伞",
+        gender: "男",
+        score: "55"
+    }];
+
+    boot();
+
+    function boot() {
+        users.forEach(user => {
+            let td = document.createElement("tr")
+            td.innerHTML = `<td>${user.name}</td><td>${user.gender}</td><td>${user.score}</td><td><button class="del">删除</button></td>`;
+            tbody.appendChild(td);
+            let del = document.querySelector(".del");
+            del.addEventListener("click", () => {
+                tr.remove();
+            })
+        })
+    }
+
+</script>
+
+
+</html>

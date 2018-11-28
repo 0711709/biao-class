@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<style>
+    .biao-popup {
+        background-color: #fff;
+        box-shadow: 2px 2px 3px rgba(0, 0, 0, .2);
+        position: fixed;
+        padding: 10px;
+        z-index: 1000;
+    }
+
+    .biao-mask {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, .6);
+        z-index: 999;
+    }
+
+    [hidden] {
+        display: none !important;
+    }
+</style>
+
+<body>
+    <button id="trigger">收藏</button>
+    <div id="popup">
+        <img src="http://dummyimage.com/200x200?text=好看" alt="img">
+        <div>确定要收藏吗</div>
+    </div>
+</body>
+
+<script>
+    let trigger, popup, mask;
+
+    //确定弹出层位置
+    //可选参数有 "topLeft", "topCenter", "topRight", "centerLeft", 
+    // "center", "centerRight", "bottomLeft", "bottomCenter","bottomRight"
+    let position = "center";
+
+    //xPosition 调整横向位置 默认为0
+    //yPosition 调整纵向位置 默认为0
+    let xPosition = 0;
+    let yPosition = 0;
+
+    //启动弹出层函数
+    popupBoot("#trigger", "#popup");
+
+    //根据 selectorA selectorB 选择插入位置
+    function popupBoot(selectorA, selectorB) {
+        //确定选择器
+        trigger = document.querySelector(selectorA);
+        popup = document.querySelector(selectorB);
+
+        //准备弹出层
+        initPopup();
+
+        //准备遮罩
+        initMask();
+
+        //添加打开事件
+        bindOpen();
+
+        //添加关闭事件
+        bindClose();
+    }
+
+    //准备弹出层
+    function initPopup() {
+        popup.classList.add("biao-popup");
+        popup.hidden = true
+    }
+
+    //准备遮罩
+    function initMask() {
+        mask = document.createElement("div");
+        document.body.appendChild(mask);
+        mask.classList.add("biao-mask");
+        mask.hidden = true;
+    }
+
+    //添加打开事件
+    function bindOpen() {
+        trigger.addEventListener("click", () => {
+            setVisibility(true);
+            popupPosition();
+        });
+    }
+
+    //添加关闭事件
+    function bindClose() {
+        mask.addEventListener("click", () => {
+            setVisibility(false);
+        });
+
+        window.addEventListener("keyup", (e) => {
+            if (e.code == "Escape") {
+                setVisibility(false);
+            }
+        })
+    }
+
+    //显示或隐藏弹窗, 默认值为可见
+    function setVisibility(show = true) {
+        mask.hidden = popup.hidden = !show;
+    }
+
+    //确定弹窗弹出位置
+    function popupPosition() {
+        let windowWidth = window.innerWidth;
+        let windowHeight = window.innerHeight;
+
+        let width = popup.offsetWidth;
+        let height = popup.offsetHeight;
+        
+
+
+        // if(xPosition == "left"){
+        //     popup.style.left = 0 + xOffset + "px";
+        // } else if (xPosition == "center") {
+            
+        // }
+
+
+        switch (position) {
+            case "topLeft":
+                popup.style.left = 0 + xPosition + "px";
+                popup.style.top = 0 + yPosition + "px";
+                break;
+            case "topCenter":
+                popup.style.left = windowWidth / 2 - width / 2 + xPosition + "px";
+                popup.style.top = 0 + yPosition + "px";
+                break;
+            case "topRight":
+                popup.style.right = 0 + xPosition + "px";
+                popup.style.top = 0 + yPosition + "px";
+                break;
+            case "centerLeft":
+                popup.style.left = 0 + xPosition + "px";
+                popup.style.top = windowHeight / 2 - height / 2 + yPosition + "px";
+                break;
+            case "center":
+                popup.style.left = windowWidth / 2 - width / 2 + xPosition + "px";
+                popup.style.top = windowHeight / 2 - height / 2 + yPosition + "px";
+                break;
+            case "centerRight":
+                popup.style.right = 0 + xPosition + "px";
+                popup.style.top = windowHeight / 2 - height / 2 + yPosition + "px";
+                break;
+            case "bottomLeft":
+                popup.style.left = 0 + xPosition + "px";
+                popup.style.bottom = 0 + yPosition + "px";
+                break;
+            case "bottomCenter":
+                popup.style.left = windowWidth / 2 - width / 2 + xPosition + "px";
+                popup.style.bottom = 0 + yPosition + "px";
+                break;
+            case "bottomRight":
+                popup.style.right = 0 + xPosition + "px";
+                popup.style.bottom = 0 + yPosition + "px";
+                break;
+        }
+
+    }
+
+    //根据窗口尺寸自动调整弹窗位置
+    window.addEventListener("resize", () => {
+        popupPosition();
+    })
+</script>
+
+</html>

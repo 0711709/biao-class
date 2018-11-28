@@ -59,16 +59,18 @@
     }];
 
     boot();
-
+    
     function boot() {
+        let i = 0;
         users.forEach(user => {
             let td = document.createElement("tr")
             td.innerHTML = `<td>${user.name}</td><td>${user.gender}</td><td>${user.score}</td><td><button class="del">删除</button></td>`;
             tbody.appendChild(td);
-            let del = document.querySelector(".del");
-            del.addEventListener("click", () => {
-                tr.remove();
+            let del = document.querySelectorAll(".del");
+            del[i].addEventListener("click", () => {
+                td.remove();
             })
+            i++;
         })
     }
 

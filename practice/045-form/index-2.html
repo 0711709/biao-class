@@ -59,39 +59,19 @@
     }];
 
     boot();
-
+    
     function boot() {
-        render1();
-    }
-
-    function render() {
-        users.forEach((user, i) => {
+        let i = 0;
+        users.forEach(user => {
             let td = document.createElement("tr")
             td.innerHTML = `<td>${user.name}</td><td>${user.gender}</td><td>${user.score}</td><td><button class="del">删除</button></td>`;
             tbody.appendChild(td);
             let del = document.querySelectorAll(".del");
             del[i].addEventListener("click", () => {
-                users.splice(i, 1);
                 td.remove();
-                console.log(users);
+                console.log(users)
             })
-        })
-    }
-
-
-    function render1() {
-        tbody.innerHTML = '';//先清空数据
-        users.forEach((user, i) => {
-            let tr = document.createElement("tr")
-            tr.innerHTML = `<td>${user.name}</td><td>${user.gender}</td><td>${user.score}</td><td><button class="del">删除</button></td>`;
-            let del = tr.querySelector(".del");
-            tbody.appendChild(tr);
-            del.addEventListener("click", () => {
-                users.splice(i, 1);
-                tr.remove();
-                console.log(users);
-                render1();
-            })
+            i++;
         })
     }
 

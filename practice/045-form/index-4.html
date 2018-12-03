@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    input {
+        width: 100%;
+    }
+
+    input[type=checkbox],
+    input[type=radio] {
+        width: auto;
+    }
+</style>
+
+<body>
+    <form id="a">
+        <input type="text" name="name" placeholder="姓名" value="1">
+        <input type="number" name="age" placeholder="年龄" value="2">
+        <input type="week" name="time" placeholder="时间" value="2018-W19">
+        <input type="date" name="brithday" placeholder="生日" value="2018-12-03">
+        <div>
+            性别
+            <label>
+                男<input type="radio" name="gender" value="male">
+            </label>
+            <label>
+                女<input type="radio" name="gender" value="female">
+            </label>
+        </div>
+        <div>
+            取向
+            <label>
+                车<input type="checkbox" name="orientation" value="car">
+            </label>
+            <label>
+                男<input type="checkbox" name="orientation" value="male">
+            </label>
+            <label>
+                女<input type="checkbox" name="orientation" value="female">
+            </label>
+        </div>
+        <input type="number" name="height" placeholder="身高" value="170">
+        <button type="submit">提交</button>
+    </form>
+
+    <script>
+        //获取数据
+        function getData(selector) {
+            let data = {};
+            let inputs = selector.querySelectorAll("input");
+
+            inputs.forEach(it => {
+
+                switch (it.type) {
+                    case "name":
+                        data[it.name] = it.value;
+                        break;
+                    case "number":
+                        data[it.name] = parseFloat(it.value);
+                        break;
+                    case "date":
+                    case "week":
+                        data[it.name] = it.valueAsDate;
+                    case "radio":
+                        if (!it.checked)
+                            return;
+                        data[it.name] = it.value;
+                        break;
+                    case "checkbox":
+                        if (!Array.isArray(data[it.name]))
+                            data[it.name] = [];
+                        if (it.checked)
+                            (data[it.name]).push(it.value)
+                        break;
+                    default:
+                        data[it.name] = it.value;
+                };
+
+            });
+            return data;
+        };
+
+
+        // console.log(getData(document.querySelector("#a")))
+
+        let data = {
+            name: "王花花",
+            age: 19,
+            height: 170,
+            brithday: "1999-01-01",
+            time: "2018-W30",
+            gender: "female",
+            orientation: [ "female", "car"]
+        }
+
+        //填充表单
+        function setData(data, selector) {
+            for (const key in data) {
+                let input = selector.querySelector(`[name=${key}]`);
+
+                switch (input.type) {
+                    case "radio":
+                        let radio = selector.querySelector(`[name=${key}][value=${data[key]}]`)
+                        radio && (radio.checked = true);
+                        break;
+                    case "checkbox":
+                        data[key].forEach(it => {
+                            let checkbox = selector.querySelector(`[name=${key}][value=${it}]`);
+                            checkbox && (checkbox.checked = true);
+                        })
+                        break;
+                    default:
+                        input.value = data[key];
+                };
+            }
+        }
+
+        setData(data, a);
+    </script>
+</body>
+
+</html>

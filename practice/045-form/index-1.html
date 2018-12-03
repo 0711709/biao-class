@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" ></html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -7,40 +7,37 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+<style>
+    input {
+        width: 100%;
+    }
+
+    input[type=chexkbox],
+    input[type=radio] {
+        width: auto;
+    }
+</style>
 
 <body>
-    <div class="drowdown">
+    <form action="">
+        <input type="text" name="name" placeholder="姓名">
+        <input type="text" name="age" placeholder="年龄">
+        <input type="text" name="gender" placeholder="性别">
+        <input type="text" name="height" placeholder="身高">
+        <button type="submit">提交</button>
+    </form>
 
-    </div>
-    <p> what </p>
-    <p> what </p>
-    <p> what </p>
-    <p> what </p>
-    <p> what </p>
-    <p> what </p>
-    <p> what </p>
-    <p> what </p>
-    <p> what </p>
-    <p> what </p>
+    <script>
+        let data = {};
+
+        let inputs = document.querySelectorAll("input");
+
+        inputs.forEach(it => {
+            data[it.name] = it.value;
+        });
+        
+        
+    </script>
 </body>
-   <script>
-    let list = [
-            {
-                text: "a",
-                href: 'http://z.cn'
-            }
-        ];
-    
-    let drowdown = document.querySelector(".drowdown");
-    console.log(drowdown)
 
-    list.forEach(item => {
-        let a = document.createElement("a");
-        a.innerText = item.text;
-        a.href = item.href;
-        drowdown.appendChild(a);
-    })
-   
-   
-   </script>
 </html>

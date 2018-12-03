@@ -8,74 +8,41 @@
     <title>Document</title>
 </head>
 <style>
-    table {
-        border: 1px solid;
-        width: 35%;
-        border-collapse: collapse;
-
+    input {
+        width: 100%;
     }
 
-    th,
-    td {
-        text-align: left;
-        border: 1px solid;
-        padding: 5px;
+    input[type=chexkbox],
+    input[type=radio] {
+        width: auto;
     }
 </style>
 
 <body>
-    <h1>花名册</h1>
-    <table id="table">
-        <thead id="tr">
-            <th>姓名</th>
-            <th>年龄</th>
-            <th>分数</th>
-            <th>操作</th>
-        </thead>
-        <tbody id="tbody">
-        </tbody>
-    </table>
+    <form action="">
+        <input type="text" name="name" placeholder="姓名">
+        <input type="text" name="age" placeholder="年龄">
+        <input type="text" name="gender" placeholder="性别">
+        <input type="text" name="height" placeholder="身高">
+        <button type="submit">提交</button>
+    </form>
+
+    <script>
+        let data = {
+            name: 1,
+            age: 2,
+            gender: 3,
+            height: 4
+        };
+
+        let form = document.querySelector("form");
+
+        //传入数据
+        for (let key in data) {
+            let input = form.querySelector(`[name=${key}`);
+            input.value = data[key];
+        }
+    </script>
 </body>
-<script>
-    let users = [{
-        name: "王花花",
-        gender: "女",
-        score: "90"
-    },
-    {
-        name: "张国立",
-        gender: "男",
-        score: "65"
-    },
-    {
-        name: "赵柯爽",
-        gender: "女",
-        score: "75"
-    },
-    {
-        name: "李三伞",
-        gender: "男",
-        score: "55"
-    }];
-
-    boot();
-    
-    function boot() {
-        let i = 0;
-        users.forEach(user => {
-            let td = document.createElement("tr")
-            td.innerHTML = `<td>${user.name}</td><td>${user.gender}</td><td>${user.score}</td><td><button class="del">删除</button></td>`;
-            tbody.appendChild(td);
-            let del = document.querySelectorAll(".del");
-            del[i].addEventListener("click", () => {
-                td.remove();
-                console.log(users)
-            })
-            i++;
-        })
-    }
-
-</script>
-
 
 </html>

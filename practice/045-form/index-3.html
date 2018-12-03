@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    input {
+        width: 100%;
+    }
+
+    input[type=chexkbox],
+    input[type=radio] {
+        width: auto;
+    }
+</style>
+
+<body>
+    <form id="a">
+        <input type="text" name="name" placeholder="姓名" value="1">
+        <input type="text" name="age" placeholder="年龄" value="2">
+        <input type="text" name="gender" placeholder="性别">
+        <input type="text" name="height" placeholder="身高">
+        <button type="submit">提交</button>
+    </form>
+
+    <form id="b">
+        <input type="text" name="name" placeholder="姓名" value="3">
+        <input type="text" name="age" placeholder="年龄">
+        <input type="text" name="gender" placeholder="性别">
+        <input type="text" name="height" placeholder="身高">
+        <button type="submit">提交</button>
+    </form>
+
+
+    <form id="c">
+        <input type="text" name="name" placeholder="姓名" value="4">
+        <input type="text" name="age" placeholder="年龄">
+        <input type="text" name="gender" placeholder="性别">
+        <input type="text" name="height" placeholder="身高">
+        <button type="submit">提交</button>
+    </form>
+
+    <script>
+
+        //获取数据
+        function getData(selector) {
+            let data = {};
+            let inputs = selector.querySelectorAll("input");
+            inputs.forEach(it => {
+                data[it.name] = it.value;
+            });
+            return data;
+        };
+
+
+        console.log(getData(document.querySelector("#a")))
+
+        let data = {
+            name: 1,
+            age: 2,
+            height: 3,
+            gender: 4
+        }
+        
+        //填充表单
+        function setData(data, selector) {
+            for (const key in data) {
+                let input = selector.querySelector(`[name=${key}]`);
+                input.value = data[key];
+            }
+        }
+
+        setData(data, b);
+        console.log(data.name)
+    </script>
+</body>
+
+</html>

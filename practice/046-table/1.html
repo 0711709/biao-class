@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    table {
+        border: 1px solid;
+        width: 35%;
+        border-collapse: collapse;
+
+    }
+
+    th,
+    td {
+        text-align: left;
+        border: 1px solid;
+        padding: 5px;
+    }
+</style>
+
+<body>
+    <table>
+    </table>
+</body>
+<script>
+    //数据
+    let userStruct = {
+        name: '姓名',
+        score: '分数',
+        gender: '性别',
+        balance: '余额',
+    };
+
+    let users = [
+        {
+            name: '王花花',
+            gender: '男',
+            score: 20,
+            balance: 80,
+        },
+        {
+            name: '李拴蛋',
+            gender: '女',
+            score: 65,
+        },
+        {
+            name: '赵可爽',
+            gender: '男',
+            score: 81,
+        },
+    ];
+
+    let table = document.querySelector("table");
+    
+    boot();
+
+    function boot() {
+        theadrender();
+        tbodyrender();
+    }
+
+
+    function theadrender() {
+        let thead = document.createElement("thead");
+        let html = "";
+        for (const key in userStruct) {
+            html += `<th>${userStruct[key]}</th>`;
+            //thead.innerHTML += `<th>${userStruct[key]}</th>`;
+            //这种方式会自动添加tr;
+        };
+        thead.innerHTML = html;
+        table.appendChild(thead);
+    }
+
+    function tbodyrender() {
+        let tbody = document.createElement("tbody");
+        users.forEach(it => {
+            let html = "";
+            for (key in userStruct){
+                html += `<td>${it[key] || "-"}</td>`;
+            }
+            tbody.innerHTML += html;
+        })
+        table.appendChild(tbody);
+    }
+
+
+
+</script>
+
+</html>

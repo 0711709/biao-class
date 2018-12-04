@@ -54,7 +54,7 @@
             score: 81,
         },
     ];
-
+ 
     let table = document.querySelector("table");
     
     boot();
@@ -63,7 +63,6 @@
         theadrender();
         tbodyrender();
     }
-
 
     function theadrender() {
         let thead = document.createElement("thead");
@@ -82,14 +81,12 @@
         users.forEach(it => {
             let html = "";
             for (key in userStruct){
-                html += `<td>${it[key] || "-"}</td>`;
+                html += `<td>${it[key] || "--"}</td>`;
             }
             tbody.innerHTML += html;
         })
         table.appendChild(tbody);
     }
-
-
 
 </script>
 

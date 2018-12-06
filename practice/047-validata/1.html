@@ -1,0 +1,72 @@
+<style>
+    :root {
+        font-size: 15px;
+        font-family: sans-serif;
+
+    }
+
+    button,
+    input {
+        border: 1px solid;
+        width: 100%;
+        padding: .5rem;
+        margin-bottom: .5rem;
+    }
+
+    button {
+        background-color: black;
+        color: white;
+    }
+
+    form {
+        margin-top: 100px;
+        width: 40%;
+        margin-left: auto;
+        margin-right: auto;
+    }                       
+
+</style>
+
+<form>
+    <h1>注册</h1>
+    <input type="text" name="name" placeholder="用户名">
+    <input type="email" name="email" placeholder="邮箱">
+    <input type="text" name="phone" placeholder="电话号码">
+    <input type="password" name="password" placeholder="密码">
+    <button>提交</button>
+</form>
+
+<script>
+
+    function isUsername(str) {
+        return betweenLength(str, 4, 12);
+    }
+
+    function isEmail(str) {
+        return str.includes("@");
+          
+    }
+
+    function isPhone(str) {
+        return !((str.length !=11 && str.length != 13 && str.length != 14) || !str.startsWith("1"))
+            
+    }
+
+    function isPassword(str) {
+        return betweenLength(str, 6, 64);
+       
+    }
+
+    function betweenLength(str, min, max) {
+        return between(str.length, min, max);
+    }
+
+    function between (num, min, max) {
+        return num >= min && num <= max;
+    }
+
+    console.log(isUsername("whhff"));
+    console.log(isEmail("12e34"))
+    console.log(("13333453411").length)
+    console.log(isPhone("13300008888"))
+</script>

@@ -20,53 +20,143 @@
 
     form {
         margin-top: 100px;
-        width: 40%;
+        max-width: 40%;
         margin-left: auto;
         margin-right: auto;
-    }                       
+    }
+
+    .error-container {
+        background-color:pink;
+        color:#c10;
+        margin: .5rem 0;
+        padding: .5rem;
+        font-size: 90%;
+    }
+
+    input.error {
+        outline: none;
+        border: 2px solid #c10;
+    }
+
+    [hidden] {
+        display: none;
+    }
 
 </style>
 
-<form>
+<form novalidate>
     <h1>注册</h1>
     <input type="text" name="name" placeholder="用户名">
     <input type="email" name="email" placeholder="邮箱">
     <input type="text" name="phone" placeholder="电话号码">
     <input type="password" name="password" placeholder="密码">
+    <div class="error-container" hidden></div>
     <button>提交</button>
 </form>
 
+<script src="js/validataUtils.js"></script>
 <script>
 
-    function isUsername(str) {
-        return betweenLength(str, 4, 12);
+    let form = document.querySelector("form");
+
+    let data = {};
+    let error;
+
+    let errorContainer = form.querySelector(".error-container")
+
+    boot();
+
+    function boot() {
+        bindSubmit();
+        bindKeyup();
     }
 
-    function isEmail(str) {
-        return str.includes("@");
-          
+    function bindKeyup() {
+        form.addEventListener("keyup", e => {
+            if(e.key != "Enter") {
+                resetErrorInput();
+            }
+            console.log("1")
+        })
     }
 
-    function isPhone(str) {
-        return !((str.length !=11 && str.length != 13 && str.length != 14) || !str.startsWith("1"))
-            
+    function bindSubmit() {
+        form.addEventListener("submit", e => {
+            e.preventDefault();
+
+            data.name = form.querySelector("[name=name]").value;
+            data.email = form.querySelector("[name=email]").value;
+            data.phone = form.querySelector("[name=phone]").value;
+            data.password = form.querySelector("[name=password]").value;
+
+            validata(data) ? hiddenError() : showError();
+
+        })
     }
 
-    function isPassword(str) {
-        return betweenLength(str, 6, 64);
-       
+    function validata(data) {
+
+        let valid = true;
+
+        error = {
+            name: [],
+            email: [],
+            phone: [],
+            password: []
+        };
+
+        //name
+        if (!vali.isUsername(data.name)) {
+            valid = false;
+            error.name.push("用户名有误,用户名应介于4至12位之间")
+        }
+
+        //email
+        if (!vali.isEmail(data.email)) {
+            valid = false;
+            error.email.push("邮箱格式有误")
+        }
+
+        //phone
+        if (!vali.isPhone(data.phone)) {
+            valid = false;
+            error.phone.push("电话格式有误")
+        }
+
+        //password
+        if (!vali.isPassword(data.password)) {
+            valid = false;
+            error.password.push("密码格式有误,密码长度应介于6至64位之间")
+        }
+
+        return valid;
     }
 
-    function betweenLength(str, min, max) {
-        return between(str.length, min, max);
+    function showError() {
+        errorContainer.hidden = false;
+        errorContainer.innerHTML = "";
+        for (let key in error) {
+            let it = error[key];
+            if(it.length)
+                form.querySelector(`[name=${key}`).classList.add("error");
+            it.forEach(str => {
+                let errorItem = document.createElement("div");
+                errorItem.innerText = str;
+                errorContainer.appendChild(errorItem);
+            });
+        }
     }
 
-    function between (num, min, max) {
-        return num >= min && num <= max;
+    function hiddenError() {
+        errorContainer.hidden = true;
+        resetErrorInput()
     }
 
-    console.log(isUsername("whhff"));
-    console.log(isEmail("12e34"))
-    console.log(("13333453411").length)
-    console.log(isPhone("13300008888"))
+    function resetErrorInput() {
+            form.querySelectorAll("[name]").forEach(it => {
+                it.classList.remove("error");
+            })
+        }
+
+
 </script>

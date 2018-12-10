@@ -1,0 +1,39 @@
+:root {
+    font-size: 15px;
+    font-family: sans-serif;
+}
+
+button,
+input {
+    border: 1px solid;
+    width: 100%;
+    padding: .5rem;
+    margin-bottom: .5rem;
+}
+
+button {
+    background-color: black;
+    color: white;
+}
+
+form {
+    margin-top: 100px;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+} 
+
+table {
+    margin-top: .5rem;
+    border-collapse: collapse;
+    width: 100%;
+    text-align: left;
+} 
+    
+thead {
+    border-bottom: 2px solid #888;
+}
+
+tbody tr {
+    border-bottom: 1px solid #bbb;
+}              

@@ -1,14 +1,12 @@
+* {
+    box-sizing: border-box;
+}
+
+
+
 :root {
     font-size: 15px;
     font-family: sans-serif;
-}
-
-button,
-input {
-    border: 1px solid;
-    width: 100%;
-    padding: .5rem;
-    margin-bottom: .5rem;
 }
 
 button {
@@ -16,9 +14,27 @@ button {
     color: white;
 }
 
-form {
+button,
+input {
+    border: 1px solid;
+    padding: .5rem;
+    margin-bottom: .5rem;
+}
+
+form button,
+form input {
+    width: 100%;
+}
+
+
+button {
+    background-color: black;
+    color: white;
+}
+
+main {
     margin-top: 100px;
-    width: 40%;
+    width: 60%;
     margin-left: auto;
     margin-right: auto;
 } 
@@ -31,9 +47,23 @@ table {
 } 
     
 thead {
-    border-bottom: 2px solid #888;
+    padding: .5rem;
+    border-bottom: 2px solid rgba(0, 0, 0, .6);
 }
 
 tbody tr {
+    padding: .4rem;
     border-bottom: 1px solid #bbb;
-}              
+} 
+
+th, td {
+    padding: .4rem 0;
+}
+
+.text-right {
+    text-align: right;
+}
+
+[hidden] {
+    display: none;
+}

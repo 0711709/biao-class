@@ -21,15 +21,19 @@
         border: 1px solid;
         padding: 5px;
     }
+
+    tr.active {
+        background-color: aqua;
+    }
 </style>
 
 <body>
-    <table>
+    <table class="biao-table">
     </table>
 </body>
 <script>
 
-    
+
 
 
     //数据
@@ -58,38 +62,91 @@
             score: 81,
         },
     ];
- 
-    let table = selector;
-    
-    // boot();
 
-    function boot(selector, struc, list) {
-        theadrender();
-        tbodyrender();
+    let operation = {
+        delete(tr, i) {
+            users[i] = null;
+            tr.remove();
+            console.log(users);
+        },
+
+        highlight(tr) {
+            let klass = tr.classList;
+
+            klass.contains("active") ? klass.remove("active") : klass.add("active")
+        },
+
+        b() {
+
+        }
     }
 
-    function theadrender() {
+
+
+    boot(".biao-table", userStruct, users, operation);
+
+
+
+
+    function boot(selector, struc, list, ops) {
+        let table = document.querySelector(selector);
+        theadrender(table, struc, ops);
+        tbodyrender(table, struc, list, ops);
+    }
+
+    function theadrender(table, struc, ops) {
         let thead = document.createElement("thead");
         let html = "";
-        for (const key in userStruct) {
-            html += `<th>${userStruct[key]}</th>`;
-            //thead.innerHTML += `<th>${userStruct[key]}</th>`;
+        for (const key in struc) {
+            html += `<th>${struc[key]}</th>`;
+            //thead.innerHTML += `<th>${struc[key]}</th>`;
             //这种方式会自动添加tr;
         };
+
+        if (ops)
+            html += "<th>操作</th>";
+
         thead.innerHTML = html;
         table.appendChild(thead);
     }
 
-    function tbodyrender() {
+    function tbodyrender(table, struc, list, ops) {
         let tbody = document.createElement("tbody");
-        users.forEach(it => {
+        table.appendChild(tbody);
+
+        list.forEach((it, index) => {
+            let tr = document.createElement("tr");
+
             let html = "";
-            for (key in userStruct){
+
+            for (key in struc) {
                 html += `<td>${it[key] || "--"}</td>`;
             }
-            tbody.innerHTML += html;
+
+            if (ops) {
+                let btnHtml = "";
+
+                for (let action in ops) {
+                    btnHtml += `<button class="${action}">${action}</button>`;
+                }
+
+                html += `<td>${btnHtml}</td>`;
+            }
+
+            tr.innerHTML = html;
+
+            if (ops) {
+                for (let key in ops) {
+                    tr.querySelector("." + key).addEventListener("click", e => {
+                        ops[key](tr, index);
+                    });
+                }
+            }
+
+
+            tbody.appendChild(tr);
+
         })
-        table.appendChild(tbody);
     }
 
 </script>

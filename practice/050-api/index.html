@@ -1,0 +1,38 @@
+<script src="http://unpkg.com/jquery"></script>
+<!-- <script src="http://unpkg.com/axios"></script> -->
+
+<script>
+
+    // //原生XML
+    // let http = new XMLHttpRequest();
+
+
+    // http.open('get', 'https://api.github.com/search/users?q=yo');
+    // http.send();
+    // http.addEventListener('load', () => {
+    //     //转化成JSON格式
+    //     console.log(JSON.parse(http.responseText));
+    // });
+
+
+    //es6写法
+    fetch('https://api.github.com/search/users?q=whh')
+        .then(response => {
+            return response.json();
+        })
+        .then(json => {
+            console.log(json);
+        });
+
+
+    // //使用jQery
+    // //ajax
+    // $.ajax({
+    //     method: "get",
+    //     url:"https://api.github.com/search/users?q=whh"
+    // }).then(e => {
+    //     console.log(e);
+    // })
+
+
+</script>

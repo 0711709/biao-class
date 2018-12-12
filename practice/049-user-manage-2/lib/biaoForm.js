@@ -46,25 +46,26 @@
     //填充表单
     function setData(data, selector) {
         for (const key in data) {
-            
+
             let form = document.querySelector(selector);
 
             let input = form.querySelector(`[name=${key}]`);
-            
-            switch (input.type) {
-                case "radio":
-                    let radio = form.querySelector(`[name=${key}][value=${data[key]}]`)
-                    radio && (radio.checked = true);
-                    break;
-                case "checkbox":
-                    data[key].forEach(it => {
-                        let checkbox = form.querySelector(`[name=${key}][value=${it}]`);
-                        checkbox && (checkbox.checked = true);
-                    })
-                    break;
-                default:
-                    input.value = data[key];
-            };
+
+            if (input)
+                switch (input.type) {
+                    case "radio":
+                        let radio = form.querySelector(`[name=${key}][value=${data[key]}]`)
+                        radio && (radio.checked = true);
+                        break;
+                    case "checkbox":
+                        data[key].forEach(it => {
+                            let checkbox = form.querySelector(`[name=${key}][value=${it}]`);
+                            checkbox && (checkbox.checked = true);
+                        })
+                        break;
+                    default:
+                        input.value = data[key];
+                };
         }
     };
 

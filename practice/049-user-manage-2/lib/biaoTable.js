@@ -5,6 +5,7 @@ window.biaoTable = {boot};
 
 function boot(selector, struc, list, ops) {
     let table = document.querySelector(selector);
+    table.innerHTML = "";
     theadrender(table, struc, ops);
     tbodyrender(table, struc, list, ops);
 }

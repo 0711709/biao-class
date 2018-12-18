@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/mian.css">
+    <link rel="stylesheet" href="css/biaoTodo.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="head text-center">
+        <div class="container">
+            <h1>表清单</h1>
+        </div>
+    </div>
+    <div class="main">
+        <div class="container">
+            <div id="biao-cats">
+                <div id="cat-group">
+                    <span class="cat">
+                        全部<span class="ops"><button>更新</button><button>删除</button></span>
+                    </span>
+                    <span class="cat">
+                        学习<span class="ops"><button>更新</button><button>删除</button></span>
+                    </span>
+                    <span class="cat">
+                        生活<span class="ops"><button>更新</button><button>删除</button></span>
+                    </span>
+                </div>
+                <div id="cat-add">
+                    <span class="cat all">全部</span>
+                    <span class="cat add">+</span>
+                    <span class="input">
+                        <form id="cat-input" hidden>
+                            <input type="text">
+                            <button class="ensure">确定</button>
+                            <button class="cancel">取消</button>
+                        </form>
+                    </span>
+                </div>
+            </div>
+            <div id="biao-todo">
+                <form id="todo-form">
+                    <input type="text" name="title">
+                </form>
+                <div class="todo-list">
+                    <div class="todo-item">
+                        <div class="checkbox"><input type="checkbox"></div>
+                        <div class="title">测试</div>
+                        <div class="ops text-right">
+                            <button>更新</button>
+                            <button>删除</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="js/api.js"></script>
+<script src="js/biaoTodo.js"></script>
+
+</html>

@@ -1,0 +1,144 @@
+:root {
+    background: #eee;
+}
+
+.container {
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.main .container {
+    display: flex;
+}
+
+#biao-cats {
+    width: 25%;
+    padding-right: .5rem;
+    position: relative;
+}
+
+#cat-group .ops {
+    display: none;
+    position: absolute;
+    right: .5rem;
+}
+
+#cat-group button:hover {
+    color: #000;
+}
+
+#cat-group button {
+    font-size: .6rem;
+    color: #666;
+    border: 0;
+    outline: none;
+    border-radius: 2px;
+    padding: 2px;
+    margin-right: 2px;
+
+}
+
+#cat-group .cat:hover .ops{
+    display: inline-block;  
+}
+
+.cat {
+    text-align: left;
+    display: block;
+    width: 100%;
+    padding: 0.6rem;
+    border: 0;
+    margin-bottom: .6rem;
+    outline: 0;
+    border-radius: 2px; 
+}
+
+.cat:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, .1)
+}
+
+#cat-input {
+    font-size: 0;
+}
+
+#cat-input input {
+    font-size: 1rem;
+    padding: .3rem .6rem;
+    margin-bottom: .3rem;
+} 
+
+#cat-input button {
+    font-size: .8rem;
+    width: 48%;
+    padding: .3rem;
+    margin: 1%;
+    display: inline-block;
+}
+
+#biao-todo {
+    width: 75%;
+}
+
+#biao-todo button {
+    padding: .3rem .6rem;
+    border: 0;
+    outline: none;
+    border-radius: 2px;
+}
+
+#biao-todo button:focus {
+    border-color: transparent;
+    box-shadow: 0 0 0 3px #c1a7ff;
+}
+
+form input,
+form button {
+    width: 100%;
+    padding: .6rem;
+    border: 1px solid #000;
+    outline: none;
+    border-radius: 2px;
+}
+
+.todo-list {
+    margin-top: 1rem;
+}
+
+.todo-item {
+    background: #fff;
+    margin: .8rem 0;
+    font-size: 0;
+    border-radius: 3px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .1)
+}
+
+.todo-item > * {
+    display: inline-block;
+    vertical-align: middle;
+    padding: .5rem;
+}
+
+.todo-item .checkbox {
+    width: 15%;
+}
+
+.todo-item .title {
+    width: 45%;
+    font-size: 1rem;
+    text-align: left;
+}
+
+.todo-item .ops {
+    width: 40%;
+    text-align: right;
+}
+
+.todo-item .ops > * {
+    margin: 0 .2rem;
+}
+
+.current {
+    box-shadow: 0 0 0 3px #c1a7ff;
+}

@@ -1,0 +1,44 @@
+.biao-alert-container {
+    font-family: sans-serif;
+    position: fixed;
+    right: 1rem;
+    top: 1rem;
+}
+
+.biao-alert {
+    margin-bottom: .2rem;
+}
+
+.biao-alert.info .inner{
+    background-color: royalblue;
+}
+
+.biao-alert.danger .inner{
+    background-color: darkred;
+}
+
+.biao-alert.warn .inner{
+    background-color: orange;
+}
+
+.biao-alert.success .inner{
+    background-color: darkgreen;
+}
+
+.biao-alert .inner {
+    color: #fff;
+    border-radius: .2rem;
+    cursor: pointer;
+}
+
+.biao-alert .inner > *{
+    padding: .2rem .5rem;
+}
+
+.biao-alert .title {
+    font-weight: bold;
+}
+
+.biao-alert .desc {
+    font-weight: lighter;
+}

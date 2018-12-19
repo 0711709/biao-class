@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="biaoAlert.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="biao-alert">
+        <!-- <div class="inner">
+            <div class="title">yo</div>
+            <div class="desc">kire adfasd ... </div>
+        </div> -->
+    </div>
+</body>
+<script src="biaoAlert.js"></script>
+<script>
+    biaoAlert("yo", { timeout: 5000, type: "warn" });
+    biaoAlert("1", { timeout: 2000, type: "success" });
+    biaoAlert("2", { timeout: 3000, type: "danger" });
+    biaoAlert("3", {
+        timeout: 3000,
+        type: "info",
+        onClick(config) {
+            document.body.appendChild(config.el)
+            console.log(3);
+        },
+        onOpen(config) {
+            console.log(1);
+        },
+        onClose(config) {
+            console.log(2)
+        }
+    }); 
+</script>
+
+</html>

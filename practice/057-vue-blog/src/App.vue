@@ -18,6 +18,7 @@
 import "./css/global.css";
 import "./css/main.css";
 import "./css/home.css";
+// import api from './lib/api';
 
 export default {
   name: "app",

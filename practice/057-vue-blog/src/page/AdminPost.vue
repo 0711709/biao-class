@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container content">
     <div id="side">
       <!-- <div class="item">管理文章</div> -->
     </div>

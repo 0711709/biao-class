@@ -1,7 +1,7 @@
 <template>
   <div class="container content">
     <h1>{{post.title}}</h1>
-    <div>{{post.content}}</div>
+    <div class="post-content">{{post.content}}</div>
   </div>
 </template>
 
@@ -17,7 +17,7 @@ export default {
   },
 
   mounted() {
-    let id = this.id = this.$route.params.id
+    let id = (this.id = this.$route.params.id);
     this.findPost(id);
   },
 
@@ -30,5 +30,12 @@ export default {
   }
 };
 </script>
+
+<style>
+.post-content {
+  white-space: pre-wrap;
+}
+</style>
+
 
 

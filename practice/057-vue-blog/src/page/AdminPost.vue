@@ -62,12 +62,6 @@ export default {
       this.createOrUpdate();
     },
 
-    create() {
-      api("post/create", this.current).then(r => {
-        console.log(r);
-      });
-    },
-
     createOrUpdate() {
       let action = this.current.id ? "update" : "create";
 

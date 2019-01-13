@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 
 import Home from './page/Home.vue'
 import Admin from './page/Admin.vue'
+import AdminPost from './page/AdminPost.vue'
 
 
 Vue.config.productionTip = false
@@ -16,8 +17,14 @@ const routeConfig = [
     component: Home,
   },
   {
-    path: '/Admin',
+    path: '/admin',
     component: Admin,
+    children: [
+      {
+        path: 'post',
+        component: AdminPost
+      }
+    ]
   },
 ]
 

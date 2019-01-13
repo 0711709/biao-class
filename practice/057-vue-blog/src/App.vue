@@ -7,7 +7,7 @@
       </div>
       <div class="nav text-right text-center-md">
         <router-link to="/" active-class='current' exact>首页</router-link>
-        <router-link to="/Admin" active-class='current' exact>管理</router-link>
+        <router-link to="/admin/post" active-class='current' exact>管理</router-link>
       </div>
     </div>
     <router-view></router-view>

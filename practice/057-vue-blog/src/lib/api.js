@@ -8,7 +8,7 @@ function sign(appKey, timestamp) {
 }
 
 export default function api(url, data) {
-    return axios.post(`http://mock.biaoyansu.com/api/1/${url}`, data, {
+    return axios.post(`https://mock.biaoyansu.com/api/1/${url}`, data, {
         headers: {
             'BIAO-MOCK-APP-KEY': appKey,
             'BIAO-MOCK-TIMESTAMP': timestamp,

@@ -34,8 +34,8 @@
             <td>{{it.title}}</td>
             <td>{{it.content}}</td>
             <td>
-              <button>更新</button>
-              <button>删除</button>
+              <button @click="current = it">更新</button>
+              <button @click="remove(it.id)">删除</button>
             </td>
           </tr>
         </tbody>
@@ -51,21 +51,15 @@ export default {
   data() {
     return {
       current: {},
-      list: [],
+      list: []
     };
   },
-  mounted () {
+  mounted() {
     this.read();
   },
   methods: {
     onSubmit() {
-      api("post/create", this.current).then(r => {
-        this.read();
-        this.current = {};
-      });
-      api("post/read").then(r => {
-        console.log(r);
-      });
+      this.createOrUpdate();
     },
 
     create() {
@@ -74,14 +68,25 @@ export default {
       });
     },
 
-    update() {},
+    createOrUpdate() {
+      let action = this.current.id ? "update" : "create";
 
-    delete() {},
+      api(`post/${action}`, this.current).then(r => {
+        this.read();
+        this.current = {};
+      });
+    },
+
+    remove(id) {
+      api("post/delete", { id }).then(r => {
+        this.read();
+      });
+    },
 
     read() {
       api("post/read").then(r => {
         this.list = r.data;
-        console.log(this.list)
+        console.log(this.list);
       });
     }
   }
@@ -109,38 +114,38 @@ export default {
 
 #inputForm input,
 #inputForm textarea,
-#inputForm button[type=submit] {
+#inputForm button[type="submit"] {
   width: 100%;
   margin-bottom: 1rem;
   padding: 0.5rem;
+  font-family: sans-serif;
 }
 
-#inputForm button[type=submit] {
+#inputForm button[type="submit"] {
   border: 1px solid #666;
 }
 
 #inputForm table {
   width: 100%;
-  margin-top: 2rem;
+  margin: 2rem 0;
   border-collapse: collapse;
 }
 #inputForm table thead tr > *,
-#inputForm table tbody tr >*  {
+#inputForm table tbody tr > * {
   /* display: inline-block; */
   text-align: center;
-  padding: .4rem;
+  padding: 0.4rem;
 }
 
-#inputForm table thead tr th:last-of-type, 
+#inputForm table thead tr th:last-of-type,
 #inputForm table tbody tr td:last-of-type {
   text-align: right;
 }
 
-#inputForm table thead tr th{
-  padding-bottom: .6rem;
+#inputForm table thead tr th {
+  padding-bottom: 0.6rem;
   border-bottom: 1px solid #444;
 }
-
 </style>
 
 

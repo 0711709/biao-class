@@ -1,11 +1,12 @@
 <template>
-  <div class="container main">
-    <div class="post-list">
-      <div class="post" v-for="(post, index) in postList" :key="index">
-        <div>
-          <a href>{{post.title}}</a>
-        </div>
-        <div>{{post.content}}</div>
+  <div class="container content col-lg-18 col-md-24">
+    <div class="articla-group">
+      <div class="artical" v-for="(post, index) in postList" :key="index">
+        <router-link :to="'post/' + post.id">
+          <div class="title">{{post.title}}</div>
+          <div class="desc">{{post.content}}</div>
+          <div class="more text-right"><a href="">阅读全文</a></div>
+        </router-link>
       </div>
     </div>
   </div>

@@ -32,7 +32,7 @@
           <tr v-for="(it,index) in list" :key="index">
             <td>{{it.id}}</td>
             <td>{{it.title}}</td>
-            <td>{{it.content}}</td>
+            <td :title="it.content">{{it.content | cut}}</td>
             <td>
               <button @click="current = it">更新</button>
               <button @click="remove(it.id)">删除</button>
@@ -57,6 +57,11 @@ export default {
   mounted() {
     this.read();
   },
+  filters: {
+    cut(value) {
+      return value.length < 11 ? value : value.substring(0, 10) + "...";
+    }
+  },
   methods: {
     onSubmit() {
       this.createOrUpdate();
@@ -72,6 +77,8 @@ export default {
     },
 
     remove(id) {
+      if (!confirm("Sure?")) return;
+
       api("post/delete", { id }).then(r => {
         this.read();
       });
@@ -80,7 +87,6 @@ export default {
     read() {
       api("post/read").then(r => {
         this.list = r.data;
-        console.log(this.list);
       });
     }
   }

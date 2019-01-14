@@ -1,8 +1,4 @@
 <template>
-  <div class="container content">
-    <div id="side">
-      <!-- <div class="item">管理文章</div> -->
-    </div>
     <div id="inputForm">
       <form @submit.prevent="onSubmit">
         <h2 class="text-center">添加/更新文章</h2>
@@ -41,7 +37,6 @@
         </tbody>
       </table>
     </div>
-  </div>
 </template>
 
 <script>
@@ -79,9 +74,7 @@ export default {
     remove(id) {
       if (!confirm("Sure?")) return;
 
-      api("post/delete", { id }).then(r => {
-        this.read();
-      });
+      api("post/delete", { id }).then(r => this.read());
     },
 
     read() {
@@ -94,11 +87,6 @@ export default {
 </script>
 
 <style>
-#side {
-  width: 20%;
-  display: inline-block;
-  margin-right: 10%;
-}
 
 #inputForm {
   width: 70%;

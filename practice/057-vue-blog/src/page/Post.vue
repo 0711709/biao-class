@@ -1,6 +1,7 @@
 <template>
   <div class="container content artical">
     <h1>{{post.title}}</h1>
+    <div class="cat" v-if="post.$cat">分类: {{post.$cat.name}}</div>
     <div class="post-content">{{post.content}}</div>
     <div class="comment-area">
       <button @click="commentFormVisible=!commentFormVisible">评论</button>
@@ -47,8 +48,19 @@ export default {
 
   methods: {
     findPost(id) {
-      api("post/find", { id }).then(r => {
+      let param = {
+        id,
+        with: [
+          {
+            model: "cat",
+            relation: "belongs_to",
+          }
+        ]
+      };
+
+      api("post/find", param).then(r => {
         this.post = r.data;
+        console.log(r.data)
       });
     },
 
@@ -92,6 +104,10 @@ export default {
 <style>
 .post-content {
   white-space: pre-wrap;
+}
+
+.cat {
+  margin: 0.5rem 0;
 }
 
 .comment-area {

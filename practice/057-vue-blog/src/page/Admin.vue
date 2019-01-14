@@ -1,9 +1,9 @@
 <template>
   <div class="container content">
     <div id="side">
-        <router-link to="post">管理文章</router-link>
-        <router-link to="comment">管理评论</router-link>
-        <router-link to="cat">管理分类</router-link>
+        <router-link active-class="active" to="post">管理文章</router-link>
+        <router-link active-class="active" to="comment">管理评论</router-link>
+        <router-link active-class="active" to="cat">管理分类</router-link>
     </div>
     <router-view> 
     </router-view>
@@ -16,15 +16,17 @@ export default {};
 
 <style>
 #side {
-  width: 20%;
+  width: 15%;
   display: inline-block;
-  margin-right: 10%;
+  margin-right: 5%;
+  vertical-align: top
 }
 
 #side a {
   display: block;
-  margin: 3rem 0;
+  margin: 1rem 0;
   text-align: center;
+  padding: 1rem 0;
 }
 </style>
 

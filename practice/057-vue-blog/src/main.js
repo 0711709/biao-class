@@ -28,15 +28,15 @@ const routeConfig = [
     component: Admin,
     children: [
       {
-        path: 'post',
+        path: 'post/',
         component: AdminPost
       },
       {
-        path: 'comment',
+        path: 'comment/',
         component: AdminComment
       },
       {
-        path: 'cat',
+        path: 'cat/',
         component: AdminCat
       }
     ]

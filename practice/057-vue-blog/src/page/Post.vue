@@ -6,15 +6,19 @@
       <button @click="commentFormVisible=!commentFormVisible">评论</button>
       <form v-if="commentFormVisible" class="commentForm" @submit.prevent="createComment">
         <label>邮箱</label>
-        <input type="email" placeholder="邮箱" v-model="current.email">
+        <input type="email" placeholder="邮箱" class="comment-md" v-model="current.email">
         <label>评论</label>
-        <textarea placeholder="好人一生平安" v-model="current.content"></textarea>
+        <textarea placeholder="好人一生平安" class="comment-md" v-model="current.content"></textarea>
         <button type="submit">提交</button>
       </form>
       <div class="comment-list">
         <div v-for="(it, index) in commentList" :key="index" class="comment">
-          <div class="email">{{it.email}}</div>
+          <div class="email">
+            {{it.email}}
+            <span v-if="it.reply_to">回复 {{it.$reply_to.email}}</span>
+          </div>
           <div class="comment-content">{{it.content}}</div>
+          <button @click="fillReply(it)">回复</button>
         </div>
       </div>
     </div>
@@ -58,12 +62,28 @@ export default {
     },
 
     readComment() {
-      api("comment/read", {where: {and: {post_id: this.id}}}).then(r => {
+      let param = {
+        with: [
+          {
+            model: "comment",
+            relation: "belongs_to",
+            foreign_key: "reply_to",
+            as: "reply_to"
+          }
+        ],
+        where: { and: { post_id: this.id } }
+      };
+
+      api("comment/read", param).then(r => {
         if (r.success) {
           this.commentList = r.data;
-          console.log(r.data)
         }
       });
+    },
+
+    fillReply(comment) {
+      this.commentFormVisible = true;
+      this.current.reply_to = comment.id;
     }
   }
 };
@@ -98,14 +118,21 @@ export default {
 
 .comment-list {
   margin-top: 2rem;
-  border-top: 2px solid rgba(0, 0, 0, .4);
+  border-top: 2px solid rgba(221, 221, 221, 0.4);
 }
 
 .comment {
-  border-bottom: 1px solid #999;
+  border-bottom: 1px solid #ddd;
 }
 .comment > * {
-  margin: .8rem 0; 
+  margin: 0.8rem 0;
+}
+
+@media screen and (max-width: 800px) {
+  .comment-md {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 </style>
 

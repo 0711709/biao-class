@@ -1,155 +1,103 @@
-.nav {
-    background-color: #373c38;
+/* artical css */
+
+.artical {
+    padding-right: 3rem;
 }
 
-.nav a {
-    margin: 0 2%;
-    padding: 1%;
-    color: #ddd;
+.artical .title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #555;
 }
 
-.nav a:hover {
-    color: #fff;
+.artical .time {
+    margin: 0.7rem 0;
+    color: #6E7173;
 }
 
-
-.nav .logo  {
-    font-family: 'Charmonman', cursive;
+.artical .desc {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #444;
 }
 
-body {
-    background-color: #e3e3e3;
-    background-image: url(../img/bg.png);
+.artical .more {
+    margin: 0.7rem 0 2rem 0;
 }
 
-.main .me {
-    margin-top: 6%;
-    background-color: #f4f4f4;
-    border-radius: 3px;
-    border: solid 1px rgba(26,26,26,.3);
-    box-shadow: 3px 3px 3px rgba(26,26,26,.3);
+.artical .more a {
+    color: #444;
+    padding: 5px 8px;
+    border-radius: 5px;
+    border: 1px solid #444;
 }
 
-.me .about {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin:0 5%;
-    padding: 5% 0;
-    border-bottom: 1px solid #373c38;
-} 
+@media screen and (max-width: 800px) {
+    .artical {
+        text-align: center;
+        padding-right: 0;
+    }
 
-.me .left {
-    padding-left: 5%;
-}
-
-.me .intro .name {
-    font-size: 1.5rem;
-    font-weight: 500;
-    background-color: #373c38;
-    color: #ddd;
-    padding: 1% 1.5% 1% 1%;
-    border: 1px solid #373c38;
-    border-radius: 49%;
-}
-
-.me .intro > * {
-     margin-right: 5%;
-}
-
-.me .tag {
-    font-size: 0.8rem;
-    font-weight: 300;
-    border: 1px solid #373c38;
-    padding-left: 2%;
-    padding-right: 0.8%;
-    border-radius: 35% 1% 1%  35%;
+    .artical .more {
+        text-align: center;
+    }
 }
 
 
-.me .link-group {
-    margin-top: 6%;
+/* archive css */
+
+.archive li {
+    color: #444;
+    padding: 0.5rem 0;
 }
 
-.me .link-group > * {
-    margin-right: 5%;
-    padding: 2% 3%;
-    background-color: green;
-    color: #e3e3e3;
-    border-radius: 2px;
+/* about css */
+
+.about p {
+    font-size: 14px;
 }
 
-.me .right {
-    font-size: 1.2rem;
-    font-family: 'Mali', cursive;
+
+.about a {
+    color: #01579f;
 }
 
-.me .learning {
-    margin: 1.5% 5% 5% 5%;
+/* history css */
+
+.history .timeline div {
+    display: inline-block;
+    vertical-align: middle;
 }
 
-.me .title {
-    font-size: 2rem;
-    font-weight: 500;
-    margin-left: 9%;
+.history .time {
+    border: 3px solid #ddd;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    text-align: center;
+    line-height: 1.7;
+    color: #aaa;
 }
 
-.me .status {
-    margin-left: 20%;
-    margin-top: 3.5%;
+.history .work {
+    margin-left: 1rem;
+    border-radius: 5px;
+    padding: 2rem 1rem;
+    background: #eee;
     position: relative;
 }
 
-.me .status div {
-    text-align: center;
-    font-family: 'Righteous', cursive;
-    width: 10%;
-    
-}
-
-.me .status div::before {
-    content: "";
+.history .work::after {
+    content: '';
     display: block;
-    height: 0.8rem;
-    width: 60%;
-    border: 1px solid #373c38;
     position: absolute;
-    top: 15%;
-    left: 10%;
-}
-
-.me .html div::after {
-    content: "";
-    display: block;
-    height: 0.8rem;
-    width: 54%;
-    border: 1px solid #373c38;
-    position: absolute;
-    top: 15%;
-    left: 10%;
-    background-color: gray;
-}
-
-.me .css div::after {
-    content: "";
-    display: block;
-    height: 0.8rem;
-    width: 30%;
-    border: 1px solid #373c38;
-    position: absolute;
-    top: 15%;
-    left: 10%;
-    background-color: black;
-}
-
-.me .js div::after {
-    content: "";
-    display: block;
-    height: 0.8rem;
     width: 0;
-    border: 1px solid #373c38;
-    position: absolute;
-    top: 15%;
-    left: 10%;
-    background-color: gray;
+    height: 0;
+    border-style: solid;
+    border-width: 9px 9px 9px 0;
+    border-color: transparent #eee transparent transparent;
+    left: 0;
+    top: 50%;
+    margin-top: -9px;
+    margin-left: -9px;
 }

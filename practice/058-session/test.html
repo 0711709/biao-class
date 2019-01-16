@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+<!-- 递归测试 -->
+<script>
+
+    con(3);
+
+    function con(m) {
+        let r = [];
+        let a = 1;
+
+        arr(r, a, m);
+    }
+
+    function arr(r, a, m) {
+        r.push(a);
+        if (a < m) {
+            a = a + 1;
+            this.arr(r, a, m)
+        } else {
+            console.log(r)
+        }
+    }
+
+</script>
+<script src="./js/api.js"></script>
+<script src="./js/session.js"></script>
+</html>

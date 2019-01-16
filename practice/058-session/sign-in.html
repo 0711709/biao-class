@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<style>
+    * {
+    box-sizing: border-box;
+}
+
+.sign-up{
+    max-width: 600px;
+    min-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    background-color: #ddd;
+    border-radius: 5px;
+    padding: 30px 10px 80px;
+}
+
+form div > * {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+}
+
+input {
+    border: 1px solid #333;
+    padding: 10px;
+}
+
+button {
+    margin-top: 30px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #333;
+}
+
+h2 {
+    text-align: center;
+}
+
+
+</style>
+
+<body>
+    <div class="sign-up">
+        <form>
+            <h2>登陆</h2>
+            <div><label>用户名</label><input type="text"></div>
+            <div><label>密码</label><input type="password"></div>
+            <div><button type="submit">提交</button></div>
+        </form>
+    </div>
+
+</body>
+<script src="js/api.js"></script>
+<script>
+    api("user/read", {}, r => { console.log(r) })
+
+    let form = document.querySelector("form")
+    let input = form.querySelectorAll("input");
+    // let submit = form.querySelector("button")
+
+    // console.log(input[0].value)
+
+    boot();
+
+    function boot() {
+        form.addEventListener("submit", e => {
+            e.preventDefault();
+
+            let user = {
+                username: input[0].value,
+                password: input[1].value,
+            }
+
+            // 判断表单是否为空
+            if (!user.username || !user.password) {
+                alert("不能留空")
+                return;
+            }
+
+            //检测用户是否存在
+            api("user/exists", {
+                where: {
+                    and:
+                    {
+                        username: input[0].value,
+                        password: input[1].value
+                    }
+                }
+            }, r => {
+                if (!r.data) {
+                    alert("用户名或密码有误");
+                    return;
+                } else {
+                    localStorage.setItem("username", input[0].value)
+                }
+            })
+        })
+    }
+
+
+
+</script>
+
+</html>

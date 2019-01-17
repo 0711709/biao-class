@@ -1,0 +1,62 @@
+/* top 样式 */
+
+#top {
+  background-color: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.22);
+}
+
+#top .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 0;
+}
+
+#top .logo {
+  width: 1.8rem;
+}
+
+#top img {
+  vertical-align: middle;
+}
+
+#top input{
+  padding: .3rem 1rem;
+  border: 1px solid rgba(0, 0, 0, .4);
+  border-radius: 1rem;
+  width: 150px;
+  outline: none;
+}
+
+#top .left > *,
+#top .right > * {
+  display: inline-block;
+  margin: 0 .5rem;
+  color: inherit;
+}
+
+/* main 样式 */
+
+#main {
+  background-color: #e2e2e2;
+  padding: 1.5rem .5rem;
+}
+
+#main .content {
+    background-color: #fff;
+    border-radius: 3px;
+    margin: .5rem;
+    padding: .5rem;
+}
+
+/* footer 样式 */
+#footer {
+    margin: 1rem 0;
+}
+
+#footer .link-group a {
+    display: inline-block;
+    margin: 0 .5rem;
+    color: gray;
+    font-weight: bold;
+}

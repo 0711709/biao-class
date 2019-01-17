@@ -1,22 +1,45 @@
 <template>
   <div id="app">
-    <div class="nav">
-      <div class="content">
+    <div id="top">
+      <div class="container">
         <div class="left">
-          <a href>
+          <router-link to="/" class="logo">
             <img src="../public/logo-sm.png" alt="logo">
-          </a>
+          </router-link>
+          <div class="search">
+            <input type="search">
+          </div>
         </div>
         <div class="right">
-          <a href>登陆</a>
-          <a href>注册</a>
+          <router-link to="/">首页</router-link>
+          <router-link to="/signIn">登陆</router-link>
+          <router-link to="/signUp">注册</router-link>
         </div>
+      </div>
+    </div>
+    <router-view></router-view>
+    <div id="footer">
+      <div class="container">
+        <div class="link-group">
+          <router-link to>关于</router-link>
+          <router-link to>FAQ</router-link>
+          <router-link to>API</router-link>
+          <router-link to>我们的愿景</router-link>
+          <router-link to>广告投放</router-link>
+          <router-link to>感谢</router-link>
+          <router-link to>关于</router-link>
+          <router-link to>关于</router-link>
+        </div>
+        
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import "./css/global.css";
+import "./css/main.css";
+
 export default {
   name: "app",
   components: {}
@@ -24,12 +47,4 @@ export default {
 </script>
 
 <style>
-/* #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-} */
 </style>

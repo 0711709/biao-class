@@ -1,5 +1,9 @@
 <template>
-  <div>sign up</div>
+  <div id="main">
+    <div class="container">
+        <div class="content">sign up</div>
+    </div>
+  </div>
 </template>
 
 <script>

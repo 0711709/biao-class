@@ -29,7 +29,7 @@
 }
 
 #top .left > *,
-#top .right > * {
+#top .right a {
   display: inline-block;
   margin: 0 .5rem;
   color: inherit;
@@ -42,14 +42,71 @@
   padding: 1rem 0;
 }
 
-#main .content {
+#main .container {
+    padding: 0 .5rem;
+}
+
+#main .section {
     background-color: #fff;
     border-radius: 3px;
-    margin: .5rem;
+    width: 68%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#main .side {
+    padding-left: 1rem;
+    width: 32%;
+    display: inline-block;
+}
+
+#main .side .border {
+    background-color: #fff;
+    border-radius: 3px;
+}
+
+/* sign up 和 log in 样式 */
+
+#main .section .header {
+    border-bottom: 1px solid #e2e2e2;
     padding: .5rem;
 }
 
+form{
+    margin: 8% 15%;
+}
+
+form .input-control label > *{
+    display: block;
+    width: 100%;
+    margin-bottom: .5rem;
+}
+
+form input {
+    padding: .4rem;
+}
+
+form button {
+    width: 100%;
+    margin: 1rem 0;
+    padding: .4rem;
+}
+
+#main .side .border .header {
+    font-weight: bold;
+    padding-bottom: .2rem;
+    border-bottom: 1px solid #e2e2e2;
+    padding: .5rem;
+}
+
+#main .side .border .intro {
+    padding-bottom: .2rem;
+    padding: .5rem;
+    color: #666;
+}
+
 /* footer 样式 */
+
 #footer {
     margin: 1rem 0;
 }

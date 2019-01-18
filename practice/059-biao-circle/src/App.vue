@@ -12,8 +12,10 @@
         </div>
         <div class="right">
           <router-link to="/">首页</router-link>
-          <router-link to="/signIn">登陆</router-link>
-          <router-link to="/signUp">注册</router-link>
+          <span class="guest">
+            <router-link to="/logIn">登陆</router-link>
+            <router-link to="/signUp">注册</router-link>
+          </span>
         </div>
       </div>
     </div>
@@ -27,10 +29,7 @@
           <router-link to>我们的愿景</router-link>
           <router-link to>广告投放</router-link>
           <router-link to>感谢</router-link>
-          <router-link to>关于</router-link>
-          <router-link to>关于</router-link>
         </div>
-        
       </div>
     </div>
   </div>

@@ -12,7 +12,11 @@
         </div>
         <div class="right">
           <router-link to="/">首页</router-link>
-          <span class="guest">
+          <span class="loggedin" v-if="session.loggedin()">
+            <router-link to>{{session.user().username}}</router-link>
+            <span @click="session.logout()">登出</span>
+          </span>
+          <span class="guest" v-else>
             <router-link to="/login">登陆</router-link>
             <router-link to="/signup">注册</router-link>
           </span>
@@ -39,9 +43,16 @@
 import "./css/global.css";
 import "./css/main.css";
 
+import session from "./lib/session";
+
 export default {
   name: "app",
-  components: {}
+  components: {},
+  data() {
+    return {
+      session
+    };
+  }
 };
 </script>
 

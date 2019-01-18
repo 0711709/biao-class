@@ -29,7 +29,8 @@
 }
 
 #top .left > *,
-#top .right a {
+#top .right a,
+#top .right .loggedin span {
   display: inline-block;
   margin: 0 .5rem;
   color: inherit;

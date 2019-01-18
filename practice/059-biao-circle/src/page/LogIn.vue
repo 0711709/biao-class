@@ -4,7 +4,7 @@
       <div class="section">
         <div class="header">登陆</div>
         <div id="log-in">
-          <form @submit.prevent="logIn">
+          <form @submit.prevent="login">
             <div class="input-control">
               <label>
                 <span>用户名</span>

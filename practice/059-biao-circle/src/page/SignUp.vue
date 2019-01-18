@@ -48,8 +48,6 @@ export default {
   },
   methods: {
     signup() {
-      console.log(this.$route);
-      console.log(this.$router);
       if (!this.validateCurrent()) {
         return;
       }

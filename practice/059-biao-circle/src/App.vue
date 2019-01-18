@@ -13,8 +13,8 @@
         <div class="right">
           <router-link to="/">首页</router-link>
           <span class="guest">
-            <router-link to="/logIn">登陆</router-link>
-            <router-link to="/signUp">注册</router-link>
+            <router-link to="/login">登陆</router-link>
+            <router-link to="/signup">注册</router-link>
           </span>
         </div>
       </div>

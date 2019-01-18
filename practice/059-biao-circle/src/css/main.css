@@ -55,7 +55,7 @@
 }
 
 #main .side {
-    padding-left: 1rem;
+    padding-left: 1.8rem;
     width: 32%;
     display: inline-block;
 }
@@ -66,6 +66,11 @@
 }
 
 /* sign up 和 log in 样式 */
+
+#main .error {
+    color: #b10;
+    font-size: .9rem;
+}
 
 #main .section .header {
     border-bottom: 1px solid #e2e2e2;

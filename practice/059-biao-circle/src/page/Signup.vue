@@ -63,10 +63,7 @@ export default {
       api("user/create", this.current).then(r => {
         if (r.success) {
           this.current = {};
-          console.log("注册成功");
-          api("user/read").then(r => {
-            console.log(r.data);
-          });
+          
           this.$router.push("/login");
         }
       });

@@ -36,6 +36,13 @@
   color: inherit;
 }
 
+#top .left > *:hover,
+#top .right a:hover,
+#top .right .loggedin span:hover {
+    cursor: pointer;
+    color: #999;
+}
+
 /* main 样式 */
 
 #main {

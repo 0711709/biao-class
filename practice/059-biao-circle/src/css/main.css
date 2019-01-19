@@ -68,7 +68,7 @@
     display: inline-block;
 }
 
-#main .side .border {
+#main .side .box {
     background-color: #fff;
     border-radius: 3px;
 }
@@ -105,17 +105,81 @@ form button {
     padding: .4rem;
 }
 
-#main .side .border .header {
+#main .side .box .header {
     font-weight: bold;
     padding-bottom: .2rem;
     border-bottom: 1px solid #e2e2e2;
     padding: .5rem;
 }
 
-#main .side .border .intro {
+#main .side .box .intro {
     padding-bottom: .2rem;
     padding: .5rem;
     color: #666;
+}
+
+/* setting 样式 */
+
+#main .side-left {
+    padding-right: 1.8rem;
+    width: 20%;
+    display: inline-block;
+}
+
+#main .side-left .box-left {
+    background-color: #fff;
+    border-radius: 3px;
+}
+
+#main .section-right .setting .header,
+#main .side-left .box-left .header {
+    font-weight: bold;
+    padding-bottom: .2rem;
+    border-bottom: 1px solid #e2e2e2;
+    padding: .5rem;
+}
+
+#main .side-left .box-left a{
+    display: block;
+    color: inherit;
+    padding: .5rem 1rem;
+    margin: .3rem 0;
+    color: #444;
+    font-size: .9rem;
+}
+
+#main .side-left .box-left a:hover {
+    background-color: #ddd;
+}
+
+.current {
+    background-color: #eee;
+    border-left: 3px solid #1b0;
+    border-right: 3px solid #1b0; 
+}
+
+#main .section-right {
+    background-color: #fff;
+    border-radius: 3px;
+    width: 80%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#main .section-right .setting table {
+    margin: 0 1.5rem;
+}
+
+#main .section-right .setting td {
+    padding: .5rem .3rem;
+}
+
+#main .section-right .setting td:first-child {
+    text-align: right;
+}
+
+#main .section-right .setting input {
+    width: 200px;
 }
 
 /* footer 样式 */

@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="side">
-        <div class="border">
+        <div class="box">
           <div class="header">表圈子</div>
           <div class="intro">十八相送一水黑</div>
         </div>
@@ -33,8 +33,8 @@
 </template>
 
 <script>
-import api from "../lib/api.js";
-import session from "../lib/session.js";
+import api from "../../lib/api.js";
+import session from "../../lib/session.js";
 
 export default {
   data() {

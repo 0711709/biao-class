@@ -9,6 +9,8 @@ import Setting from "./page/user/Setting.vue"
 import SettingMe from "./page/user/SettingMe.vue"
 import SettingSecurity from "./page/user/SettingSecurity.vue"
 
+
+
 Vue.use(VueRouter)
 
 Vue.config.productionTip = false

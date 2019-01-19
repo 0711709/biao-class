@@ -80,6 +80,7 @@ export default {
                   store.set("user", r.data);
                   this.editModel = false;
                   this.updatePending = false;
+                  window.location.reload();
               }
           })
       }

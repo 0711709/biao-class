@@ -18,8 +18,8 @@ function login(sessionId, user, redirect = "/") {
 function logout(redirect = "/") {
     localStorage.removeItem("sessionId")
     localStorage.removeItem("user");
-    console.log(1)
     location.href = redirect;
+    
 }
 
 function user() {

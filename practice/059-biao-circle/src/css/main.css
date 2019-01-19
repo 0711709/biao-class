@@ -131,10 +131,8 @@ form button {
     border-radius: 3px;
 }
 
-#main .section-right .setting .header,
 #main .side-left .box-left .header {
     font-weight: bold;
-    padding-bottom: .2rem;
     border-bottom: 1px solid #e2e2e2;
     padding: .5rem;
 }
@@ -152,6 +150,7 @@ form button {
     background-color: #ddd;
 }
 
+/* 选中样式 */
 .current {
     background-color: #eee;
     border-left: 3px solid #1b0;
@@ -166,22 +165,89 @@ form button {
     vertical-align: top;
 }
 
+#main .section-right .setting .header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #e2e2e2;  
+}
+
+#main .section-right .setting .header .title {
+    margin: .3rem .5rem;
+    padding: .2rem .5rem;
+    border-left: 2px solid #1b0;
+    font-weight: bold;
+}
+
+#main .section-right .setting .header .edit {
+    margin: .4rem 1rem;
+    padding: .1rem .5rem;
+    font-size: .9rem;
+    outline: 0;
+    background: #fff;
+    cursor: pointer;
+}
+
+#main .section-right .setting .header .edit:hover {
+    background: #eee;
+}
+
+#main .section-right .setting .header .editActive {
+    background: #eee;
+}
+
 #main .section-right .setting table {
     margin: 0 1.5rem;
 }
 
 #main .section-right .setting td {
     padding: .5rem .3rem;
+    
 }
 
 #main .section-right .setting td:first-child {
     text-align: right;
 }
 
-#main .section-right .setting input {
-    width: 200px;
+#main .section-right .setting td [readonly] {
+    border: 0;
+    outline: 0;
 }
 
+#main .section-right .setting td button {
+    cursor: pointer;
+    padding: 4px 8px 4px 8px;
+    border: 1px solid rgba(80,80,90,.2);
+    border-bottom-color: rgba(80,80,90,.35);
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 500;
+    outline: 0;
+}
+
+#main .section-right .setting td button:active:enabled {
+    background-color: #e2e2e2;
+    color: #333;
+    text-shadow: 0 1px 0 #fff;
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 1px 0 rgba(66,66,77,.1);
+}
+
+#main .section-right .setting input {
+    font-size: 1rem;
+}
+
+/* fieldset disabled 样式 */
+
+fieldset {
+    border: 0;
+    margin: 0;
+}
+
+[disabled] {
+    opacity: .3;
+}
 /* footer 样式 */
 
 #footer {

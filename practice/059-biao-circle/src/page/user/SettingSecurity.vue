@@ -1,6 +1,9 @@
 <template>
   <div class="setting">
-      <div class="header">安全信息设置</div>
+      <div class="header">
+      <div class="title">安全信息设置</div>
+      <div class="edit">编辑</div>
+    </div>
     <table>
       <tbody>
         <tr>

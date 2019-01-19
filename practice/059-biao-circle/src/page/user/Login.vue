@@ -57,7 +57,7 @@ export default {
         where: {
           and: { username, password }
         },
-        only: ["id", "username"]
+        except: ["password"]
       };
 
       api("user/first", param).then(r => {

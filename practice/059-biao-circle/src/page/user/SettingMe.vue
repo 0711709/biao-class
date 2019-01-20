@@ -15,10 +15,14 @@
               <span v-if="!me.nickname && !editModel">--</span>
               <input
                 v-if="editModel|| me.nickname"
+                @focus="error.nickname=false"
                 type="text"
                 v-model="me.nickname"
                 :readonly="!editModel"
               >
+            </td>
+            <td>
+              <span v-if="error.nickname" class="error">昵称长度应小于20位</span>
             </td>
           </tr>
           <tr>
@@ -27,14 +31,14 @@
               <span v-if="!me.username && !editModel">--</span>
               <input
                 v-if="editModel || me.username"
-                @focus="error=false"
+                @focus="error.username=false"
                 type="text"
                 v-model="me.username"
                 :readonly="!editModel"
               >
             </td>
             <td>
-              <span v-if="error" class="error">{{error}}</span>
+              <span v-if="error.username" class="error">{{error.username}}</span>
             </td>
           </tr>
           <tr>
@@ -43,16 +47,20 @@
               <span v-if="!me.info && !editModel">--</span>
               <input
                 v-if="editModel|| me.info"
+                @focus="error.info=false"
                 type="text"
                 v-model="me.info"
                 :readonly="!editModel"
               >
             </td>
+            <td>
+              <span v-if="error.info" class="error">签名长度小于50位</span>
+            </td>
           </tr>
           <tr v-if="editModel">
             <td></td>
             <td>
-              <button @click="validateUpdate">保存更改</button>
+              <button @click="validateAndUpdate">保存更改</button>
             </td>
           </tr>
         </tbody>
@@ -69,32 +77,40 @@ export default {
   data() {
     return {
       me: {}, //当前用户数据
-      saveMe: {},//保存当前用户数据
+      saveMe: {}, //保存当前用户数据
       editModel: false, //是否为编辑模式
       updatePending: false, //是否正在更新
-      error: false
+      error: {
+        username: false,
+        nickname: false,
+        info: false
+      }
     };
   },
 
   mounted() {
     this.me = store.get("user");
-    this.saveMe = {...this.me}
+    this.saveMe = { ...this.me };
   },
 
   methods: {
     editOrCancel() {
       this.editModel = !this.editModel;
-      this.error = false;
+      this.error.username = false;
       this.me = store.get("user");
     },
 
-    validateUpdate() {
-      //验证用户名格式
-      if (this.inValidateUsername()) {
-        this.error = "用户名格式有误,长度应介于4到20之间";
+    validateAndUpdate() {
+      //验证用户名,昵称,签名的格式
+      if (
+        this.inValidateUsername() ||
+        this.inValidateNickname() ||
+        this.inValidateInfo()
+      ) {
         return;
       }
-      this.error = false;
+
+      this.error.nickname = this.error.username = this.error.info = false;
 
       //用户名查重
       this.updatePending = true;
@@ -102,19 +118,19 @@ export default {
       api("user/exists", param).then(r => {
         let usernameChange = this.saveMe.username !== this.me.username;
 
-        if(r.data && usernameChange){
+        if (r.data && usernameChange) {
           this.updatePending = false;
-          this.error = "用户名已存在";
+          this.error.username = "用户名已存在";
           return;
-        }else{
+        } else {
           this.updateUsername();
         }
       });
     },
 
     //更新用户名
-    updateUsername(){
-       api("user/update", this.me).then(r => {
+    updateUsername() {
+      api("user/update", this.me).then(r => {
         if (r.success) {
           this.me = r.data;
           store.set("user", r.data);
@@ -125,8 +141,24 @@ export default {
       });
     },
 
+    inValidateNickname() {
+      return (this.error.nickname = this.me.nickname.length > 20);
+    },
+
     inValidateUsername() {
-      return !this.me.username || !/[a-zA-Z0-9]{4,20}/.test(this.me.username);
+      if (
+        !this.me.username ||
+        /[\W_]/.test(this.me.username) ||
+        this.me.username.length < 4 ||
+        this.me.username.length > 20
+      ) {
+        this.error.username = "用户名格式有误,长度应介于4到20之间";
+        return true;
+      }
+    },
+
+    inValidateInfo() {
+      return (this.error.info = this.me.info.length > 50);
     }
   }
 };

@@ -15,14 +15,14 @@
             <div class="input-control">
               <label>
                 <span>密码</span>
-                <input type="password" v-model="current.password"  @focus="error.password=false">
+                <input type="password" v-model="current.password" @focus="error.password=false">
                 <span v-if="error.password" class="error">{{error.password}}</span>
               </label>
             </div>
             <div class="input-control">
               <label>
                 <span>重复密码</span>
-                <input type="password" v-model="current.password2"  @focus="error.password2=false">
+                <input type="password" v-model="current.password2" @focus="error.password2=false">
                 <span v-if="error.password2" class="error">{{error.password2}}</span>
               </label>
             </div>
@@ -58,8 +58,8 @@ export default {
   //测试用 项目完成后删除
   mounted() {
     api("user/read").then(r => {
-      console.log(r.data)
-    })
+      console.log(r.data);
+    });
   },
 
   methods: {
@@ -68,17 +68,15 @@ export default {
         return;
       }
 
-     let param = { where: { and: { username: this.current.username } } };
+      let param = { where: { and: { username: this.current.username } } };
       api("user/exists", param).then(r => {
-        if(r.data){
+        if (r.data) {
           this.error.username = "用户名已存在";
           return;
-        }else{
+        } else {
           this.signup();
         }
       });
-
-     
     },
 
     validateCurrent() {
@@ -87,7 +85,12 @@ export default {
       let password = this.current.password;
       let password2 = this.current.password2;
 
-      let inValidateUsername = !username || !/[a-zA-Z0-9]{4,20}/.test(username);
+      let inValidateUsername =
+        !username ||
+        !username ||
+        /[\W_]/.test(username) ||
+        username.length < 4 ||
+        username.length > 20;
       let inValidatePassword = !password || password.length < 6;
       let inValidatePassword2 = !password2 || password2 !== password;
 

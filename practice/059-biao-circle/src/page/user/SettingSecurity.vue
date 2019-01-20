@@ -94,6 +94,9 @@ export default {
     changeOrCancel() {
       this.changePasswordVisible = !this.changePasswordVisible;
       this.password = {};
+      for (const key in this.errorPassword) {
+        this.errorPassword[key] = false;
+      }
     },
 
     //验证及修改密码

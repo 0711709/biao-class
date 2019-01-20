@@ -4,25 +4,25 @@
       <div class="section">
         <div class="header">注册</div>
         <div id="sign-up">
-          <form @submit.prevent="signup">
+          <form @submit.prevent="validateSignup">
             <div class="input-control">
               <label>
                 <span>用户名</span>
-                <input type="text" v-model="current.username">
+                <input type="text" v-model="current.username" @focus="error.username=false">
                 <span v-if="error.username" class="error">{{error.username}}</span>
               </label>
             </div>
             <div class="input-control">
               <label>
                 <span>密码</span>
-                <input type="password" v-model="current.password">
+                <input type="password" v-model="current.password"  @focus="error.password=false">
                 <span v-if="error.password" class="error">{{error.password}}</span>
               </label>
             </div>
             <div class="input-control">
               <label>
                 <span>重复密码</span>
-                <input type="password" v-model="current.password2">
+                <input type="password" v-model="current.password2"  @focus="error.password2=false">
                 <span v-if="error.password2" class="error">{{error.password2}}</span>
               </label>
             </div>
@@ -54,19 +54,31 @@ export default {
       }
     };
   },
+
+  //测试用 项目完成后删除
+  mounted() {
+    api("user/read").then(r => {
+      console.log(r.data)
+    })
+  },
+
   methods: {
-    signup() {
+    validateSignup() {
       if (!this.validateCurrent()) {
         return;
       }
 
-      api("user/create", this.current).then(r => {
-        if (r.success) {
-          this.current = {};
-          
-          this.$router.push("/login");
+     let param = { where: { and: { username: this.current.username } } };
+      api("user/exists", param).then(r => {
+        if(r.data){
+          this.error.username = "用户名已存在";
+          return;
+        }else{
+          this.signup();
         }
       });
+
+     
     },
 
     validateCurrent() {
@@ -92,6 +104,15 @@ export default {
         : (e.password2 = null);
 
       return !e.username && !e.password;
+    },
+
+    signup() {
+      api("user/create", this.current).then(r => {
+        if (r.success) {
+          this.current = {};
+          this.$router.push("/login");
+        }
+      });
     }
   }
 };

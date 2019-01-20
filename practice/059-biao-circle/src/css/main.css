@@ -251,6 +251,10 @@ form button {
     color: #1b0;
 }
 
+#main .section-right .setting th .fail {
+    color: #b10;
+}
+
 #main .section-right .setting input {
     font-size: 1rem;
 }

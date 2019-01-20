@@ -17,6 +17,7 @@
             </th>
             <th>
               <span class="success" v-if="changePasswordSuccess">{{changePasswordSuccess}}</span>
+              <span class="fail" v-if="changePasswordFail">{{changePasswordFail}}</span>
             </th>
           </tr>
         </thead>
@@ -24,7 +25,11 @@
           <tr>
             <td>旧密码</td>
             <td>
-              <input type="password" v-model="password.old" @focus="errorPassword.old1=errorPassword.old2=false">
+              <input
+                type="password"
+                v-model="password.old"
+                @focus="errorPassword.old1=errorPassword.old2=changePasswordFail=false"
+              >
             </td>
             <td>
               <span class="error" v-if="errorPassword.old1">请输入旧密码</span>
@@ -34,7 +39,7 @@
           <tr>
             <td>新密码</td>
             <td>
-              <input type="password" v-model="password.new" @focus="errorPassword.new=false">
+              <input type="password" v-model="password.new" @focus="errorPassword.new=changePasswordFail=false">
             </td>
             <td>
               <span class="error" v-if="errorPassword.new">密码长度需大于6位</span>
@@ -43,7 +48,7 @@
           <tr>
             <td>重复密码</td>
             <td>
-              <input type="password" v-model="password.repeat" @focus="errorPassword.repeat=false">
+              <input type="password" v-model="password.repeat" @focus="errorPassword.repeat=changePasswordFail=false">
             </td>
             <td>
               <span class="error" v-if="errorPassword.repeat">两次密码输入不一致</span>
@@ -79,7 +84,8 @@ export default {
         repeat: false
       },
       changePasswordPending: false, // 禁用表单防止重复提交
-      changePasswordSuccess: false //成功提示
+      changePasswordSuccess: false, //成功提示
+      changePasswordFail: false, //失败提示
     };
   },
 
@@ -94,7 +100,6 @@ export default {
     validateAndChangePassword() {
       let user = this.user;
       let passwordOld = this.password.old;
-      let passwordNew = this.password.new;
 
       //验证是否输入旧密码 新密码格式是否有误 两次密码是否输入一致
       if (
@@ -121,20 +126,29 @@ export default {
       });
     },
 
-    //验证成功之后更新密码
+    //更新密码
     changePassword() {
       this.errorPassword.old = false;
 
       this.changePasswordPending = true;
 
-      api("user/update", { id: user.id, password: passwordNew }).then(r => {
-        this.changePasswordPending = false;
-        this.changePasswordVisible = false;
-        this.password = {};
-        this.changePasswordSuccess = "密码修改成功";
-        setTimeout(() => {
-          this.changePasswordSuccess = false;
-        }, 2000);
+      api("user/update", {
+        id: this.user.id,
+        password: this.password.new
+      }).then(r => {
+        if (r.success) {
+          this.changePasswordPending = false;
+          this.changePasswordVisible = false;
+          this.password = {};
+          this.changePasswordSuccess = "密码修改成功";
+          setTimeout(() => {
+            this.changePasswordSuccess = false;
+          }, 2000);
+        } else {
+          this.changePasswordPending = false;
+          this.password = {};
+          this.changePasswordFail = "密码修改失败";  
+        }
       });
     },
 

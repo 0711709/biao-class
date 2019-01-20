@@ -69,6 +69,7 @@ export default {
   data() {
     return {
       me: {}, //当前用户数据
+      saveMe: {},//保存当前用户数据
       editModel: false, //是否为编辑模式
       updatePending: false, //是否正在更新
       error: false
@@ -77,6 +78,7 @@ export default {
 
   mounted() {
     this.me = store.get("user");
+    this.saveMe = {...this.me}
   },
 
   methods: {
@@ -98,7 +100,9 @@ export default {
       this.updatePending = true;
       let param = { where: { and: { username: this.me.username } } };
       api("user/exists", param).then(r => {
-        if(r.data){
+        let usernameChange = this.saveMe.username !== this.me.username;
+
+        if(r.data && usernameChange){
           this.updatePending = false;
           this.error = "用户名已存在";
           return;

@@ -52,7 +52,7 @@
           <tr v-if="editModel">
             <td></td>
             <td>
-              <button @click="update">保存更改</button>
+              <button @click="validateUpdate">保存更改</button>
             </td>
           </tr>
         </tbody>
@@ -77,32 +77,40 @@ export default {
 
   mounted() {
     this.me = store.get("user");
-    // api("user/find", { id: store.get("user").id, except: ["password"] }).then(
-    //   r => {
-    //     this.me = r.data;
-    //     console.log(r);
-    //   }
-    // );
   },
 
   methods: {
     editOrCancel() {
       this.editModel = !this.editModel;
+      this.error = false;
       this.me = store.get("user");
     },
 
-    update() {
+    validateUpdate() {
       //验证用户名格式
-      let inValidateUsername =
-        !this.me.username || !/[a-zA-Z0-9]{4,20}/.test(this.me.username);
-      if (inValidateUsername) {
+      if (this.inValidateUsername()) {
         this.error = "用户名格式有误,长度应介于4到20之间";
         return;
       }
       this.error = false;
 
+      //用户名查重
       this.updatePending = true;
-      api("user/update", this.me).then(r => {
+      let param = { where: { and: { username: this.me.username } } };
+      api("user/exists", param).then(r => {
+        if(r.data){
+          this.updatePending = false;
+          this.error = "用户名已存在";
+          return;
+        }else{
+          this.updateUsername();
+        }
+      });
+    },
+
+    //更新用户名
+    updateUsername(){
+       api("user/update", this.me).then(r => {
         if (r.success) {
           this.me = r.data;
           store.set("user", r.data);
@@ -113,7 +121,9 @@ export default {
       });
     },
 
-    invalidate() {}
+    inValidateUsername() {
+      return !this.me.username || !/[a-zA-Z0-9]{4,20}/.test(this.me.username);
+    }
   }
 };
 </script>

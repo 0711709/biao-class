@@ -199,11 +199,13 @@ form button {
     margin: 0 1.5rem;
 }
 
+#main .section-right .setting th,
 #main .section-right .setting td {
     padding: .5rem .3rem;
     
 }
 
+#main .section-right .setting th:first-child,
 #main .section-right .setting td:first-child {
     text-align: right;
 }
@@ -213,6 +215,7 @@ form button {
     outline: 0;
 }
 
+#main .section-right .setting th button,
 #main .section-right .setting td button {
     cursor: pointer;
     padding: 4px 8px 4px 8px;
@@ -222,16 +225,30 @@ form button {
     font-size: 14px;
     font-weight: 500;
     outline: 0;
+    background-color: #eee;
 }
 
+#main .section-right .setting th button:active:enabled,
 #main .section-right .setting td button:active:enabled {
     background-color: #e2e2e2;
-    color: #333;
+    color: #222;
     text-shadow: 0 1px 0 #fff;
     text-decoration: none;
     font-weight: 500;
     cursor: pointer;
     box-shadow: 0 1px 0 rgba(66,66,77,.1);
+}
+
+#main .section-right .setting th button {
+    font-size: 0;
+}
+
+#main .section-right .setting th button span{
+    font-size: .9rem;
+}
+
+#main .section-right .setting th .success {
+    color: #1b0;
 }
 
 #main .section-right .setting input {

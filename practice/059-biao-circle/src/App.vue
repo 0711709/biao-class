@@ -13,7 +13,8 @@
         <div class="right">
           <router-link to="/">首页</router-link>
           <span class="loggedin" v-if="session.loggedin()">
-            <router-link to="/setting/me">{{session.user().username}}</router-link>
+            <router-link to="/member">{{session.user().username}}</router-link>
+            <router-link to="/setting/me">设置</router-link>
             <span @click="session.logout()">登出</span>
           </span>
           <span class="guest" v-else>

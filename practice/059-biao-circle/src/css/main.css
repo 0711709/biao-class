@@ -43,7 +43,7 @@
     color: #999;
 }
 
-/* main 样式 */
+/* main 基础样式 */
 
 #main {
   background-color: #e2e2e2;
@@ -71,6 +71,7 @@
 #main .side .box {
     background-color: #fff;
     border-radius: 3px;
+    margin-bottom: 1.5rem;
 }
 
 /* sign up 和 log in 样式 */
@@ -156,6 +157,8 @@ form button {
     border-left: 3px solid #1b0;
     border-right: 3px solid #1b0; 
 }
+
+
 
 #main .section-right {
     background-color: #fff;
@@ -269,6 +272,100 @@ fieldset {
 [disabled] {
     opacity: .3;
 }
+
+/* home 样式 */
+
+#main .cat-group {
+    padding: .5rem;
+}
+
+#main .cat {
+    display: inline-block;
+    padding: .2rem .5rem;
+    margin-right: .2rem;
+    font-size: 0.9rem;
+}
+
+#main .cat-group .active {
+    background-color: black;
+    border-radius: 3px;
+    color: white;
+}
+
+#main .side .me > * {
+    display: block;
+    padding: .5rem;
+    border-bottom: 1px solid #e2e2e2;
+}
+
+#main .side .state .title {
+    padding: .5rem;
+    border-bottom: 1px solid #e2e2e2;
+}
+
+#main .side .state .number {
+    padding: .8rem 1.5rem;
+    border-bottom: 1px solid #e2e2e2;
+}
+
+#main .side .state .number > * {
+    padding: .3rem;
+}
+            
+#main .side .state .date {
+    padding: .5rem;
+}
+
+/* post 样式 */
+
+#main .section .box {
+    border-bottom: 1px solid #e2e2e2;
+    padding: .5rem;
+    position: relative;
+}
+
+#main .section .box .msg {
+    position: absolute;
+    right: .5rem;
+    color: #999;
+    font-size: .9rem;
+}
+
+#main .section input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+}
+
+#main .section textarea {
+    width: 100%;
+    outline: 0;
+    font-size: 1rem;
+    font-family: sans-serif;
+    background-color: #f9f9f9;
+    padding: .5rem;
+}
+
+#main .side .box .cell,
+#main .side .box .inner {
+    padding: .5rem;
+    border-bottom: 1px solid #e2e2e2;
+}
+
+#main .side .box .inner ul {
+    padding-left: 1.5rem;
+}
+
+#main .side .box .inner span {
+    font-size: .9rem;
+}
+
+#main .side .box .inner div {
+    padding: .8rem 0;
+}
+
 /* footer 样式 */
 
 #footer {

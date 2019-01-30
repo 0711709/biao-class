@@ -13,7 +13,7 @@
       <div class="side">
         <div class="box">
           <div class="me">
-            <div class="name">test</div>
+            <div class="name">username</div>
             <div class="collection">收藏</div>
             <router-link to="/member" class="post">创建新主题</router-link>
             <div class="message">消息</div>

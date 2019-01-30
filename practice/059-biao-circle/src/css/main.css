@@ -284,9 +284,10 @@ fieldset {
     padding: .2rem .5rem;
     margin-right: .2rem;
     font-size: 0.9rem;
+    cursor: pointer;
 }
 
-#main .cat-group .active {
+#main .active {
     background-color: black;
     border-radius: 3px;
     color: white;
@@ -316,7 +317,42 @@ fieldset {
     padding: .5rem;
 }
 
-/* post 样式 */
+/* member 样式 */
+
+#main .section .profile > *{
+    display: inline-block;
+}
+
+#main .section .profile .thumb {
+    width: 15%;
+}
+
+#main .section .profile .thumb img {
+    display: block;
+    width: 70px;
+    height: 70px;
+    border-radius: 2px;
+}
+
+#main .section .profile .me {
+    width: 80%;
+    vertical-align: top;
+}
+
+#main .section .profile .me > * {
+    padding-bottom: 1rem;
+}
+
+#main .section .profile .me div:first-child {
+    padding-top: .2rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+#main .section .profile .me div:last-child {
+    color: #666;
+}
+
 
 #main .section .box {
     border-bottom: 1px solid #e2e2e2;

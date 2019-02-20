@@ -112,6 +112,12 @@ export default {
 
       this.error.nickname = this.error.username = this.error.info = false;
 
+      //用户数据是否修改
+      if(this.saveMe.nickname === this.me.nickname && this.saveMe.username === this.me.username &&this.saveMe.info === this.me.info) {
+        this.editModel = false;
+        return;
+      }
+
       //用户名查重
       this.updatePending = true;
       let param = { where: { and: { username: this.me.username } } };

@@ -77,7 +77,7 @@
 /* sign up 和 log in 样式 */
 
 #main .error {
-    color: #b10;
+    color: #b10 !important;
     font-size: .9rem;
 }
 
@@ -296,6 +296,7 @@ fieldset {
 #main .side .me > * {
     display: block;
     padding: .5rem;
+    color: inherit;
     border-bottom: 1px solid #e2e2e2;
 }
 
@@ -400,6 +401,31 @@ fieldset {
 
 #main .side .box .inner div {
     padding: .8rem 0;
+}
+
+/* post 样式 */
+.thread {
+    background-color: #f9f9f9;
+}
+
+.post {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.post .left {
+    width: 10%;
+}
+
+.post .right {
+    width: 88%;
+    margin-left: 2%;
+}
+
+.post .operate {
+    position: absolute;
+    right: 2%;
 }
 
 /* footer 样式 */

@@ -3,10 +3,12 @@
     <div class="container">
       <div class="section">
         <div class="box profile">
-          <div class="thumb"><img src="../../../public/helloworld.jpg" alt="me"></div>
+          <div class="thumb">
+            <img src="../../../public/helloworld.jpg" alt="me">
+          </div>
           <div class="me">
-            <div>username</div>
-            <div>表圈子第 * 位会员</div>
+            <div>{{me.username}}</div>
+            <div>表圈子第 {{me.id}} 位会员</div>
           </div>
         </div>
         <div class="box">
@@ -18,19 +20,19 @@
         <div v-if="postOrCancel">
           <div class="box">
             <span>主题标题</span>
-            <span class="msg">120字数以内</span>
+            <span class="msg" v-bind:class="{error: error.title}">120字数以内且不能为空</span>
           </div>
           <input
             class="box"
             type="text"
             placeholder="请输入主题标题,如果标题能够表达完整内容,则正文可以为空"
-            v-model="post.title"
+            v-model="current.title"
           >
           <div class="box">
             <span>正文</span>
-            <span class="msg">200字数以内</span>
+            <span class="msg" v-bind:class="{error: error.content}">200字数以内</span>
           </div>
-          <textarea rows="20" v-model="post.content"></textarea>
+          <textarea rows="20" v-model="current.content"></textarea>
           <div class="box">
             <button @click="postCreate">发布主题</button>
           </div>
@@ -38,8 +40,20 @@
         <div class="box thread">
           <div class="cat active">时间线</div>
         </div>
-        <div class="box">
-          <div class="post">1</div>
+        <div class="box" v-for="(it,index) in list" :key="index">
+          <div class="post">
+            <div class="left">
+              <img src="..\..\..\public\helloworld.jpg" alt="img">
+            </div>
+            <div class="right">
+              <div class="title">{{it.title}}</div>
+              <div class="info">{{me.username}} 发布于 {{it.create_at}}</div>
+            </div>
+            <div class="operate">
+              <button @click="postEdit(current = it)">编辑</button>
+              <button @click="postDelete(it.id)">删除</button>
+            </div>
+          </div>
         </div>
       </div>
       <div class="side">
@@ -64,47 +78,90 @@
 </template>
 
 <script>
-import dateFormatter from "../../lib/dateFormatter.js"
-import api from "../../lib/api.js"
+import store from "../../lib/store";
+import dateFormatter from "../../lib/dateFormatter.js";
+import api from "../../lib/api.js";
 
 export default {
   data() {
     return {
       postOrCancel: false,
-      post: {},
+      me: {},
+      current: {},
+      list: [],
       error: {
         title: false,
         content: false,
-        create: false,
+        create: false
       }
     };
   },
 
+  mounted() {
+    this.me = store.get("user");
+    this.thread();
+    // this.test();
+  },
+
   methods: {
     postCreate() {
-      if(!this.post.title || this.post.title.length > 120) {
+      if (!this.current.title || this.current.title.length > 120) {
         this.error.title = true;
         return;
       }
 
-      if(this.post.content > 2000) {
+      if (this.current.content > 2000) {
         this.error.content = true;
         return;
       }
 
-      this.post.create_at = dateFormatter.format(new Date)
-      api("post/create", this.post).then(r => {
-        if(!r.success){
-          return;
-          this.error.create = true;
+      this.error.title = this.error.content = false;
+      this.current.user_id = this.me.id;
+      this.current.create_at = dateFormatter.format(new Date());
+      let url = "post/create"
+      if(this.current.id){url = "post/update"}
+      api(url, this.current).then(r => {
+        if (!r.success) {
+          // return;
+          // this.error.create = true; //暂不处理
         }
-        console.log(r.data)
-        this.post = {};
+        this.current = {};
+        this.postOrCancel = false;
+        this.thread();
+      });
+    },
+
+    // test() {
+    //   api("post/read", {
+    //     with: [
+    //       {
+    //         model: "user",
+    //         relation: "belongs_to"
+    //       }
+    //     ]
+    //   }).then(r => {
+    //     console.log(r.data);
+    //   });
+    // },
+
+    thread() {
+      api("post/read", { where: { and: { user_id: this.me.id } } }).then(r => {
+        this.list = r.data;
+      });
+    },
+
+    postEdit(current) {
+      this.postOrCancel = true;
+    },
+
+    postDelete(id) {
+      api("post/delete", {id}).then(r => {
+        if(r.success){
+          this.thread();
+        }
       })
     }
-  },
-
-
+  }
 };
 </script>
 

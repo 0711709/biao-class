@@ -2,18 +2,31 @@
   <div id="main">
     <div class="container">
       <div class="section">
-        <div class="cat-group">
+        <div class="cat-group box">
           <div class="cat active">全部</div>
           <div class="cat">最新</div>
           <div class="cat">热门</div>
           <div class="cat">其他</div>
         </div>
-        <router-view></router-view>
+        <div class="box" v-for="(it,index) in list" :key="index">
+          <div class="post">
+            <div class="left">
+              <img src="..\..\public\helloworld.jpg" alt="img">
+            </div>
+            <div class="right">
+              <div class="title">{{it.title}}</div>
+              <div class="info">{{it.$user? it.$user.username: "-"}} 发布于 {{it.create_at}}</div>
+            </div>
+            <div class="operate" v-if="it.$user && session.user() && (it.$user.id === session.user().id)">
+              <button @click="postDelete(it.id)">删除</button>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="side">
         <div class="box">
-          <div class="me">
-            <div class="name">username</div>
+          <div class="me" v-if="session.user()">
+            <div class="name">{{session.user().username}}</div>
             <div class="collection">收藏</div>
             <router-link to="/member" class="post">创建新主题</router-link>
             <div class="message">消息</div>
@@ -36,7 +49,38 @@
 </template>
 
 <script>
-export default {};
+import api from "../lib/api.js";
+import session from "../lib/session.js";
+
+export default {
+  data() {
+    return {
+      list: [],
+      session
+    };
+  },
+
+  mounted() {
+    this.read();
+  },
+
+  methods: {
+    read() {
+      api("post/read", { with: [{ model: "user", relation: "belongs_to" }] }).then(r => {
+        this.list = r.data;
+        console.log(r.data)
+      });
+    },
+
+    postDelete(id) {
+      api("post/delete", {id}).then(r => {
+        if(r.success) {
+          this.read();
+        }
+      })
+    }
+  }
+};
 </script>
 
 <style>

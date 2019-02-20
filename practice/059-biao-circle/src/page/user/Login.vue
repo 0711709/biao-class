@@ -62,7 +62,6 @@ export default {
 
       api("user/first", param).then(r => {
         let user = r.data;
-
         if (!user) {
           this.inValidMatch = true;
           return;

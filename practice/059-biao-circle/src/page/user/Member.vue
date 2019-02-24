@@ -50,7 +50,7 @@
               <div class="info">{{me.username}} 发布于 {{it.create_at}}</div>
             </div>
             <div class="operate">
-              <button @click="postEdit(current = it)">编辑</button>
+              <button @click="postEdit(it)">编辑</button>
               <button @click="postDelete(it.id)">删除</button>
             </div>
           </div>
@@ -110,7 +110,7 @@ export default {
         return;
       }
 
-      if (this.current.content > 2000) {
+      if (this.current.content.length > 200) {
         this.error.content = true;
         return;
       }
@@ -150,7 +150,8 @@ export default {
       });
     },
 
-    postEdit(current) {
+    postEdit(it) {
+      this.current =it;
       this.postOrCancel = true;
     },
 

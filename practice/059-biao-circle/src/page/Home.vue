@@ -68,7 +68,6 @@ export default {
     read() {
       api("post/read", { with: [{ model: "user", relation: "belongs_to" }] }).then(r => {
         this.list = r.data;
-        console.log(r.data)
       });
     },
 

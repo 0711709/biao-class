@@ -14,7 +14,7 @@
               <img src="..\..\public\helloworld.jpg" alt="img">
             </div>
             <div class="right">
-              <div class="title">{{it.title}}</div>
+              <router-link :to="'post/' + it.id"><div class="title">{{it.title}}</div></router-link>
               <div class="info">{{it.$user? it.$user.username: "-"}} 发布于 {{it.create_at}}</div>
             </div>
             <div class="operate" v-if="it.$user && session.user() && (it.$user.id === session.user().id)">

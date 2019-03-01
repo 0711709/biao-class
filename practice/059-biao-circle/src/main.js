@@ -3,6 +3,7 @@ import App from './App.vue'
 import VueRouter from "vue-router"
 
 import Home from "./page/Home.vue"
+import Post from "./page/Post.vue"
 
 
 import Signup from "./page/user/Signup.vue"
@@ -23,6 +24,7 @@ const routes = [
   { path: "/member", component: Member },
   { path: "/signup", component: Signup },
   { path: "/login", component: Login },
+  { path: "/post/:id", component: Post },
   {
     path: "/setting", component: Setting,
     children: [

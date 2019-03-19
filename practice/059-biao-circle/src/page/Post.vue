@@ -4,30 +4,29 @@
       <div id="post" class="section">
         <div>
           <div class="box">
-            <div class="title">title</div>
+            <div class="title">{{current.title}}</div>
             <div class="info">
-              <span>name</span>
+              <span>{{name(current)}}</span>
               <span>发布于</span>
-              <span>time</span>
+              <span>{{current.create_at}}</span>
             </div>
           </div>
-          <div class="box content">content</div>
+          <div class="box content">{{current.content}}</div>
           <div class="comment-area">
-            <div class="box comment">
+            <div class="box comment" v-for="(it,index) in comment" :key="index">
               <div class="head">
-                <span>name</span>
+                <span>{{name(it)}}</span>
                 <span>发布于</span>
-                <span>time</span>
+                <span>{{it.create_at}}</span>
+                <span>{{index + 1}}楼</span>
               </div>
-              <div class="content">content</div>
+              <div class="content">{{it.content}}</div>
             </div>
-            <div class="box comment">1</div>
-            <div class="box comment">1</div>
           </div>
           <div class="box sub-comment">
-            <form>
+            <form @submit.prevent="commentCreate()">
               <div class="head">添加回复</div>
-              <textarea placeholder="请尽量让自己的回复可以帮助其他人"></textarea>
+              <textarea placeholder="请尽量让自己的回复可以帮助其他人" v-model="form.content"></textarea>
               <button>回复</button>
             </form>
           </div>
@@ -50,28 +49,55 @@
 <script>
 import api from "../lib/api.js";
 import session from "../lib/session.js";
+import dateFormatter from "../lib/dateFormatter.js";
+import name from "../lib/name.js";
 
 export default {
   data() {
     return {
-      list: [],
-      session
+      current: [],
+      session,
+      name,
+      comment: [],
+      form: {}
     };
   },
 
   mounted() {
-    this.read();
+    this.readPost();
+    this.readComment();
   },
 
   methods: {
-    read() {
+    readPost() {
       api("post/find", {
         id: this.$route.params.id,
         with: [{ model: "user", relation: "belongs_to" }]
       }).then(r => {
-        this.list = r.data;
-        console.log(this.list);
+        this.current = r.data;
       });
+    },
+
+    readComment() {
+      api("comment/read", {
+        where: {
+          and: { post_id: this.$route.params.id }
+        },
+        with: [{ model: "user", relation: "belongs_to" }]
+      }).then(r => {
+        this.comment = r.data;
+        console.log(this.comment);
+      });
+    },
+
+    commentCreate() {
+      this.form.user_id = this.session.user().id;
+      this.form.post_id = this.$route.params.id;
+      this.form.create_at = dateFormatter.format(new Date());
+      api("comment/create", this.form).then(r => {
+        this.readComment();
+        this.form = {};
+      })
     }
   }
 };

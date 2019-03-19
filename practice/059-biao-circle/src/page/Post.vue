@@ -6,7 +6,7 @@
           <div class="box">
             <div class="title">{{current.title}}</div>
             <div class="info">
-              <span>{{name(current)}}</span>
+              <span>{{name(current) || "-"}}</span>
               <span>发布于</span>
               <span>{{current.create_at}}</span>
             </div>
@@ -86,11 +86,13 @@ export default {
         with: [{ model: "user", relation: "belongs_to" }]
       }).then(r => {
         this.comment = r.data;
-        console.log(this.comment);
       });
     },
 
     commentCreate() {
+      if(!this.form.content){
+        return;
+      }
       this.form.user_id = this.session.user().id;
       this.form.post_id = this.$route.params.id;
       this.form.create_at = dateFormatter.format(new Date());

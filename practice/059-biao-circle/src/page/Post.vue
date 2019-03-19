@@ -2,7 +2,7 @@
   <div id="main">
     <div class="container">
       <div id="post" class="section">
-        <div>
+        <div v-if="current.title">
           <div class="box">
             <div class="title">{{current.title}}</div>
             <div class="info">
@@ -31,6 +31,7 @@
             </form>
           </div>
         </div>
+        <div v-else >加载中...<i class="fas fa-spinner"></i></div>
       </div>
       <div class="side">
         <div class="box">

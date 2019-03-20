@@ -18,7 +18,7 @@
                 <span>{{name(it)}}</span>
                 <span>发布于</span>
                 <span>{{it.create_at}}</span>
-                <span>{{index + 1}}楼</span>
+                <!-- <span>{{index + 1}}楼</span> -->
               </div>
               <div class="content">{{it.content}}</div>
             </div>

@@ -13,7 +13,10 @@ import Setting from "./page/user/Setting.vue"
 import SettingMe from "./page/user/SettingMe.vue"
 import SettingSecurity from "./page/user/SettingSecurity.vue"
 
-
+import AdminBase from "./page/admin/AdminBase.vue"
+import AdminUser from "./page/admin/AdminUser.vue"
+import AdminPost from "./page/admin/AdminPost.vue"
+import AdminComment from "./page/admin/AdminComment.vue"
 
 Vue.use(VueRouter)
 
@@ -32,6 +35,14 @@ const routes = [
       { path: "security", component: SettingSecurity },
     ]
   },
+  {
+    path: "/admin", component: AdminBase,
+    children: [
+      { path: "user", component: AdminUser },
+      { path: "post", component: AdminPost },
+      { path: "comment", component: AdminComment },
+    ]
+  }
 ]
 
 new Vue({

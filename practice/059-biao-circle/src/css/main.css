@@ -463,8 +463,9 @@ fieldset {
     margin-right: .2rem;
 }
 
-#post .comment .contnet  {
-    color: #000;
+#post .comment .content  {
+    color: #000;;
+    white-space: pre-wrap;
 }
 
 #post .box.sub-comment form {

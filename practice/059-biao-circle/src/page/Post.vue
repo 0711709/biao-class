@@ -23,7 +23,7 @@
               <div class="content">{{it.content}}</div>
             </div>
           </div>
-          <div class="box sub-comment">
+          <div class="box sub-comment" v-if="session.user()">
             <form @submit.prevent="commentCreate()">
               <div class="head">添加回复</div>
               <textarea placeholder="请尽量让自己的回复可以帮助其他人" v-model="form.content"></textarea>
@@ -91,7 +91,7 @@ export default {
     },
 
     commentCreate() {
-      if(!this.form.content){
+      if(!this.form.content || !this.form.user_id){
         return;
       }
       this.form.user_id = this.session.user().id;

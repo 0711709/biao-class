@@ -10,7 +10,7 @@
           <th>作者</th>
           <th>日期</th>
           <th>帖子</th>
-          <th>内容</th>
+          <th>评论</th>
           <th>操作</th>
         </thead>
         <tbody>

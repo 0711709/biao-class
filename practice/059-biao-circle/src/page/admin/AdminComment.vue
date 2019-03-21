@@ -9,6 +9,7 @@
           <th>ID</th>
           <th>作者</th>
           <th>日期</th>
+          <th>帖子</th>
           <th>内容</th>
           <th>操作</th>
         </thead>
@@ -17,6 +18,7 @@
             <td>{{it.id}}</td>
             <td>{{it.$user && it.$user.username || "-"}}</td>
             <td>{{it.create_at}}</td>
+            <td>{{it.$post && it.$post.title || "-"}}</td>
             <td>{{it.content}}</td>
             <td>
               <button @click="deleteUser(it.id)">删除</button>
@@ -35,7 +37,7 @@ import api from "../../lib/api";
 export default {
   data() {
     return {
-      list: {},
+      list: {}
     };
   },
 
@@ -46,7 +48,12 @@ export default {
   methods: {
     read() {
       //, { except: ["password"] }
-      api("comment/read", {with: {model: "user", relation: "belongs_to"}}).then(r => {
+      api("comment/read", {
+        with: [
+          { model: "user", relation: "belongs_to" },
+          { model: "post", relation: "belongs_to" }
+        ]
+      }).then(r => {
         this.list = r.data;
       });
     },
@@ -55,7 +62,7 @@ export default {
       api("comment/delete", { id }).then(r => {
         this.read();
       });
-    },
+    }
   }
 };
 </script>

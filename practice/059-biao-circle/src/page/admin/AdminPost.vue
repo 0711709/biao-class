@@ -52,6 +52,9 @@ export default {
     },
 
     deleteUser(id) {
+      if(!confirm("确定")){
+        return;
+      }
       api("post/delete", { id }).then(r => {
         this.read();
       });

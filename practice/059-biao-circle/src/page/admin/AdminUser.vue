@@ -78,6 +78,9 @@ export default {
     },
 
     deleteUser(id) {
+      if(!confirm("确定")){
+        return;
+      }
       api("user/delete", { id }).then(r => {
         this.read();
       });
@@ -92,6 +95,7 @@ export default {
       }
       api(`user/${action}`, this.current).then(r=>{
           this.read();
+          this.current = {};
           this.createOrCancel = false;
       })
     }

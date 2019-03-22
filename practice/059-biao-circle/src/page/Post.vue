@@ -31,7 +31,10 @@
             </form>
           </div>
         </div>
-        <div v-else >加载中...<i class="fas fa-spinner"></i></div>
+        <div v-else>
+          加载中...
+          <i class="fas fa-spinner"></i>
+        </div>
       </div>
       <div class="side">
         <div class="box">
@@ -91,16 +94,17 @@ export default {
     },
 
     commentCreate() {
-      if(!this.form.content || !this.form.user_id){
-        return;
-      }
       this.form.user_id = this.session.user().id;
       this.form.post_id = this.$route.params.id;
       this.form.create_at = dateFormatter.format(new Date());
+      
+      if (!this.form.content || !this.form.user_id) {
+        return;
+      }
       api("comment/create", this.form).then(r => {
         this.readComment();
         this.form = {};
-      })
+      });
     }
   }
 };

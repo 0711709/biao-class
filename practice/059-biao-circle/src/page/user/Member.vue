@@ -46,7 +46,7 @@
               <img src="..\..\..\public\helloworld.jpg" alt="img">
             </div>
             <div class="right">
-              <div class="title">{{it.title}}</div>
+              <router-link class="title" :to="'post/' + it.id">{{it.title}}</router-link>
               <div class="info">{{me.username}} 发布于 {{it.create_at}}</div>
             </div>
             <div class="operate">

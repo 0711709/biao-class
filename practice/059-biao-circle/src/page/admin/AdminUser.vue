@@ -78,7 +78,7 @@ export default {
     },
 
     deleteUser(id) {
-      if(!confirm("确定")){
+      if(!confirm("确定删除")){
         return;
       }
       api("user/delete", { id }).then(r => {

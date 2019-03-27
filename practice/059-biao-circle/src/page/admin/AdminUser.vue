@@ -13,12 +13,9 @@
           <label @keyup="validate(current.username, 'username')">
             <div>用户名</div>
             <input type="text" v-model="current.username">
-            <div
-              class="error"
-              v-for="(value, e) in errors.username"
-              :key="e"
-              v-if="value"
-            >{{rules.username[e].msg}}</div>
+            <div class="error" v-for="(value, e) in errors.username" :key="e">
+              <div v-if="value">{{rules.username[e].msg}}</div>
+            </div>
           </label>
           <label>
             <div>昵称</div>

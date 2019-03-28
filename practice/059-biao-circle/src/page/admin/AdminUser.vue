@@ -80,7 +80,7 @@ export default {
             msg: "用户名长度应在4至12位之间"
           },
           regex: {
-            params: [/^[a-zA-Z]+[0-9]*$/],
+            params: [/(?=.*[0-9])(?=.*[a-zA-Z])/],
             msg: "用户名应由字母和数字组成"
           }
         },
@@ -89,7 +89,7 @@ export default {
             msg: "此项为必填项"
           },
           regex: {
-            params: [/^[a-zA-Z]+[0-9]*$/],
+            params: [/(?=.*[0-9])(?=.*[a-zA-Z])/],
             msg: "用户名应由字母和数字组成"
           }
         }

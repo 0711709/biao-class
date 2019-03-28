@@ -17,13 +17,19 @@
               <div v-if="value">{{rules.username[e].msg}}</div>
             </div>
           </label>
-          <label>
+          <label @keyup="validate(current.nickname, 'nickname')">
             <div>昵称</div>
             <input type="text" v-model="current.nickname">
+            <div class="error" v-for="(value, e) in errors.nickname" :key="e">
+              <div v-if="value">{{rules.nickname[e].msg}}</div>
+            </div>
           </label>
-          <label>
+          <label @keyup="validate(current.password, 'password')">
             <div>密码</div>
-            <input type="password" v-model="current.password">
+            <input type="text" v-model="current.password">
+            <div class="error" v-for="(value, e) in errors.password" :key="e">
+              <div v-if="value">{{rules.password[e].msg}}</div>
+            </div>
           </label>
           <button type="submit">提交</button>
         </form>
@@ -58,7 +64,7 @@
 <script>
 import store from "../../lib/store";
 import api from "../../lib/api";
-import valee from "../../lib/valee";
+import { call as valee } from "../../lib/valee";
 
 export default {
   data() {
@@ -71,6 +77,9 @@ export default {
       },
       rules: {
         username: {
+          required: {
+            msg: "此项为必填项"
+          },
           // unique: {
           //   params: ["user/exists"],
           //   msg: "用户名已存在"
@@ -80,8 +89,8 @@ export default {
             msg: "用户名长度应在4至12位之间"
           },
           regex: {
-            params: [/(?=.*[0-9])(?=.*[a-zA-Z])/],
-            msg: "用户名应由字母和数字组成"
+            params: [/^[a-zA-Z]+[0-9]*$/],
+            msg: "用户名应由字母或数字组成,并且以字母为首"
           }
         },
         nickname: {
@@ -89,8 +98,21 @@ export default {
             msg: "此项为必填项"
           },
           regex: {
+            params: [/^[a-zA-Z]+[0-9]*$/],
+            msg: "昵称应由字母或数字组成,并且以字母为首"
+          }
+        },
+        password: {
+          required: {
+            msg: "此项为必填项"
+          },
+          lengthBetween: {
+            params: [6, 32],
+            msg: "密码长度在6到32位之间"
+          },
+          regex: {
             params: [/(?=.*[0-9])(?=.*[a-zA-Z])/],
-            msg: "用户名应由字母和数字组成"
+            msg: "密码应包含数字和字母"
           }
         }
       },
@@ -117,12 +139,14 @@ export default {
 
       for (let key in ruleObj) {
         let rule = ruleObj[key];
-        let valid = valee[key](this.current[field], ...rule.params);
+        let params = rule.params || [];
+        let valid = valee(key, this.current[field], ...params);
         if (!this.errors[field]) {
           // this.errors[field] = {};
           this.$set(this.errors, field, {});
         }
-        this.errors[field][key] = !valid;
+        // this.errors[field][key] = !valid;
+        this.$set(this.errors[field], key, !valid);
       }
     },
 

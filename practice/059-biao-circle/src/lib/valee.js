@@ -19,6 +19,10 @@ let is = {
         return true;
     },
 
+    required(value) {
+        return !!(value || value === 0);
+    },
+
     /**
      * 是否大于指定数字
      * @param {number} value
@@ -242,7 +246,16 @@ let is = {
     },
 };
 
-export default is;
+// export default is;
+
+export function call(type, value, ...args) {
+    // 如果不是必填项,则没有值的话就不验证
+    if (type !== "required" && !value && value !== 0) {
+        return true;
+    }
+
+    return is[type](value, ...args);
+}
 
 // /**
 //  * 通过字符串规则验证

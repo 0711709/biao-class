@@ -6,6 +6,8 @@
 | 动态显示input或表单的错误信息
 */
 
+import api from "./api"
+
 // 基础验证规则
 let is = {
     /**
@@ -244,6 +246,13 @@ let is = {
 
         return true;
     },
+
+    //异步验证
+    unique(value, model, action, property) {
+        return api(`${model}/${action}`, { where: { and: { [property]: value } } }).then(r => {
+            return !r.data;
+        })
+    }
 };
 
 // export default is;

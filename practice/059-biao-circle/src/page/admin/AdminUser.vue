@@ -4,27 +4,27 @@
       <div class="title">用户管理</div>
     </div>
     <div class="create-user">
-      <button @click="createOrCancel=!createOrCancel; current={}">
+      <button @click="createOrCancel=!createOrCancel; current={}; errors={}">
         <span v-if="createOrCancel == false">创建用户</span>
         <span v-else>取消创建</span>
       </button>
       <div v-if="createOrCancel">
         <form @submit.prevent="createOrUpdate">
-          <label @keyup="validate(current.username, 'username')">
+          <label @keyup="debounceValidate('username')">
             <div>用户名</div>
             <input type="text" v-model="current.username">
             <div class="error" v-for="(value, e) in errors.username" :key="e">
               <div v-if="value">{{rules.username[e].msg}}</div>
             </div>
           </label>
-          <label @keyup="validate(current.nickname, 'nickname')">
+          <label @keyup="debounceValidate('nickname')">
             <div>昵称</div>
             <input type="text" v-model="current.nickname">
             <div class="error" v-for="(value, e) in errors.nickname" :key="e">
               <div v-if="value">{{rules.nickname[e].msg}}</div>
             </div>
           </label>
-          <label @keyup="validate(current.password, 'password')">
+          <label @keyup="debounceValidate('password')">
             <div>密码</div>
             <input type="text" v-model="current.password">
             <div class="error" v-for="(value, e) in errors.password" :key="e">
@@ -69,9 +69,10 @@ import { call as valee } from "../../lib/valee";
 export default {
   data() {
     return {
-      createOrCancel: true,
+      createOrCancel: false,
       list: {},
       current: {},
+      timer: null,
       errors: {
         // username: { lengthBetween: true, regex: true }
       },
@@ -80,10 +81,10 @@ export default {
           required: {
             msg: "此项为必填项"
           },
-          // unique: {
-          //   params: ["user/exists"],
-          //   msg: "用户名已存在"
-          // },
+          unique: {
+            params: ["user", "exists", "username"],
+            msg: "用户名已存在"
+          },
           lengthBetween: {
             params: [4, 12],
             msg: "用户名长度应在4至12位之间"
@@ -94,9 +95,6 @@ export default {
           }
         },
         nickname: {
-          required: {
-            msg: "此项为必填项"
-          },
           regex: {
             params: [/^[a-zA-Z]+[0-9]*$/],
             msg: "昵称应由字母或数字组成,并且以字母为首"
@@ -115,10 +113,8 @@ export default {
             msg: "密码应包含数字和字母"
           }
         }
-      },
-      formStatus: {
-        username: "pending"
       }
+      // formStatus: false,
     };
   },
 
@@ -134,41 +130,53 @@ export default {
       });
     },
 
-    validate(value, field) {
+    debounceValidate(field) {
+      if (this.timer) {
+        clearTimeout(this.timer);
+      }
+      this.timer = setTimeout(() => {
+        this.validate(field);
+      }, 500);
+    },
+
+    validate(field) {
       let ruleObj = this.rules[field];
+      let fieldValue = true;
 
       for (let key in ruleObj) {
         let rule = ruleObj[key];
         let params = rule.params || [];
         let valid = valee(key, this.current[field], ...params);
-        if (!this.errors[field]) {
-          // this.errors[field] = {};
-          this.$set(this.errors, field, {});
+
+        if (typeof valid === "boolean") {
+          if (!valid) {
+            fieldValue = false;
+          }
+          this.afterValidate(field, key, valid);
+        } else {
+          valid.then(r => {
+            this.afterValidate(field, key, r);
+          });
         }
-        // this.errors[field][key] = !valid;
-        this.$set(this.errors[field], key, !valid);
       }
+      return fieldValue;
     },
 
-    // setError(field, type) {
-    //   let errorList = this.error[field];
-    //   if (!errorList) {
-    //     errorList = this.error[field] = [];
-    //   }
-    //   errorList.push(type);
-    // },
+    afterValidate(field, key, valid) {
+      if (!this.errors[field]) {
+        this.$set(this.errors, field, {});
+      }
+      this.$set(this.errors[field], key, !valid);
+    },
 
-    // removeError(field, type) {
-    //   let errorList = this.error[field];
-    //   if (!errorList) {
-    //     return;
-    //   }
-    //   let index = errorList.findIndex(it => it === type);
-    //   if (index === -1) {
-    //     return;
-    //   }
-    //   errorList.splice(index, 1);
-    // },
+    validateForm() {
+      for (let field in this.rules) {
+        if (!this.validate(field)) {
+          return false;
+        }
+      }
+      return true;
+    },
 
     deleteUser(id) {
       if (!confirm("确定删除")) {
@@ -180,6 +188,11 @@ export default {
     },
 
     createOrUpdate() {
+      //先验证
+      if (!this.validateForm()) {
+        return;
+      }
+
       let action;
       if (this.current.id) {
         action = "update";

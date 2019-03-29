@@ -57,6 +57,7 @@
           </tr>
         </tbody>
       </table>
+      <Pagination :total="total" :limit="readParams.limit" :onChange="filp"/>
     </div>
   </div>
 </template>
@@ -65,8 +66,10 @@
 import store from "../../lib/store";
 import api from "../../lib/api";
 import { call as valee } from "../../lib/valee";
+import Pagination from "../../components/Pagination";
 
 export default {
+  components: { Pagination },
   data() {
     return {
       createOrCancel: false,
@@ -113,7 +116,13 @@ export default {
             msg: "密码应包含数字和字母"
           }
         }
+      },
+      total: 0,
+      readParams: {
+        page: 1,
+        limit: 5
       }
+
       // formStatus: false,
     };
   },
@@ -125,9 +134,15 @@ export default {
   methods: {
     read() {
       //, { except: ["password"] }
-      api("user/read").then(r => {
+      api("user/read", this.readParams).then(r => {
         this.list = r.data;
+        this.total = r.total;
       });
+    },
+
+    filp(page) {
+      this.readParams.page = page;
+      this.read();
     },
 
     debounceValidate(field) {

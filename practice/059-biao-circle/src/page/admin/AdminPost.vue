@@ -24,6 +24,7 @@
           </tr>
         </tbody>
       </table>
+      <Pagination :total="100" :limit="10" :onChange="a" :radius="3"/>
     </div>
   </div>
 </template>
@@ -31,11 +32,13 @@
 <script>
 import store from "../../lib/store";
 import api from "../../lib/api";
+import Pagination from "../../components/Pagination";
 
 export default {
+  components: { Pagination },
   data() {
     return {
-      list: {},
+      list: {}
     };
   },
 
@@ -46,19 +49,25 @@ export default {
   methods: {
     read() {
       //, { except: ["password"] }
-      api("post/read", {with: {model: "user", relation: "belongs_to"}}).then(r => {
+      api("post/read", {
+        with: { model: "user", relation: "belongs_to" }
+      }).then(r => {
         this.list = r.data;
       });
     },
+    // 测试翻页插件
+    a(page){
+      console.log(page)
+    },
 
     deleteUser(id) {
-      if(!confirm("确定删除")){
+      if (!confirm("确定删除")) {
         return;
       }
       api("post/delete", { id }).then(r => {
         this.read();
       });
-    },
+    }
   }
 };
 </script>

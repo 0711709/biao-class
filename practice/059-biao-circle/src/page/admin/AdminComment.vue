@@ -26,47 +26,29 @@
           </tr>
         </tbody>
       </table>
+      <Pagination :total="total" :limit="readParams.limit" :onChange="filp" :radius="3"/>
     </div>
   </div>
 </template>
 
 <script>
-import store from "../../lib/store";
-import api from "../../lib/api";
+import admin from "../../mixin/admin";
 
 export default {
+  mixins: [admin],
   data() {
     return {
-      list: {}
-    };
-  },
-
-  mounted() {
-    this.read();
-  },
-
-  methods: {
-    read() {
-      //, { except: ["password"] }
-      api("comment/read", {
+      model: "comment",
+      readParams: {
+        limit: 10,
+        page: 1,
         with: [
           { model: "user", relation: "belongs_to" },
           { model: "post", relation: "belongs_to" }
         ]
-      }).then(r => {
-        this.list = r.data;
-      });
-    },
-
-    deleteUser(id) {
-      if(!confirm("确定删除")){
-        return;
       }
-      api("comment/delete", { id }).then(r => {
-        this.read();
-      });
-    }
-  }
+    };
+  },
 };
 </script>
 

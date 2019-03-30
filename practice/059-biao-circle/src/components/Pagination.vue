@@ -1,5 +1,5 @@
 <template>
-  <div class="pagination">
+  <div v-if="total" class="pagination">
     <div class="btn-group">
       <button @click="change(1)" :class="(active == 1? 'active':'') +' item'">首页</button>
       <button @click="pre" class="item">上一页</button>

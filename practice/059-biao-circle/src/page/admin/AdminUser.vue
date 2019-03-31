@@ -75,7 +75,7 @@ export default {
         limit: 4
       }
     };
-  }
+  },
 };
 </script>
 

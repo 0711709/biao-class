@@ -138,7 +138,7 @@ form button {
     padding: .5rem;
 }
 
-#main .side-left .box-left a{
+#main .side-left .box-left .item{
     display: block;
     color: inherit;
     padding: .5rem 1rem;

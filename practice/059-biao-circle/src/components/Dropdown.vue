@@ -37,10 +37,6 @@ export default {
     }
   },
 
-  mounted() {
-    // this.result = this.list;
-  },
-
   methods: {
     model() {
       for (let key in this.searchModel) {
@@ -57,31 +53,6 @@ export default {
         this.result = r.data;
       });
     },
-
-    filter(keyword) {
-      this.result = this.list.filter(it => {
-        return it[this.searchBy].includes(keyword);
-      });
-    },
-
-    // //过滤数据
-    // filter(keyword) {
-    //   this.searchBy.forEach(element => {
-    //     this.allResult[element] = this.list.filter(it => {
-    //       return it[element].includes(keyword);
-    //     });
-    //   });
-    //   this.validData();
-    // },
-
-    // //提取有效数据
-    // validData() {
-    //   for (let key in this.allResult) {
-    //     if(this.allResult[key].length){
-    //       this.result = this.allResult[key];
-    //     }
-    //   }
-    // },
 
     select(it) {
       this.keyword = it[this.searchModel[this.searchKey].displayBy];

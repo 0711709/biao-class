@@ -1,7 +1,13 @@
 <template>
   <div id="dropdown">
     <div class="filter">
-      <input @focus="show=true" @blur="hide" class="selected-cat" @keyup="filter" v-model="keyword">
+      <input
+        @focus="show=true; $emit('focus')"
+        @blur="hide"
+        class="selected-cat"
+        @keyup="filter"
+        v-model="keyword"
+      >
       <span v-if="show">
         <div
           class="select"
@@ -21,7 +27,7 @@ export default {
     return {
       result: [],
       keyword: "",
-      show: false,
+      show: false
     };
   },
 
@@ -38,8 +44,8 @@ export default {
         return it[this.searchBy].includes(this.keyword);
       });
     },
-    
-    hide(){
+
+    hide() {
       setTimeout(() => {
         this.show = false;
       }, 10);

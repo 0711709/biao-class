@@ -119,12 +119,10 @@ export default {
 
   methods: {
     createOrUpdate() {
-      console.log(1);
       //先验证
       if (!this.validateForm()) {
         return;
       }
-      console.log(1);
 
       let action;
       if (this.current.id) {

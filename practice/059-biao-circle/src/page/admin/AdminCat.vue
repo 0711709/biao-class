@@ -13,7 +13,7 @@
           <label @keyup="debounceValidate('name')">
             <div>名称</div>
             <input type="text" v-model="current.name">
-            <div class="error" v-for="(value, e) in errors.cat" :key="e">
+            <div class="error" v-for="(value, e) in errors.name" :key="e">
               <div v-if="value">{{rules.name[e].msg}}</div>
             </div>
           </label>

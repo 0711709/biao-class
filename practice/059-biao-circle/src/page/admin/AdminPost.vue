@@ -4,7 +4,7 @@
       <div class="title">帖子管理</div>
     </div>
     <div class="create-post">
-      <button @click="createOrCancel=!createOrCancel; current={}; errors={}">
+      <button @click="createOrCancel=!createOrCancel; current={}; errors={}; cat=''">
         <span v-if="createOrCancel == false">创建帖子</span>
         <span v-else>取消创建</span>
       </button>
@@ -18,10 +18,14 @@
             </div>
           </label>
           <label @keyup="debounceValidate('cat')">
-            <div>分类</div>
+            <div>
+              <span>分类</span>
+              <span v-if="cat">: {{cat}}</span>
+            </div>
             <DropdownCat
               :list="catList"
               displayBy="name"
+              @focus="reset"
               :searchBy="searchBy"
               :onSelected="onSelected"
               :current="current.$cat? current.$cat.name:''"
@@ -101,6 +105,7 @@ export default {
       list: [],
       catList: [],
       searchBy: "name",
+      cat: ""
     };
   },
 
@@ -113,6 +118,12 @@ export default {
   methods: {
     onSelected(it) {
       this.current.cat_id = it.id;
+      this.cat = it.name;
+    },
+
+    reset(){
+      this.current.cat_id = null;
+      this.cat = "";
     },
 
     createOrUpdate() {

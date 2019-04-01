@@ -76,13 +76,14 @@ export default {
         },
 
         validateForm() {
+            let valid = true;
             for (let field in this.rules) {
                 if (!this.validate(field)) {
-                    console.log(field,2)
-                    return false;
+                    console.log(field, 2)
+                    valid = false;
                 }
             }
-            return true;
+            return valid;
         },
 
         deleteUser(id) {
@@ -93,24 +94,5 @@ export default {
                 this.read();
             });
         },
-
-        // createOrUpdate() {
-        //     //先验证
-        //     if (!this.validateForm()) {
-        //         return;
-        //     }
-
-        //     let action;
-        //     if (this.current.id) {
-        //         action = "update";
-        //     } else {
-        //         action = "create";
-        //     }
-        //     api(`${this.model}/${action}`, this.current).then(r => {
-        //         this.read();
-        //         this.current = {};
-        //         this.createOrCancel = false;
-        //     });
-        // }
     }
 };

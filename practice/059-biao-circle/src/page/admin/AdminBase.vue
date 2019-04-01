@@ -8,6 +8,7 @@
           </div>
           <router-link class="item" active-class="current" to="/admin/user">管理用户</router-link>
           <router-link class="item" active-class="current" to="/admin/post">管理帖子</router-link>
+          <router-link class="item" active-class="current" to="/admin/cat">管理分类</router-link>
           <router-link class="item" active-class="current" to="/admin/comment">管理评论</router-link>
         </div>
       </div>

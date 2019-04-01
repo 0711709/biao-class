@@ -18,6 +18,7 @@ import SettingSecurity from "./page/user/SettingSecurity.vue"
 import AdminBase from "./page/admin/AdminBase.vue"
 import AdminUser from "./page/admin/AdminUser.vue"
 import AdminPost from "./page/admin/AdminPost.vue"
+import AdminCat from "./page/admin/AdminCat.vue"
 import AdminComment from "./page/admin/AdminComment.vue"
 
 Vue.use(VueRouter)
@@ -43,6 +44,7 @@ const router = new VueRouter({
       children: [
         { path: "user", component: AdminUser },
         { path: "post", component: AdminPost },
+        { path: "cat", component: AdminCat },
         { path: "comment", component: AdminComment },
       ]
     }

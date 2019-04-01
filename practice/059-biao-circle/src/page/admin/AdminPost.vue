@@ -63,7 +63,7 @@
             <td>{{it.create_at}}</td>
             <td>{{it.$user && it.$user.username || "-"}}</td>
             <td>
-              <button @click="createOrCancel=true; current=it">更新</button>
+              <button @click="createOrCancel=true; current=it; cat=''">更新</button>
               <button @click="deleteUser(it.id)">删除</button>
             </td>
           </tr>
@@ -121,31 +121,14 @@ export default {
       this.cat = it.name;
     },
 
-    reset(){
+    reset() {
       this.current.cat_id = null;
       this.cat = "";
     },
 
-    createOrUpdate() {
-      //先验证
-      if (!this.validateForm()) {
-        return;
-      }
-
+    beforCreateOrUpdate() {
       this.current.user_id = session.user().id;
       this.current.create_at = dateFormatter.format(new Date());
-
-      let action;
-      if (this.current.id) {
-        action = "update";
-      } else {
-        action = "create";
-      }
-      api(`${this.model}/${action}`, this.current).then(r => {
-        this.read();
-        this.current = {};
-        this.createOrCancel = false;
-      });
     }
   }
 };

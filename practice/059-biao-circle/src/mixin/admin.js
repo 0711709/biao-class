@@ -94,5 +94,27 @@ export default {
                 this.read();
             });
         },
+
+        createOrUpdate() {
+            //先验证
+            if (!this.validateForm()) {
+                return;
+            }
+
+            let action;
+            if (this.current.id) {
+                action = "update";
+            } else {
+                action = "create";
+                if (this.beforCreateOrUpdate) {
+                    this.beforCreateOrUpdate();
+                }
+            }
+            api(`${this.model}/${action}`, this.current).then(r => {
+                this.read();
+                this.current = {};
+                this.createOrCancel = false;
+            });
+        }
     }
 };

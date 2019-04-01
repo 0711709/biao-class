@@ -27,6 +27,7 @@
                   <option>分类</option>
                 </select>
               </div>
+              <Dropdown :searchModel="searchModel" :list="userlist" :displayBy="displayBy" :searchBy="searchBy"/>
             </div>
           </div>
         </div>
@@ -37,7 +38,46 @@
 </template>
 
 <script>
-export default {};
+import Dropdown from "../../components/Dropdown.vue";
+
+export default {
+  components: { Dropdown },
+  data() {
+    return {
+      searchModel: {
+        cat: "分类",
+        post: "帖子",
+        user: "用户"
+      },
+      userlist: [
+        {
+          id: 1,
+          username: "whh",
+          name: "王花花"
+        },
+        {
+          id: 2,
+          username: "lsd",
+          name: "李拴蛋"
+        },
+        {
+          id: 3,
+          username: "zks",
+          name: "赵柯爽"
+        },
+        {
+          id: 4,
+          username: "wmm",
+          name: "王萌萌"
+        }
+      ],
+      displayBy:"name",
+      searchBy: "username",
+      // searchBy: ["username","name"]
+      
+    };
+  }
+};
 </script>
 
 <style scoped>
@@ -68,7 +108,7 @@ export default {};
   left: 0;
   font-size: 1.1rem;
   width: 3.5rem;
-  padding: .5rem;
+  padding: 0.5rem;
   border: -1px;
   outline: 0;
   appearance: none;

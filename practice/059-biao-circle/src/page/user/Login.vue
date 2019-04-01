@@ -46,9 +46,9 @@ export default {
 
   methods: {
     login() {
-      api("user/read").then(r => {
-        console.log(r.data)
-      })
+      // api("user/read").then(r => {
+      //   console.log(r.data)
+      // })
 
 
       let username = this.current.username;

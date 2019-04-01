@@ -26,7 +26,7 @@
           </label>
           <label @keyup="debounceValidate('password')">
             <div>密码</div>
-            <input type="text" v-model="current.password">
+            <input type="password" v-model="current.password">
             <div class="error" v-for="(value, e) in errors.password" :key="e">
               <div v-if="value">{{rules.password[e].msg}}</div>
             </div>

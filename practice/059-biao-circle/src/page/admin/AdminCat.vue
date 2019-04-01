@@ -50,7 +50,7 @@ import api from "../../lib/api";
 
 export default {
   mixins: [admin],
-  
+
   data() {
     return {
       model: "cat",
@@ -62,7 +62,11 @@ export default {
         name: {
           required: {
             msg: "此项为必填项"
-          }
+          },
+          unique: {
+            params: ["cat", "exists", "name"],
+            msg: "分类已存在"
+          },
         }
       }
     };

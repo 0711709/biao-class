@@ -15,6 +15,7 @@ export default {
             },
             total: 0,
             // formStatus: false,
+            valid: true,
         };
     },
 
@@ -62,9 +63,11 @@ export default {
                 } else {
                     valid.then(r => {
                         this.afterValidate(field, key, r);
+                        this.valid = r;
                     });
                 }
             }
+            
             return fieldValue;
         },
 
@@ -97,7 +100,7 @@ export default {
 
         createOrUpdate() {
             //先验证
-            if (!this.validateForm()) {
+            if (!this.validateForm() || !this.valid) {
                 return;
             }
 

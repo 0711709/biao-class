@@ -30,13 +30,14 @@ export default {
       keyword: "",
       allResult: {},
       result: [],
-      show: false
+      show: false,
+      timer: null,
     };
   },
 
   watch: {
-    keyword(keyword) {
-      this.filterAsync(keyword);
+    keyword() {
+      this.debounceFilterAsync();
     }
   },
 
@@ -75,6 +76,15 @@ export default {
       });
     },
 
+    debounceFilterAsync() {
+      if(this.timer){
+        clearTimeout(this.timer)
+      };
+      this.timer = setTimeout(() => {
+        this.filterAsync(this.keyword);
+      }, 300);
+    },
+
     select(it) {
       this.keyword = it[this.searchModel[this.searchKey].displayBy];
       if (this.onSelected) {
@@ -93,7 +103,7 @@ export default {
 
 <style scoped>
 #dropdown {
-  margin: 2rem 0; 
+  margin: 2rem 0;
 }
 
 #dropdown .filter {

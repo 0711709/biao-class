@@ -4,10 +4,12 @@
       <select class="search-type" v-model="selectedModel">
         <option v-for="(value, model) in searchModel" :key="model">{{value}}</option>
       </select>
-      <input type="search" v-model="keyword">
+      <input @focus="show=true" @blur="hide" type="search" v-model="keyword">
     </div>
     <div class="search-list">
-      <div v-for="(it, index) in result" :key="index" @click="select(it)">{{it[displayBy]}}</div>
+      <span v-if="show">
+        <div v-for="(it, index) in result" :key="index" @mousedown="select(it)">{{it[displayBy]}}</div>
+      </span>
     </div>
   </div>
 </template>
@@ -20,7 +22,8 @@ export default {
       selectedModel: "用户",
       keyword: "",
       allResult: {},
-      result: []
+      result: [],
+      show: false
     };
   },
 
@@ -30,7 +33,9 @@ export default {
     }
   },
 
-  mounted() {},
+  mounted() {
+    this.result= this.list
+  },
 
   methods: {
     filter(newKeyword) {
@@ -59,11 +64,16 @@ export default {
     // },
 
     select(it) {
-      // this.keyword = it[this.displayBy];
-      // this.result = [];
-      if(this.onSelected){
-        this.onSelected(it)
+      this.keyword = it[this.displayBy];
+      if (this.onSelected) {
+        this.onSelected(it);
       }
+    },
+
+    hide() {
+      setTimeout(() => {
+        this.show = false;
+      }, 10);
     }
   }
 };
@@ -79,11 +89,11 @@ export default {
   background: #eee;
 }
 
-#dropdown .search-list > * {
+#dropdown .search-list span > * {
   padding: 0.3rem 0.5rem;
 }
 
-#dropdown .search-list > *:hover {
+#dropdown .search-list span > *:hover {
   background: #e2e;
   cursor: pointer;
 }

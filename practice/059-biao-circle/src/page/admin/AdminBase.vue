@@ -79,7 +79,7 @@ export default {
         }
       ],
       displayBy: "name",
-      searchBy: "username"
+      searchBy: "name"
       // searchBy: ["username","name"]
     };
   },

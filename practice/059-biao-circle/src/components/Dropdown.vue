@@ -7,7 +7,7 @@
       <input type="search" v-model="keyword">
     </div>
     <div class="search-list">
-      <div v-for="(it, index) in result" :key="index">{{it[displayBy]}}</div>
+      <div v-for="(it, index) in result" :key="index" @click="onSelected(it)">{{it[displayBy]}}</div>
     </div>
   </div>
 </template>
@@ -37,7 +37,7 @@ export default {
       this.result = this.list.filter(it => {
         return it[this.searchBy].includes(newKeyword);
       });
-    }
+    },
 
     // //过滤数据
     // filter(newKeyword) {
@@ -57,6 +57,11 @@ export default {
     //     }
     //   }
     // },
+
+    onSelected(it) {
+      this.keyword = it[this.displayBy];
+      this.result = [];
+    }
   }
 };
 </script>

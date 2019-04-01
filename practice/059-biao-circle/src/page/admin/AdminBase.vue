@@ -27,7 +27,12 @@
                   <option>分类</option>
                 </select>
               </div>
-              <Dropdown :searchModel="searchModel" :list="userlist" :displayBy="displayBy" :searchBy="searchBy"/>
+              <Dropdown
+                :searchModel="searchModel"
+                :list="userlist"
+                :displayBy="displayBy"
+                :searchBy="searchBy"
+              />
             </div>
           </div>
         </div>
@@ -71,12 +76,13 @@ export default {
           name: "王萌萌"
         }
       ],
-      displayBy:"name",
-      searchBy: "username",
+      displayBy: "name",
+      searchBy: "username"
       // searchBy: ["username","name"]
-      
     };
-  }
+  },
+
+  methods: {}
 };
 </script>
 

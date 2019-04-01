@@ -30,9 +30,6 @@
               </div>
               <Dropdown
                 :searchModel="searchModel"
-                :list="userlist"
-                :displayBy="displayBy"
-                :searchBy="searchBy"
                 :onSelected="onSelected"
               />
             </div>
@@ -52,11 +49,23 @@ export default {
   data() {
     return {
       searchModel: {
-        cat: "分类",
-        post: "帖子",
-        user: "用户"
+        cat: {
+          key: "分类",
+          searchBy: "name",
+          displayBy: "name"
+        },
+        post: {
+          key: "帖子",
+          searchBy: "title",
+          displayBy: "title"
+        },
+        user: {
+          key: "用户",
+          searchBy: "username",
+          displayBy: "username"
+        },
       },
-      userlist: [
+      /* userlist: [
         {
           id: 1,
           username: "whh",
@@ -77,9 +86,7 @@ export default {
           username: "wmm",
           name: "王萌萌"
         }
-      ],
-      displayBy: "name",
-      searchBy: "name"
+      ],*/ 
       // searchBy: ["username","name"]
     };
   },

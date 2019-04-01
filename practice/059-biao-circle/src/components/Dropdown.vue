@@ -1,25 +1,28 @@
 <template>
   <div id="dropdown">
     <div class="filter">
-      <select class="search-type" v-model="selectedModel">
-        <option v-for="(value, model) in searchModel" :key="model">{{value}}</option>
+      <select class="search-type" @change="model" v-model="selected">
+        <option v-for="(value, model) in searchModel" :key="model">{{value.key}}</option>
       </select>
       <input @focus="show=true" @blur="hide" type="search" v-model="keyword">
     </div>
     <div class="search-list">
       <span v-if="show">
-        <div v-for="(it, index) in result" :key="index" @mousedown="select(it)">{{it[displayBy]}}</div>
+        <div v-for="(it, index) in result" :key="index" @mousedown="select(it)">{{it[searchModel[searchKey].displayBy]}}</div>
       </span>
     </div>
   </div>
 </template>
 
 <script>
+import api from "../lib/api";
+
 export default {
-  props: ["searchModel", "list", "displayBy", "searchBy", "onSelected"],
+  props: ["searchModel", "onSelected"],
   data() {
     return {
-      selectedModel: "用户",
+      selected: "用户",
+      searchKey: "user",
       keyword: "",
       allResult: {},
       result: [],
@@ -28,27 +31,44 @@ export default {
   },
 
   watch: {
-    keyword(newKeyword) {
-      this.filter(newKeyword);
+    keyword(keyword) {
+      this.filterAsync(keyword);
+      console.log(this.result)
     }
   },
 
   mounted() {
-    this.result= this.list
+    // this.result = this.list;
   },
 
   methods: {
-    filter(newKeyword) {
+    model() {
+      for (let key in this.searchModel) {
+        if (this.searchModel[key].key === this.selected) {
+          this.searchKey = key;
+          console.log(key)
+        }
+      }
+    },
+
+    filterAsync(keyword) {
+      let params = { where: { and: { [this.searchModel[this.searchKey].searchBy]: keyword } } };
+      api(`${this.searchKey}/read`, params).then(r => {
+        this.result = r.data;
+      });
+    },
+
+    filter(keyword) {
       this.result = this.list.filter(it => {
-        return it[this.searchBy].includes(newKeyword);
+        return it[this.searchBy].includes(keyword);
       });
     },
 
     // //过滤数据
-    // filter(newKeyword) {
+    // filter(keyword) {
     //   this.searchBy.forEach(element => {
     //     this.allResult[element] = this.list.filter(it => {
-    //       return it[element].includes(newKeyword);
+    //       return it[element].includes(keyword);
     //     });
     //   });
     //   this.validData();
@@ -64,7 +84,7 @@ export default {
     // },
 
     select(it) {
-      this.keyword = it[this.displayBy];
+      this.keyword = it[this.searchModel[this.searchKey].displayBy];
       if (this.onSelected) {
         this.onSelected(it);
       }

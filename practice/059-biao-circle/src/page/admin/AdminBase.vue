@@ -33,6 +33,7 @@
                 :list="userlist"
                 :displayBy="displayBy"
                 :searchBy="searchBy"
+                :onSelected="onSelected"
               />
             </div>
           </div>
@@ -83,7 +84,11 @@ export default {
     };
   },
 
-  methods: {}
+  methods: {
+    onSelected(it) {
+      console.log(it)
+    }
+  }
 };
 </script>
 

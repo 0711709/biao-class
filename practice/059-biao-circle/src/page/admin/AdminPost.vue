@@ -19,7 +19,13 @@
           </label>
           <label @keyup="debounceValidate('cat')">
             <div>分类</div>
-            <input type="text" v-model="current.cat_id">
+            <DropdownCat
+              :list="catList"
+              displayBy="name"
+              :searchBy="searchBy"
+              :onSelected="onSelected"
+              :current="current.$cat? current.$cat.name:''"
+            />
             <div class="error" v-for="(value, e) in errors.cat" :key="e">
               <div v-if="value">{{rules.cat[e].msg}}</div>
             </div>
@@ -69,9 +75,11 @@ import admin from "../../mixin/admin";
 import api from "../../lib/api";
 import session from "../../lib/session.js";
 import dateFormatter from "../../lib/dateFormatter.js";
+import DropdownCat from "../../components/DropdownCat";
 
 export default {
   mixins: [admin],
+  components: { DropdownCat },
   data() {
     return {
       model: "post",
@@ -89,11 +97,24 @@ export default {
             msg: "此项为必填项"
           }
         }
-      }
+      },
+      list: [],
+      catList: [],
+      searchBy: "name",
     };
   },
 
+  mounted() {
+    api("cat/read").then(r => {
+      this.catList = r.data;
+    });
+  },
+
   methods: {
+    onSelected(it) {
+      this.current.cat_id = it.id;
+    },
+
     createOrUpdate() {
       //先验证
       if (!this.validateForm()) {

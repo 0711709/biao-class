@@ -7,14 +7,14 @@
       <input type="search" v-model="keyword">
     </div>
     <div class="search-list">
-      <div v-for="(it, index) in result" :key="index" @click="onSelected(it)">{{it[displayBy]}}</div>
+      <div v-for="(it, index) in result" :key="index" @click="select(it)">{{it[displayBy]}}</div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["searchModel", "list", "displayBy", "searchBy"],
+  props: ["searchModel", "list", "displayBy", "searchBy", "onSelected"],
   data() {
     return {
       selectedModel: "用户",
@@ -58,9 +58,12 @@ export default {
     //   }
     // },
 
-    onSelected(it) {
-      this.keyword = it[this.displayBy];
-      this.result = [];
+    select(it) {
+      // this.keyword = it[this.displayBy];
+      // this.result = [];
+      if(this.onSelected){
+        this.onSelected(it)
+      }
     }
   }
 };

@@ -20,14 +20,6 @@
             </div>
             <div class="admin-search">
               <h3>搜索页面</h3>
-              <div class="search-group">
-                <input type="text">
-                <select name="类型">
-                  <option>用户</option>
-                  <option>文章</option>
-                  <option>分类</option>
-                </select>
-              </div>
               <Dropdown
                 :searchModel="searchModel"
                 :onSelected="onSelected"

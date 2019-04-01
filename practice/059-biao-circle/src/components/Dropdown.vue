@@ -8,7 +8,11 @@
     </div>
     <div class="search-list">
       <span v-if="show">
-        <div v-for="(it, index) in result" :key="index" @mousedown="select(it)">{{it[searchModel[searchKey].displayBy]}}</div>
+        <div
+          v-for="(it, index) in result"
+          :key="index"
+          @mousedown="select(it)"
+        >{{it[searchModel[searchKey].displayBy]}}</div>
       </span>
     </div>
   </div>
@@ -33,8 +37,11 @@ export default {
   watch: {
     keyword(keyword) {
       this.filterAsync(keyword);
-      console.log(this.result)
     }
+  },
+
+  mounted() {
+    this.read();
   },
 
   methods: {
@@ -42,13 +49,27 @@ export default {
       for (let key in this.searchModel) {
         if (this.searchModel[key].key === this.selected) {
           this.searchKey = key;
-          console.log(key)
+          this.read();
+          this.keyword = "";
         }
       }
     },
 
+    read() {
+      api(`${this.searchKey}/read`).then(r => {
+        this.result = r.data;
+      });
+    },
+
     filterAsync(keyword) {
-      let params = { where: { and: { [this.searchModel[this.searchKey].searchBy]: keyword } } };
+      let params = {};
+      if (keyword) {
+        params = {
+          query: `where("${[
+            this.searchModel[this.searchKey].searchBy
+          ]}" contains "${keyword}")`
+        };
+      }
       api(`${this.searchKey}/read`, params).then(r => {
         this.result = r.data;
       });
@@ -71,6 +92,10 @@ export default {
 </script>
 
 <style scoped>
+#dropdown {
+  margin: 2rem 0; 
+}
+
 #dropdown .filter {
   position: relative;
 }

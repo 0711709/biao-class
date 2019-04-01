@@ -1,8 +1,8 @@
 <template>
   <div v-if="total" class="pagination">
     <div class="btn-group">
-      <button @click="change(1)" :class="(active == 1? 'active':'') +' item'">首页</button>
-      <button @click="pre" class="item">上一页</button>
+      <button v-if="count > 3" @click="change(1)" :class="(active == 1? 'active':'') +' item'">首页</button>
+      <button v-if="count > 2" @click="pre" class="item">上一页</button>
     </div>
     <div class="btn-group">
       <span v-for="(it, index) in count" :key="index">
@@ -15,8 +15,8 @@
       </span>
     </div>
     <div class="btn-group">
-      <button @click="next" class="item">下一页</button>
-      <button @click="change(count)" :class="(active == count? 'active':'') +' item'">末页</button>
+      <button v-if="count > 2" @click="next" class="item">下一页</button>
+      <button v-if="count > 3" @click="change(count)" :class="(active == count? 'active':'') +' item'">末页</button>
     </div>
   </div>
 </template>

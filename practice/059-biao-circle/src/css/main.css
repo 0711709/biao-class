@@ -483,19 +483,20 @@ fieldset {
 }
 
 /* admin 样式 */
+#admin .create-post,
 #admin .create-user {
     width: 60%;
     margin: 1rem auto;
 }
-
+#admin .create-post button,
 #admin .create-user button {
     margin: .5rem 0;
 }
-
+#admin .create-post form,
 #admin .create-user form {
     margin: 1rem 0;
 }
-
+#admin .create-post form button,
 #admin .create-user form button {
     display: block;
     width: auto;

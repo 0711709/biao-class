@@ -64,6 +64,8 @@
 
 <script>
 import admin from "../../mixin/admin";
+import api from "../../lib/api";
+
 
 export default {
   mixins: [admin],
@@ -73,9 +75,70 @@ export default {
       readParams: {
         page: 1,
         limit: 4
+      },
+      rules: {
+        username: {
+          required: {
+            msg: "此项为必填项"
+          },
+          unique: {
+            params: ["user", "exists", "username"],
+            msg: "用户名已存在"
+          },
+          lengthBetween: {
+            params: [4, 12],
+            msg: "用户名长度应在4至12位之间"
+          },
+          regex: {
+            params: [/^[a-zA-Z]+[0-9]*$/],
+            msg: "用户名应由字母或数字组成,并且以字母为首"
+          }
+        },
+        nickname: {
+          regex: {
+            params: [/^[a-zA-Z]+[0-9]*$/],
+            msg: "昵称应由字母或数字组成,并且以字母为首"
+          }
+        },
+        password: {
+          required: {
+            msg: "此项为必填项"
+          },
+          lengthBetween: {
+            params: [6, 32],
+            msg: "密码长度在6到32位之间"
+          },
+          regex: {
+            params: [/(?=.*[0-9])(?=.*[a-zA-Z])/],
+            msg: "密码应包含数字和字母"
+          }
+        }
       }
     };
   },
+
+  methods: {
+    createOrUpdate() {
+      console.log(1);
+      //先验证
+      if (!this.validateForm()) {
+        return;
+      }
+      console.log(1);
+
+      let action;
+      if (this.current.id) {
+        action = "update";
+      } else {
+        action = "create";
+      }
+      api(`${this.model}/${action}`, this.current).then(r => {
+        this.read();
+        this.current = {};
+        this.createOrCancel = false;
+      });
+    }
+  }
 };
 </script>
 

@@ -1,8 +1,15 @@
 <template>
   <div id="dropdown">
     <div class="filter">
-      <input class="selected-cat" @keyup="filter" v-model="keyword">
-      <div class="select" @click="select(it)" v-for="(it, index) in result" :key="index">{{it[displayBy]}}</div>
+      <input @focus="show=true" @blur="hide" class="selected-cat" @keyup="filter" v-model="keyword">
+      <span v-if="show">
+        <div
+          class="select"
+          @mousedown="select(it)"
+          v-for="(it, index) in result"
+          :key="index"
+        >{{it[displayBy]}}</div>
+      </span>
     </div>
   </div>
 </template>
@@ -14,12 +21,14 @@ export default {
     return {
       result: [],
       keyword: "",
+      show: false,
     };
   },
 
   mounted() {
-    if(this.current){
-      this.keyword =this.current;
+    this.result = this.list;
+    if (this.current) {
+      this.keyword = this.current;
     }
   },
 
@@ -28,6 +37,12 @@ export default {
       this.result = this.list.filter(it => {
         return it[this.searchBy].includes(this.keyword);
       });
+    },
+    
+    hide(){
+      setTimeout(() => {
+        this.show = false;
+      }, 10);
     },
 
     select(it) {
@@ -42,8 +57,9 @@ export default {
 </script>
 
 <style scoped>
-#dropdown .filter> *{
-  padding: .3rem .2rem;
+#dropdown .filter input,
+#dropdown .filter span > * {
+  padding: 0.3rem 0.2rem;
   width: 40%;
 }
 
@@ -51,9 +67,8 @@ export default {
   background: #e2e2e2;
 }
 
-#dropdown .select:hover{
-  background: #e88
+#dropdown .select:hover {
+  background: #e88;
 }
-
 </style>
 

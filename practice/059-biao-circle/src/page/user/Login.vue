@@ -19,6 +19,19 @@
             </div>
             <div class="error" v-if="inValidMatch">用户名或密码错误</div>
             <button type="submit">登陆</button>
+            <div class="card">
+                <h3>测试账号</h3>
+                <div>
+                  <div>
+                    <span>管理员:</span>
+                    <span>test</span>
+                  </div>
+                  <div>
+                    <span>密码:</span>
+                    <span>111111</span>
+                  </div>
+                </div>
+            </div>
           </form>
         </div>
       </div>
@@ -50,7 +63,6 @@ export default {
       //   console.log(r.data)
       // })
 
-
       let username = this.current.username;
       let password = this.current.password;
 
@@ -71,7 +83,7 @@ export default {
           this.inValidMatch = true;
           return;
         }
-        if(user.username === "test") {
+        if (user.username === "test") {
           user.IS_ADMIN = true;
           session.login(user.id, user, "/#/admin");
           return;
@@ -83,6 +95,24 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+#main .card {
+  background: #e2e2e2;
+  border-radius: 5px;
+}
+
+#main .card h3 {
+  text-align: center;
+  padding-top: 1rem;
+}
+
+#main .card div{
+  padding: .5rem 2rem;
+}
+
+#main .card div span {
+  padding: .5rem;
+}
 </style>
+
 

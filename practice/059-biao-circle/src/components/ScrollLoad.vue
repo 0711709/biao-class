@@ -15,7 +15,6 @@ export default {
     return {
       current: 1,
       noMore: false,
-      emit: null
     };
   },
 
@@ -27,18 +26,15 @@ export default {
   methods: {
     next() {
       //判断是否正在发送请求
-      // if (this.pending) {
-      //   return;
-      // }
-      this.emit = this.current;
-      console.log(this.emit, this.current);
+      if (this.pending) {
+        return;
+      }
       //判断是否到最后一页
       if (this.current >= this.totalPage) {
         return (this.noMore = true);
       }
 
       this.$emit("flip", ++this.current);
-      console.log(this.emit, this.current);
       //判断是否到最后一页
       if (this.current === this.totalPage) {
         return (this.noMore = true);
@@ -46,12 +42,8 @@ export default {
     },
 
     bindScroll() {
-      console.log(1);
       window.addEventListener("scroll", e => {
         if (this.calcRemain() < 10) {
-          if (this.emit === this.current) {
-            return;
-          }
           this.next();
         }
       });

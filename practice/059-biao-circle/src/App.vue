@@ -7,7 +7,7 @@
             <img src="../public/logo-sm.png" alt="logo">
           </router-link>
           <div class="search">
-            <input type="search">
+            <input type="search" placeholder="功能未实现">
           </div>
         </div>
         <div class="right">

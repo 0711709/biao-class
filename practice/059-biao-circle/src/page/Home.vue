@@ -4,9 +4,6 @@
       <div class="section">
         <div class="cat-group box">
           <div class="cat active">全部</div>
-          <div class="cat">最新</div>
-          <div class="cat">热门</div>
-          <div class="cat">其他</div>
         </div>
         <div class="box" v-for="(it,index) in list" :key="index">
           <div class="post">
@@ -30,23 +27,27 @@
         <scrollLoad :page="1" :totalPage="totalPage" :pending="pending" @flip="onFlip"/>
       </div>
       <div class="side">
-        <div class="box">
-          <div class="me" v-if="session.user()">
+        <div class="box" v-if="session.user()">
+          <div class="me">
             <router-link to="/member" class="post">{{session.user().username}}</router-link>
-            <div class="collection">收藏</div>
             <router-link to="/member" class="post">创建新主题</router-link>
-            <div class="message">消息</div>
           </div>
         </div>
         <div class="box">
           <div class="state">
-            <div class="title">社区运行状况</div>
-            <div class="number">
-              <div class="member">注册人数</div>
-              <div class="topic">主题</div>
-              <div class="comment">回复</div>
+            <div class="cell">社区指导原则</div>
+            <div class="inner">
+              <ul>
+                <li>
+                  <span>尊重原创</span>
+                  <div>请不要在表圈子发布任何盗版下载链接，包括软件、音乐、电影等等。表圈子是创意工作者的社区，我们尊重原创。</div>
+                </li>
+                <li>
+                  <span>友好互助</span>
+                  <div>保持对陌生人的友善。用知识去帮助别人。</div>
+                </li>
+              </ul>
             </div>
-            <div class="date">运行时间</div>
           </div>
         </div>
       </div>
@@ -71,7 +72,7 @@ export default {
         with: [{ model: "user", relation: "belongs_to" }]
       },
       totalPage: 0,
-      pending: false,
+      pending: false
     };
   },
 
@@ -81,11 +82,10 @@ export default {
 
   methods: {
     read() {
-
       api("post/read", this.readParams).then(r => {
         this.list = [...this.list, ...r.data];
         this.pending = false;
-        this.totalPage = Math.ceil(r.total/ this.readParams.limit);
+        this.totalPage = Math.ceil(r.total / this.readParams.limit);
       });
     },
 

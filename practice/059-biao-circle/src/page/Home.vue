@@ -14,14 +14,20 @@
               <img src="..\..\public\helloworld.jpg" alt="img">
             </div>
             <div class="right">
-              <router-link :to="'post/' + it.id"><div class="title">{{it.title}}</div></router-link>
+              <router-link :to="'post/' + it.id">
+                <div class="title">{{it.title}}</div>
+              </router-link>
               <div class="info">{{it.$user? it.$user.username: "-"}} 发布于 {{it.create_at}}</div>
             </div>
-            <div class="operate" v-if="it.$user && session.user() && (it.$user.id === session.user().id)">
+            <div
+              class="operate"
+              v-if="it.$user && session.user() && (it.$user.id === session.user().id)"
+            >
               <button @click="postDelete(it.id)">删除</button>
             </div>
           </div>
         </div>
+        <scrollLoad :page="1" :totalPage="totalPage" :pending="pending" @flip="onFlip"/>
       </div>
       <div class="side">
         <div class="box">
@@ -51,12 +57,21 @@
 <script>
 import api from "../lib/api.js";
 import session from "../lib/session.js";
+import scrollLoad from "../components/ScrollLoad";
 
 export default {
+  components: { scrollLoad },
   data() {
     return {
       list: [],
-      session
+      session,
+      readParams: {
+        limit: 3,
+        page: 1,
+        with: [{ model: "user", relation: "belongs_to" }]
+      },
+      totalPage: 0,
+      pending: false,
     };
   },
 
@@ -66,17 +81,26 @@ export default {
 
   methods: {
     read() {
-      api("post/read", { with: [{ model: "user", relation: "belongs_to" }] }).then(r => {
-        this.list = r.data;
+
+      api("post/read", this.readParams).then(r => {
+        this.list = [...this.list, ...r.data];
+        this.pending = false;
+        this.totalPage = Math.ceil(r.total/ this.readParams.limit);
       });
     },
 
     postDelete(id) {
-      api("post/delete", {id}).then(r => {
-        if(r.success) {
+      api("post/delete", { id }).then(r => {
+        if (r.success) {
           this.read();
         }
-      })
+      });
+    },
+
+    onFlip(it) {
+      this.readParams.page = it;
+      this.pending = true;
+      this.read();
     }
   }
 };

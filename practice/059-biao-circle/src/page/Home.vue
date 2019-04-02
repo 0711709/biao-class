@@ -67,7 +67,7 @@ export default {
       list: [],
       session,
       readParams: {
-        limit: 3,
+        limit: 8,
         page: 1,
         with: [{ model: "user", relation: "belongs_to" }]
       },

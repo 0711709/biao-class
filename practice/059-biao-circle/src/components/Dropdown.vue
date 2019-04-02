@@ -4,7 +4,7 @@
       <select class="search-type" @change="model" v-model="selected">
         <option v-for="(value, model) in searchModel" :key="model">{{value.key}}</option>
       </select>
-      <input @focus="show=true" @blur="hide" type="search" v-model="keyword">
+      <input @focus="show=true" @blur="hide" type="search" v-model="keyword" placeholder="此功能未完全实现">
     </div>
     <div class="search-list">
       <span v-if="show">

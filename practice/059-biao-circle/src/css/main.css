@@ -531,7 +531,7 @@ fieldset {
     margin: 1rem 0;
 }
 
-#footer .link-group a {
+#footer .link-group span {
     display: inline-block;
     margin: 0 .5rem;
     color: gray;

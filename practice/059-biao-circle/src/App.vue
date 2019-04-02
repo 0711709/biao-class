@@ -7,7 +7,7 @@
             <img src="../public/logo-sm.png" alt="logo">
           </router-link>
           <div class="search">
-            <input type="search" placeholder="功能未实现">
+            <input type="search" placeholder="此功能未实现">
           </div>
         </div>
         <div class="right">
@@ -28,12 +28,7 @@
     <div id="footer">
       <div class="container">
         <div class="link-group">
-          <router-link to>关于</router-link>
-          <router-link to>FAQ</router-link>
-          <router-link to>API</router-link>
-          <router-link to>我们的愿景</router-link>
-          <router-link to>广告投放</router-link>
-          <router-link to>感谢</router-link>
+          <span>感谢 VUE </span>
         </div>
       </div>
     </div>

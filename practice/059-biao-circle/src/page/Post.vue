@@ -40,9 +40,7 @@
         <div class="box">
           <div class="me" v-if="session.user()">
             <router-link to="/member" class="post">{{session.user().username}}</router-link>
-            <div class="collection">收藏</div>
             <router-link to="/member" class="post">创建新主题</router-link>
-            <div class="message">消息</div>
           </div>
         </div>
       </div>

@@ -67,7 +67,7 @@ export default {
                     });
                 }
             }
-            
+
             return fieldValue;
         },
 
@@ -99,8 +99,8 @@ export default {
         },
 
         createOrUpdate() {
-            //先验证
-            if (!this.validateForm() || !this.valid) {
+            //先验证同步规则
+            if (!this.validateForm()) {
                 return;
             }
 
@@ -109,6 +109,10 @@ export default {
                 action = "update";
             } else {
                 action = "create";
+                //验证异步请求
+                if (!this.valid) {
+                    return;
+                }
                 if (this.beforCreateOrUpdate) {
                     this.beforCreateOrUpdate();
                 }

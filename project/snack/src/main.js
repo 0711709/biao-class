@@ -6,7 +6,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 
 import Router from "vue-router";
 
-import Home from "./Home.vue"
+import Home from "./components/Home.vue"
 
 
 

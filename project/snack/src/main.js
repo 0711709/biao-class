@@ -4,13 +4,16 @@ import App from './App.vue';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
+import 'normalize.css/normalize.css';
+import './css/main.css'
+
 import Router from "vue-router";
 
-import Home from "./components/Home.vue"
-import Product from "./components/Product.vue"
-import Signup from "./components/Signup.vue"
-import Login from "./components/Login.vue"
-import Search from "./components/Search.vue"
+import Home from "./components/Home.vue";
+import Product from "./components/Product.vue";
+import Signup from "./components/Signup.vue";
+import Login from "./components/Login.vue";
+import Search from "./components/Search.vue";
 
 
 

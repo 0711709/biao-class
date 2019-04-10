@@ -4,7 +4,7 @@
       <div class="container">
         <el-row>
           <el-col :span="12" class="text-left">
-            <router-link class="nav-item" to="/">表商铺</router-link>
+            <router-link class="nav-item" to="/">喵喵铺</router-link>
           </el-col>
           <el-col :span="12" class="text-right">
             <router-link class="nav-item" to="/login">登陆</router-link>
@@ -36,9 +36,9 @@
 
       <el-row class="info">
         <div class="container">
-          <el-col class="text-left f-left" :span="12">
-            <img src="../public/logo-sm.png" alt>
-            <div>表铺子</div>
+          <el-col class="text-center f-left" :span="12">
+            <img src="../public/mia2.png" alt>
+            <p>喵喵铺</p>
           </el-col>
           <el-col :span="12">
             <p>©biaoyansu.com 表B1-20190408 表ICP备186666666号-1</p>
@@ -60,18 +60,18 @@ export default {
 
 <style scoped>
 .global-nav {
-  background-color: #545c64;
+  background-color: #eee;
   margin-bottom: 2rem;
 }
 
 .nav-item {
   padding: 0.5rem;
-  color: #eee;
+  color: #333;
   font-size: 0.9rem;
 }
 
 .nav-item:hover {
-  color: #fff;
+  color: #409EFF;
 }
 
 .global-footer {
@@ -104,15 +104,15 @@ export default {
 }
 
 .info .f-left {
-  padding: 2rem 0 2rem 5rem;
+  padding: 2rem  2rem 5rem;
 }
 
-.info .f-left div {
+.info .f-left p {
   font-weight: 600;
 }
 
 .info img {
-  width: 50px;
+  width: 100px;
   display: inline-block;
 }
 </style>

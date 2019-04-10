@@ -31,5 +31,18 @@ img {
     width: 100%;
 }
 
+i {
+    padding-right: .2rem;
+}
+
+.card {
+  margin-bottom: 1rem;
+  border: 2px solid #eee;
+}
+
+.card:hover {
+  border-color: #409eff;
+}
+
 
 

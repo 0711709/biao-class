@@ -1,5 +1,6 @@
  <template>
   <div class="home">
+    <SearchNav/>
     <div class="card-list carousel">
       <div class="container">
         <el-carousel :interval="1000" type="card" height="200px">
@@ -14,7 +15,7 @@
         <div><h3>新品</h3></div>
         <el-row :gutter="20">
           <el-col :span="6" v-for="(it, index) in 4" :key="index">
-            <el-card shadow="hover" :body-style="{ padding: '0px' }">
+            <el-card class="card" shadow="hover" :body-style="{ padding: '0px' }">
               <img src="http://dummyimage.com/100x100" class="image">
               <div style="padding: 14px;">
                 <span>{{it}}</span>
@@ -32,7 +33,7 @@
         <div><h3>辣条</h3></div>
         <el-row :gutter="20">
           <el-col :span="6" v-for="(it, index) in 4" :key="index">
-            <el-card shadow="hover" :body-style="{ padding: '0px' }">
+            <el-card class="card" shadow="hover" :body-style="{ padding: '0px' }">
               <img src="http://dummyimage.com/100x100" class="image">
               <div style="padding: 14px;">
                 <span>{{it}}</span>
@@ -50,7 +51,7 @@
         <div><h3>甜食</h3></div>
         <el-row :gutter="20">
           <el-col class="card" :span="6" v-for="(it, index) in 7" :key="index">
-            <el-card shadow="hover" :body-style="{ padding: '0px' }">
+            <el-card class="card" shadow="hover" :body-style="{ padding: '0px' }">
               <img src="http://dummyimage.com/100x100" class="image">
               <div style="padding: 14px;">
                 <span>{{it}}</span>
@@ -68,7 +69,11 @@
 
 
 <script>
-export default {};
+import SearchNav from "./SearchNav.vue";
+
+export default {
+  components: { SearchNav },
+};
 </script>
 
 <style>
@@ -76,9 +81,6 @@ export default {};
   margin-bottom: 2rem;
 }
 
-.card {
-  margin-bottom: 1rem;
-}
 </style>
 
 

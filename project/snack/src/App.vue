@@ -7,7 +7,7 @@
             <router-link class="nav-item" to="/">喵喵铺</router-link>
           </el-col>
           <el-col :span="12" class="text-right">
-            <router-link class="nav-item" to="/login">登陆</router-link>
+            <router-link class="nav-item" to="/login">登录</router-link>
             <router-link class="nav-item" to="/signup">注册</router-link>
             <router-link class="nav-item" to="/help">帮助中心</router-link>
             <router-link class="nav-item" to="/about">联系客服</router-link>

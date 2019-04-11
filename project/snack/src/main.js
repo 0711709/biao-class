@@ -16,6 +16,11 @@ import Login from "./components/Login.vue";
 import Search from "./components/Search.vue";
 import Help from "./components/Help.vue";
 
+import My from "./components/My/My.vue"
+import Setting from "./components/My/Setting.vue"
+import Cart from "./components/My/Cart.vue"
+import Order from "./components/My/Order.vue"
+
 
 
 
@@ -44,10 +49,29 @@ const router = new Router({
     {
       path: "/search",
       component: Search
-    }, {
+    }, 
+    {
       path: "/help",
       component: Help
     },
+    {
+      path: "/my",
+      component: My,
+      children: [
+        {
+          path: "setting",
+          component: Setting,
+        },
+        {
+          path: "cart",
+          component: Cart,
+        },
+        {
+          path: "order",
+          component: Order,
+        },
+      ]
+    }
   ]
 })
 

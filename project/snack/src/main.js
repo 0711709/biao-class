@@ -21,6 +21,12 @@ import Setting from "./components/My/Setting.vue"
 import Cart from "./components/My/Cart.vue"
 import Order from "./components/My/Order.vue"
 
+import AdminBase from "./components/Admin/AdminBase.vue"
+import AdminUser from "./components/Admin/AdminUser.vue"
+import AdminBrand from "./components/Admin/AdminBrand.vue"
+import AdminProduct from "./components/Admin/AdminProduct.vue"
+
+
 
 
 
@@ -69,6 +75,24 @@ const router = new Router({
         {
           path: "order",
           component: Order,
+        },
+      ]
+    },
+    {
+      path: "/admin",
+      component: AdminBase,
+      children: [
+        {
+          path: "user",
+          component: AdminUser,
+        },
+        {
+          path: "brand",
+          component: AdminBrand,
+        },
+        {
+          path: "product",
+          component: AdminProduct,
         },
       ]
     }

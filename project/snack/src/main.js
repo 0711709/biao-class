@@ -9,6 +9,8 @@ import './css/main.css'
 
 import Router from "vue-router";
 
+import api from "./lib/api";
+
 import Home from "./components/Home.vue";
 import Product from "./components/Product.vue";
 import Signup from "./components/Signup.vue";
@@ -26,9 +28,7 @@ import AdminUser from "./components/Admin/AdminUser.vue"
 import AdminBrand from "./components/Admin/AdminBrand.vue"
 import AdminProduct from "./components/Admin/AdminProduct.vue"
 
-
-
-
+window.api = api;
 
 
 Vue.use(ElementUI);

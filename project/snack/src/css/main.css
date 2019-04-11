@@ -44,5 +44,10 @@ i {
   border-color: #409eff;
 }
 
+.error {
+  color: #e10;
+  font-size: 90%;
+}
+
 
 

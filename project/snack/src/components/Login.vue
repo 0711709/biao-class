@@ -60,6 +60,11 @@ export default {
       }).then(r => {
         if (r.success) {
           if (r.data) {
+            if (r.data.username === "admin") {
+              r.data.IS_ADMIN = true;
+              session.login(r.data.id, r.data, "/#/admin/user");
+              return;
+            }
             session.login(r.data.id, r.data, "/");
           } else {
             this.errors = "手机或邮箱或密码错误";

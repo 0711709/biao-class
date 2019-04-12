@@ -10,6 +10,7 @@ import './css/main.css'
 import Router from "vue-router";
 
 import api from "./lib/api";
+import session from "./lib/session"
 
 import Home from "./components/Home.vue";
 import Product from "./components/Product.vue";
@@ -102,6 +103,18 @@ const router = new Router({
       ]
     }
   ]
+})
+
+router.beforeEach((to, form, next) => {
+  if(/admin/.test(to.matched[0].path)) {
+    if(session.user() && session.user().IS_ADMIN){
+      next();
+    } else {
+      next(false);
+    }
+  } else {
+    next()
+  }
 })
 
 new Vue({

@@ -54,7 +54,7 @@
 
 <script>
 import api from "../lib/api";
-import is from "../lib/valee";
+import {call as is} from "../lib/valee";
 
 export default {
   data() {
@@ -108,7 +108,7 @@ export default {
         return;
       }
 
-      if (!is[signupBy](f[signupBy])) {
+      if (!is([signupBy], f[signupBy])) {
         this.errors[signupBy] = `${this.byObj[signupBy]}格式不合法`;
         return;
       }

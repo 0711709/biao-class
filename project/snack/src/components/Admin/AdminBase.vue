@@ -38,9 +38,24 @@ export default {};
 
 .admin .head {
   border-bottom: 1px solid #999;
-}
-
-.admin .admin-menu {
   margin: 1.5rem 0;
 }
+
+.admin .content {
+  margin-left: .5rem;
+}
+
+.admin .content .button {
+  margin-bottom: 1rem;
+}
+
+.admin .content .button {
+  margin-bottom: 1rem;
+}
+
+.admin .content .form {
+  max-width: 300px;
+  margin: 1rem 0;
+}
+
 </style>

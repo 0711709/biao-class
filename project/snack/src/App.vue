@@ -7,8 +7,14 @@
             <router-link class="nav-item" to="/">喵喵铺</router-link>
           </el-col>
           <el-col :span="12" class="text-right">
-            <router-link class="nav-item" to="/login">登录</router-link>
-            <router-link class="nav-item" to="/signup">注册</router-link>
+            <span v-if="session.loggedin()">
+              <router-link class="nav-item" to="/my/cart">个人中心</router-link>
+              <span class="nav-item" @click="session.logout()">登出</span>
+            </span>
+            <span v-else>
+              <router-link class="nav-item" to="/login">登录</router-link>
+              <router-link class="nav-item" to="/signup">注册</router-link>
+            </span>
             <router-link class="nav-item" to="/help">帮助中心</router-link>
             <router-link class="nav-item" to="/about">联系客服</router-link>
           </el-col>
@@ -53,8 +59,15 @@
 </template>
 
 <script>
+import session from "./lib/session.js"
+
 export default {
-  name: "app"
+  name: "app",
+  data() {
+    return {
+      session
+    }
+  }
 };
 </script>
 
@@ -68,6 +81,7 @@ export default {
   padding: 0.5rem;
   color: #333;
   font-size: 0.9rem;
+  cursor: pointer;
 }
 
 .nav-item:hover {

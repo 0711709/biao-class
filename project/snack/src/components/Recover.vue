@@ -1,25 +1,33 @@
 <template>
-  <div class="signup">
+  <div class="recover">
     <div class="container">
       <el-form class="form-container" label-position="top">
-        <h1 class="text-center">注册</h1>
+        <h1 class="text-center">账号恢复</h1>
         <el-tabs v-model="activeName">
-          <el-tab-pane label="手机注册" name="phone">
+          <el-tab-pane label="手机恢复" name="phone">
             <el-form-item label="手机号">
               <el-input v-model="form.phone" @keyup.native="debounceValidate" placeholder="请先输入手机号"></el-input>
               <span class="error" v-if="errors.phone">{{errors.phone}}</span>
               <span class="loading-text" v-if="pending">
-                <i class="el-icon-loading loading"></i>查询中
+                <i class="el-icon-loading loading"></i>
+                <span>查询中</span>
               </span>
+              <el-button class="exist" v-if="!exist" type="text">
+                <router-link to="/signup">直接注册</router-link>
+              </el-button>
             </el-form-item>
           </el-tab-pane>
-          <el-tab-pane label="邮箱注册" name="mail">
+          <el-tab-pane label="邮箱恢复" name="mail">
             <el-form-item label="邮箱">
               <el-input v-model="form.mail" @keyup.native="debounceValidate" placeholder="请先输入邮箱"></el-input>
               <span class="error" v-if="errors.mail">{{errors.mail}}</span>
               <span class="loading-text" v-if="pending">
-                <i class="el-icon-loading loading"></i>查询中
+                <i class="el-icon-loading loading"></i>
+                <span>查询中</span>
               </span>
+              <el-button class="exist" v-if="!exist" type="text">
+                <router-link to="/signup">直接注册</router-link>
+              </el-button>
             </el-form-item>
           </el-tab-pane>
         </el-tabs>
@@ -37,15 +45,12 @@
           </el-input>
           <span class="error" v-if="errors.code">{{errors.code}}</span>
         </el-form-item>
-        <el-form-item label="密码">
+        <el-form-item label="设置新密码">
           <el-input v-model="form.password" placeholder="密码长度不小于6位" show-password></el-input>
           <span class="error" v-if="errors.password">{{errors.password}}</span>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" :disabled="!valid" @click="signup">注册</el-button>
-          <el-button type="text">
-            <router-link to="/">已有帐号, 直接登录</router-link>
-          </el-button>
+          <el-button type="primary" :disabled="!valid" @click="recover">保存</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -77,7 +82,9 @@ export default {
       valid: false,
       pending: false,
       timer: null,
-      canSend: false
+      canSend: false,
+      exist: true,
+      id: null
     };
   },
 
@@ -102,6 +109,7 @@ export default {
     validateSignBy() {
       let f = this.form;
       let signupBy = this.activeName;
+      this.exist = true;
 
       if (!f[signupBy]) {
         this.errors[signupBy] = `${this.byObj[signupBy]}为必填项`;
@@ -113,20 +121,23 @@ export default {
         return;
       }
 
-      //查询是否注册
+      //查询账号是否存在
       this.pending = true;
-      api("user/exists", { where: { and: { [signupBy]: f[signupBy] } } }).then(
-        r => {
-          if (r.success) {
-            this.pending = false;
-            if (r.data) {
-              this.errors[signupBy] = `${this.byObj[signupBy]}已注册`;
-            } else {
-              this.canSend = true;
-            }
+      api("user/first", {
+        where: { and: { [signupBy]: f[signupBy] } },
+        only: ["id"]
+      }).then(r => {
+        if (r.success) {
+          this.pending = false;
+          if (r.data) {
+            this.canSend = true;
+            this.id = r.data.id;
+          } else {
+            this.errors[signupBy] = `${this.byObj[signupBy]}未注册, `;
+            this.exist = false;
           }
         }
-      );
+      });
 
       this.errors[signupBy] = "";
     },
@@ -189,24 +200,26 @@ export default {
           this.code = atob(r.data.result);
           console.log(this.code);
           this.$message({
-            message: "发送成功",
+            message: "验证码发送成功",
             type: "success"
           });
         }
       });
     },
 
-    signup() {
+    recover() {
       if (!this.validatePasswordAndCode()) {
         return;
       }
 
-      api("user/create", this.form).then(r => {
+      this.form.id = this.id;
+
+      api("user/update", this.form).then(r => {
         if (r.success) {
           this.$router.push("/login");
         } else {
           this.$message({
-            message: "注册失败, 请重试",
+            message: "更新失败, 请重试",
             type: "warning"
           });
         }
@@ -217,25 +230,29 @@ export default {
 </script>
 
 <style>
-.signup .form-container {
+.recover .form-container {
   max-width: 400px;
   margin: 4rem auto;
   padding: 1.5rem;
   background: #eee;
 }
 
-.signup .form-container h1 {
+.recover .form-container h1 {
   margin-bottom: 2rem;
 }
 
-.signup i.loading {
+.recover i.loading {
   color: #409eff;
   font-size: 120%;
 }
 
-.signup .loading-text {
+.recover .loading-text {
   font-size: 90%;
   color: #409eff;
+}
+
+.exist {
+  font-size: 90%;
 }
 </style>
 

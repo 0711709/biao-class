@@ -50,7 +50,7 @@
       <div class="container">
         <div><h3>甜食</h3></div>
         <el-row :gutter="20">
-          <el-col class="card" :span="6" v-for="(it, index) in 7" :key="index">
+          <el-col :span="6" v-for="(it, index) in 7" :key="index">
             <el-card class="card" shadow="hover" :body-style="{ padding: '0px' }">
               <img src="http://dummyimage.com/100x100" class="image">
               <div style="padding: 14px;">

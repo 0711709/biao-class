@@ -15,6 +15,7 @@ import Home from "./components/Home.vue";
 import Product from "./components/Product.vue";
 import Signup from "./components/Signup.vue";
 import Login from "./components/Login.vue";
+import Recover from "./components/Recover.vue";
 import Search from "./components/Search.vue";
 import Help from "./components/Help.vue";
 
@@ -43,19 +44,23 @@ const router = new Router({
     {
       path: "/product/:id",
       component: Product
-    }, 
+    },
     {
       path: "/signup",
       component: Signup
-    }, 
+    },
     {
       path: "/login",
       component: Login
     },
     {
+      path: "/recover",
+      component: Recover
+    },
+    {
       path: "/search",
       component: Search
-    }, 
+    },
     {
       path: "/help",
       component: Help

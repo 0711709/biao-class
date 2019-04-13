@@ -246,7 +246,6 @@ export default {
       },
       total: 0,
       formProp: {},
-      random: null
     };
   },
 
@@ -269,9 +268,8 @@ export default {
         return;
       }
 
-      if (!this.form.prop) {
-        this.form.prop = {};
-      }
+      this.form.prop = {};
+
       this.form.prop[this.formProp.key] = this.formProp.value;
       this.formProp = {};
     },

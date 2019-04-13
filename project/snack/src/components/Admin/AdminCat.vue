@@ -6,7 +6,7 @@
     <div class="content">
       <div class="button">
         <el-button @click="show=true; errors={}" round size="small" type="success">
-          <span>创建分类</span>
+          <span>添加分类</span>
         </el-button>
       </div>
       <div v-if="show" class="form">
@@ -29,8 +29,8 @@
           <el-table-column width="160" prop="name" label="分类名"></el-table-column>
           <el-table-column width="160" label="操作">
             <template slot-scope="scope">
-              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-              <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+              <el-button size="mini" @click="handleEdit(scope.row)">编辑</el-button>
+              <el-button size="mini" type="danger" @click="handleDelete(scope.row.id)">删除</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -76,7 +76,7 @@ export default {
       pending: true,
       formCopy: {},
       params: {
-        limit: 1,
+        limit: 5,
         page: 1
       },
       total: 0

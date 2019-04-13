@@ -91,11 +91,11 @@ export default {
             }
         },
 
-        handleDelete(i, r) {
+        handleDelete(id) {
             if (!confirm("确定删除")) {
                 return;
             }
-            let id = r.id;
+
             api(`${this.model}/delete`, { id }).then(r => {
                 if (r.success) {
                     this.read();
@@ -103,7 +103,7 @@ export default {
             });
         },
 
-        handleEdit(i, r) {
+        handleEdit(r) {
             this.show = true;
             this.formCopy = { ...r };
             this.form = r;
@@ -119,6 +119,7 @@ export default {
             if (!this.validateForm()) {
                 return;
             }
+
             //异步验证结果
             if (!this.asynValid) {
                 return;
@@ -137,7 +138,6 @@ export default {
         },
 
         handleCurrentChange(page) {
-            console.log(this.total)
             this.params.page = page;
             this.read();
         }

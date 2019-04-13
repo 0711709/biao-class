@@ -60,10 +60,10 @@
         </el-table>
         <div class="pagination text-center">
           <el-pagination
-            layout="prev, pager, next"
-            :size="params.limit"
-            :current-page="params.page"
+            layout="prev, pager, next, total"
+            :page-size="params.limit"
             :total="total"
+            :current-page="params.page"
             @current-change="handleCurrentChange"
           ></el-pagination>
         </div>
@@ -134,7 +134,7 @@ export default {
         limit: 8,
         page: 1
       },
-      total: 10
+      total: 0
     };
   }
 };

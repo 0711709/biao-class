@@ -28,6 +28,7 @@ import Order from "./components/My/Order.vue"
 import AdminBase from "./components/Admin/AdminBase.vue"
 import AdminUser from "./components/Admin/AdminUser.vue"
 import AdminBrand from "./components/Admin/AdminBrand.vue"
+import AdminCat from "./components/Admin/AdminCat.vue"
 import AdminProduct from "./components/Admin/AdminProduct.vue"
 
 window.api = api;
@@ -95,6 +96,10 @@ const router = new Router({
         {
           path: "brand",
           component: AdminBrand,
+        },
+        {
+          path: "cat",
+          component: AdminCat,
         },
         {
           path: "product",

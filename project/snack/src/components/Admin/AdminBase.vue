@@ -7,13 +7,16 @@
             <h2>管理中心</h2>
           </div>
           <el-menu class="admin-menu" :router="true">
-            <el-menu-item index="/admin/user">
+            <el-menu-item index="user">
               <span slot="title">用户管理</span>
             </el-menu-item>
-            <el-menu-item index="/admin/brand">
+            <el-menu-item index="brand">
               <span slot="title">品牌管理</span>
             </el-menu-item>
-            <el-menu-item index="/admin/product">
+            <el-menu-item index="cat">
+              <span slot="title">分类管理</span>
+            </el-menu-item>
+            <el-menu-item index="product">
               <span slot="title">商品管理</span>
             </el-menu-item>
           </el-menu>

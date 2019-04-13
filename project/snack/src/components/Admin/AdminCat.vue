@@ -1,17 +1,17 @@
 <template>
   <div>
     <div class="head">
-      <h2>品牌管理</h2>
+      <h2>分类管理</h2>
     </div>
     <div class="content">
       <div class="button">
         <el-button @click="show=true; errors={}" round size="small" type="success">
-          <span>创建品牌</span>
+          <span>创建分类</span>
         </el-button>
       </div>
       <div v-if="show" class="form">
         <el-form size="small" label-width="4rem">
-          <el-form-item label="品牌名" @keyup.native="debounceValidate('name')">
+          <el-form-item label="分类名" @keyup.native="debounceValidate('name')">
             <el-input v-model="form.name" placeholder="必填项"></el-input>
             <div class="error" v-for="(value, e) in errors.name" :key="e">
               <div v-if="value">{{rules.name[e].msg}}</div>
@@ -26,7 +26,7 @@
       <div class="table-list">
         <el-table :data="list" size="small" :row-class-name="tableRowClassName" style="width: 100%">
           <el-table-column width="80" prop="id" label="ID"></el-table-column>
-          <el-table-column width="160" prop="name" label="品牌名"></el-table-column>
+          <el-table-column width="160" prop="name" label="分类名"></el-table-column>
           <el-table-column width="160" label="操作">
             <template slot-scope="scope">
               <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
@@ -55,7 +55,7 @@ export default {
   mixins: [admin],
   data() {
     return {
-      model: "brand",
+      model: "cat",
       list: [],
       show: false,
       form: {},
@@ -65,8 +65,8 @@ export default {
             msg: "此项为必填项"
           },
           unique: {
-            params: ["brand", "exists", "name"],
-            msg: "品牌已存在"
+            params: ["cat", "exists", "name"],
+            msg: "分类已存在"
           }
         }
       },
@@ -76,7 +76,7 @@ export default {
       pending: true,
       formCopy: {},
       params: {
-        limit: 8,
+        limit: 1,
         page: 1
       },
       total: 0

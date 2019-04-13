@@ -137,6 +137,7 @@ export default {
         },
 
         handleCurrentChange(page) {
+            console.log(this.total)
             this.params.page = page;
             this.read();
         }

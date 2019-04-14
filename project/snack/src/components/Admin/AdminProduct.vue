@@ -10,7 +10,7 @@
         </el-button>
       </div>
       <div v-if="show" class="form-product">
-        <el-form size="small" label-width="3rem">
+        <el-form size="small" label-width="4rem">
           <el-form-item label="品牌">
             <el-select
               v-model="form.brand_id"
@@ -93,17 +93,11 @@
               <div v-if="value">{{rules.prop[e].msg}}</div>
             </div>
           </el-form-item>
-          <el-form-item label="主图" @keyup.native="debounceValidate('main_img')">
-            <el-input v-model="form.main_img"></el-input>
-            <div class="error" v-for="(value, e) in errors.main_img" :key="e">
-              <div v-if="value">{{rules.main_img[e].msg}}</div>
-            </div>
+          <el-form-item label="主图">
+            <Uploader :file="form.main_img" @change="mainFile"/>
           </el-form-item>
-          <el-form-item label="详情" @keyup.native="debounceValidate('detail')">
-            <el-input v-model="form.detail"></el-input>
-            <div class="error" v-for="(value, e) in errors.detail" :key="e">
-              <div v-if="value">{{rules.detail[e].msg}}</div>
-            </div>
+          <el-form-item label="详情图">
+            <Uploader :file="form.detail" @change="detailFile"/>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="createOrUpdate">提交</el-button>
@@ -134,11 +128,15 @@
                 <el-form-item label="商品品牌:">
                   <span>{{ props.row.$brand.name }}</span>
                 </el-form-item>
-                <el-form-item label="商品主图:">
-                  <span>{{ props.row.main_img }}</span>
+                <el-form-item v-if="props.row.main_img" label="商品主图:">
+                  <div class="table-img" v-for="(it, index) in props.row.main_img" :key="index">
+                    <img v-bind:src="it.url" alt="图">
+                  </div>
                 </el-form-item>
-                <el-form-item label="商品详情:">
-                  <span>{{ props.row.detail }}</span>
+                <el-form-item v-if="props.row.detail" label="商品详情:">
+                  <div class="table-img" v-for="(it, index) in props.row.detail" :key="index">
+                    <img v-bind:src="it.url" alt="图">
+                  </div>
                 </el-form-item>
               </el-form>
             </template>
@@ -169,8 +167,10 @@
 
 <script>
 import admin from "../../mixin/admin";
+import Uploader from "../Self/Uploader";
 
 export default {
+  components: { Uploader },
   mixins: [admin],
   data() {
     return {
@@ -245,7 +245,7 @@ export default {
         with: ["belongs_to:cat", "belongs_to:brand"]
       },
       total: 0,
-      formProp: {},
+      formProp: {}
     };
   },
 
@@ -283,6 +283,14 @@ export default {
       this.formProp = {};
       //删除后视图未更新 故再加上删除 formProp 利用 vue 特性强制刷新整个数据
       this.$delete(this.form.prop, key);
+    },
+
+    mainFile(f) {
+      this.form.main_img = f;
+    },
+
+    detailFile(f) {
+      this.form.detail = f;
     }
   }
 };
@@ -290,11 +298,18 @@ export default {
 
 <style scoped>
 .form-product {
-  width: 600px;
+  width: 550px;
 }
 
 .form-prop {
   display: inline-block;
   margin: 0 1rem 0 0;
+}
+
+.table-img {
+  display: inline-block;
+  width: 4rem;
+  height: 4rem;
+  margin: 0 .5rem;
 }
 </style>

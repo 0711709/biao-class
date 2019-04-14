@@ -83,7 +83,7 @@ export default {
         },
 
         //设置各行颜色
-        tableRowClassName({ row, rowIndex }) {
+        tableRowClassName({ rowIndex }) {
             if (rowIndex % 2 == 1) {
                 return "warning-row";
             } else {
@@ -105,6 +105,7 @@ export default {
 
         handleEdit(r) {
             this.show = true;
+            console.log(r)
             this.formCopy = { ...r };
             this.form = r;
         },

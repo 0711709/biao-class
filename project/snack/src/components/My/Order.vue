@@ -8,7 +8,7 @@
         <el-card class="box-card">
           <div slot="header" class="clearfix detail-header">
             <span>订单详情</span>
-            <el-button style="float: right; padding: 3px 0" type="text" @click="cancelDetail">取消</el-button>
+            <el-button style="float: right; padding: 3px 0" type="text" @click="cancelDetail">关闭</el-button>
           </div>
           <el-row>
             <el-col :span="16">
@@ -62,7 +62,7 @@
                 <div class="test-pay">测试支付为 0.01元</div>
                 <div class="order-pay">
                   <el-button size="mini" type="primary" @click="generatePaymentUrl('alipay')">支付宝</el-button>
-                  <el-button size="mini" type="success" @click="generatePaymentUrl('wechat')">微信支付</el-button>
+                  <!-- <el-button size="mini" type="success" @click="generatePaymentUrl('wechat')">微信支付</el-button> -->
                 </div>
               </div>
             </el-col>

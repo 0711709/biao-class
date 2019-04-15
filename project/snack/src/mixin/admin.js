@@ -105,7 +105,6 @@ export default {
 
         handleEdit(r) {
             this.show = true;
-            console.log(r)
             this.formCopy = { ...r };
             this.form = r;
         },

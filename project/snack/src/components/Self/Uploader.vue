@@ -43,9 +43,7 @@ export default {
       let url = "https://" + response.data._base_url + "/" + response.data._key;
       let name = response.data._original_name;
       this.fileList.push({ id, name, url });
-      console.log(this.fileList)
       this.$emit("change", this.fileList);
-      //   console.log(this.fileList);
     },
 
     //移除上传图片

@@ -7,13 +7,13 @@
             <h2>个人中心</h2>
           </div>
           <el-menu class="my-menu" :router="true">
-            <el-menu-item index="cart">
+            <el-menu-item index="/my/cart">
               <span slot="title">购物车</span>
             </el-menu-item>
-            <el-menu-item index="order">
+            <el-menu-item index="/my/order">
               <span slot="title">订单</span>
             </el-menu-item>
-            <el-menu-item index="setting">
+            <el-menu-item index="/my/setting">
               <span slot="title">个人设置</span>
             </el-menu-item>
           </el-menu>

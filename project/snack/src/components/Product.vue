@@ -5,15 +5,15 @@
         <el-row :gutter="20">
           <el-col :span="10">
             <el-carousel height="350px">
-              <el-carousel-item v-for="item in 4" :key="item">
-                <img src="http://dummyimage.com/100x100" alt>
+              <el-carousel-item v-for="(item, index) in row.main_img" :key="index">
+                <img :src="item.url" alt="图">
               </el-carousel-item>
             </el-carousel>
           </el-col>
           <el-col :span="14">
             <el-row>
               <div class="title">
-                <h3>青衣美人红曲红茶（4g*30袋）</h3>
+                <h3>{{row.title}}</h3>
               </div>
             </el-row>
             <div class="price-card background">
@@ -22,7 +22,7 @@
                   <span class="small">价格</span>
                 </el-col>
                 <el-col :span="22">
-                  <span class="hot rmb">19</span>
+                  <span class="hot rmb">{{row.price}}</span>
                 </el-col>
               </el-row>
               <el-row>
@@ -30,7 +30,7 @@
                   <span class="small">运费</span>
                 </el-col>
                 <el-col :span="22">
-                  <span class="rmb small">10</span>
+                  <span class="rmb small">{{row.shipping_fee}}</span>
                 </el-col>
               </el-row>
               <el-row>
@@ -58,14 +58,17 @@
                 <span class="hot-small">10</span>
               </el-col>
             </el-row>
-            <el-row class="space">
+            <el-row class="space" v-for="(options, value) in row.prop" :key="value">
               <el-col :span="3">
-                <span class="small">口味</span>
+                <span class="small">{{value}}</span>
               </el-col>
               <el-col class="pill-option" :span="21">
-                <span>甜</span>
-                <span>辣</span>
-                <span>甜</span>
+                <span
+                  v-for="(option, index) in options.split('|')"
+                  :key="index"
+                  @click="setProp(value, option)"
+                  :class="form.prop[value] == option? 'active': ''"
+                >{{option}}</span>
               </el-col>
             </el-row>
             <el-row class="space">
@@ -84,7 +87,7 @@
             </el-row>
             <el-row class="space">
               <el-col :span="21" :offset="3">
-                <el-button type="danger" plain>立即购买</el-button>
+                <el-button type="danger" plain @click="createOrder">立即购买</el-button>
                 <el-button type="danger">加入购物车</el-button>
               </el-col>
             </el-row>
@@ -96,7 +99,9 @@
       <div class="container">
         <el-tabs type="border-card" class="card">
           <el-tab-pane label="商品详情">
-            <img src="../../public/img.jpg" alt="">
+            <div v-for="(item, value) in row.detail" :key="value">
+              <img :src="item.url" alt="图">
+            </div>
           </el-tab-pane>
           <el-tab-pane label="产品参数">
             <div class="product-info">
@@ -135,16 +140,89 @@
 </template>
 
 <script>
+import { orderSum } from "../lib/help.js";
+import session from "../lib/session";
+
 export default {
   data() {
     return {
-      num: 1
+      num: 1,
+      row: {
+        id: 1
+      },
+      form: {
+        prop: {}
+      }
     };
+  },
+
+  mounted() {
+    this.row.id = this.$route.params.id;
+    this.find();
+  },
+
+  methods: {
+    find() {
+      api("product/find", this.row).then(r => {
+        if (r.success) {
+          this.row = r.data;
+        }
+      });
+    },
+
+    setProp(value, option) {
+      this.$set(this.form.prop, value, option)
+    },
+
+    allPropChecked(){
+      let props = this.row.prop;
+
+      for(let key in props){
+        if(!this.form.prop[key]){
+          return false;
+        }
+      }
+      return true;
+    },
+
+    createOrder() {
+      //检查是否选中所有属性
+      if(!this.allPropChecked()){
+        const h = this.$createElement;
+        this.$msgbox({
+          title: '提示',
+          message: h('p', null, [
+            h('span', null, '请选择所有商品类型 '),
+          ]),
+          confirmButtonText: '确定',
+        });
+        return;
+      }
+      //完成订单数据
+      this.form.product_id = this.row.id;
+      this.form.count = this.num;
+      this.form.product_snapshot = this.row;
+      this.form.status
+
+      let order = {
+        detail: [this.form]
+      };
+      order.user_id = session.user().id;
+      order.sum = orderSum(order.detail);
+      order.status = "created";
+      
+      //提交订单并跳转至个人订单页面
+      api("order/create", order).then(r => {
+        if(r.success){
+          this.$router.push(`/my/order/${r.data.id}`);
+        }
+      })
+    }
   }
 };
 </script>
 
-<style scoped>
+<style>
 .overview .title h3 {
   margin: 0;
   padding: 0.5rem 0;
@@ -195,6 +273,10 @@ export default {
   cursor: pointer;
 }
 
+.pill-option .active{
+  border-color: #e10;
+}
+
 .space {
   margin: 1rem 0;
 }
@@ -236,6 +318,10 @@ export default {
   margin: 3rem 0;
 }
 
+.detail img {
+  margin: 0.5rem 0;
+}
+
 .card {
   box-shadow: none;
 }
@@ -247,7 +333,6 @@ export default {
   color: rgba(0, 0, 0, 0.5);
   border: 1px;
 }
-
 </style>
 
 

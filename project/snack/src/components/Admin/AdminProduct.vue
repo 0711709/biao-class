@@ -147,7 +147,7 @@
               </el-form>
             </template>
           </el-table-column>
-          <el-table-column label="商品 ID" prop="id"></el-table-column>
+          <el-table-column width="80" label="商品 ID" prop="id"></el-table-column>
           <el-table-column label="商品名称" prop="title"></el-table-column>
           <el-table-column label="描述" prop="desc"></el-table-column>
           <el-table-column label="操作">

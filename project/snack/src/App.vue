@@ -89,7 +89,7 @@ export default {
 }
 
 .global-footer {
-  margin-top: 2rem;
+  margin-top: 5rem;
 }
 
 .global-footer .policy {

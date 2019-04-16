@@ -112,7 +112,7 @@
         </el-form>
       </div>
       <div class="table-list">
-        <el-table :data="list" size="small" style="width: 100%">
+        <el-table :data="list" size="small" style="width: 100%" v-loading="loading">
           <el-table-column type="expand">
             <template slot-scope="props">
               <el-form label-position="left" inline class="demo-table-expand">

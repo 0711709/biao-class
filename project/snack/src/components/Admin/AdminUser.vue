@@ -46,7 +46,7 @@
         </el-form>
       </div>
       <div class="table-list">
-        <el-table :data="list" size="small" :row-class-name="tableRowClassName" style="width: 100%">
+        <el-table :data="list" size="small" :row-class-name="tableRowClassName" style="width: 100%" v-loading="loading">
           <el-table-column width="80" prop="id" label="ID"></el-table-column>
           <el-table-column width="160" prop="username" label="用户名"></el-table-column>
           <el-table-column width="160" prop="phone" label="手机号"></el-table-column>

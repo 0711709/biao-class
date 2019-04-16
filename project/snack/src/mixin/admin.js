@@ -3,16 +3,24 @@ import api from "../lib/api"
 import { call as valee } from "../lib/valee"
 
 export default {
+    data() {
+        return {
+            loading: true,
+        }
+    },
+
     mounted() {
         this.read();
     },
 
     methods: {
         read() {
+            this.loading = true;
             api(`${this.model}/read`, this.params).then(r => {
                 if (r.success) {
                     this.list = r.data;
                     this.total = r.total;
+                    this.loading = false;
                 }
             });
         },

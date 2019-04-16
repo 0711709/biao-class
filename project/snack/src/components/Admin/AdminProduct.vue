@@ -37,6 +37,12 @@
               <div v-if="value">{{rules.cat_id[e].msg}}</div>
             </div>
           </el-form-item>
+          <el-form-item label="新品">
+            <el-switch v-model="form.is_new"></el-switch>
+          </el-form-item>
+          <el-form-item label="热卖">
+            <el-switch v-model="form.is_hot"></el-switch>
+          </el-form-item>
           <el-form-item label="标题" @keyup.native="debounceValidate('title')">
             <el-input v-model="form.title" placeholder="必填项"></el-input>
             <div class="error" v-for="(value, e) in errors.title" :key="e">
@@ -310,6 +316,6 @@ export default {
   display: inline-block;
   width: 4rem;
   height: 4rem;
-  margin: 0 .5rem;
+  margin: 0 0.5rem;
 }
 </style>

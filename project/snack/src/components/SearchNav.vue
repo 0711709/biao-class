@@ -20,6 +20,12 @@ export default {
     return {
       input: ""
     };
+  },
+
+  methods: {
+    test(){
+      console.log(1)
+    }
   }
 };
 </script>

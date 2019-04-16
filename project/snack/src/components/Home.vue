@@ -3,9 +3,9 @@
     <SearchNav/>
     <div class="card-list carousel">
       <div class="container">
-        <el-carousel :interval="1000" type="card" height="200px">
+        <el-carousel :interval="1000" type="card" height="300px">
           <el-carousel-item v-for="item in 6" :key="item">
-            <img src="http://dummyimage.com/400x200" alt>
+            <img src="http://dummyimage.com/400x400" alt>
           </el-carousel-item>
         </el-carousel>
       </div>

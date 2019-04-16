@@ -1,5 +1,14 @@
 <template>
   <div class="product">
+    <div class="product-head">
+      <div class="container">
+        <router-link to="/" class="item item-home">首页</router-link>
+        <span class="item">></span>
+        <span class="item">{{row.$cat.name || "分类"}}</span>
+        <span class="item">></span>
+        <span class="item">{{row.$brand.name || "品牌"}}</span>
+      </div>
+    </div>
     <div class="overview">
       <div class="container">
         <el-row :gutter="20">
@@ -16,6 +25,7 @@
                 <h3>{{row.title}}</h3>
               </div>
             </el-row>
+            <div class="desc">{{row.desc}}</div>
             <div class="price-card background">
               <el-row>
                 <el-col :span="2">
@@ -46,11 +56,11 @@
             </div>
             <el-row class="info">
               <el-col class="text-center" :span="8">
-                <span class="small">月销量</span>
-                <span class="hot-small">888</span>
+                <span class="small">库存</span>
+                <span class="hot-small">{{row.total}}</span>
               </el-col>
               <el-col class="text-center" :span="8">
-                <span class="small">累计评价</span>
+                <span class="small">累计销量</span>
                 <span class="hot-small">999</span>
               </el-col>
               <el-col class="text-center" :span="8">
@@ -58,7 +68,7 @@
                 <span class="hot-small">10</span>
               </el-col>
             </el-row>
-            <el-row class="space" v-for="(options, value) in row.prop" :key="value">
+            <el-row class="space option" v-for="(options, value) in row.prop" :key="value">
               <el-col :span="3">
                 <span class="small">{{value}}</span>
               </el-col>
@@ -71,7 +81,7 @@
                 >{{option}}</span>
               </el-col>
             </el-row>
-            <el-row class="space">
+            <el-row class="space much">
               <el-col :span="3">
                 <span class="small number">数量</span>
               </el-col>
@@ -148,7 +158,15 @@ export default {
     return {
       num: 1,
       row: {
-        id: 1
+        $cat: { name: "" },
+        $brand: { name: "" }
+      },
+      findParams: {
+        id: null,
+        with: [
+          { model: "brand", relation: "belongs_to" },
+          { model: "cat", relation: "belongs_to" }
+        ]
       },
       form: {
         prop: {}
@@ -157,13 +175,13 @@ export default {
   },
 
   mounted() {
-    this.row.id = this.$route.params.id;
+    this.findParams.id = this.$route.params.id;
     this.find();
   },
 
   methods: {
     find() {
-      api("product/find", this.row).then(r => {
+      api("product/find", this.findParams).then(r => {
         if (r.success) {
           this.row = r.data;
         }
@@ -171,14 +189,14 @@ export default {
     },
 
     setProp(value, option) {
-      this.$set(this.form.prop, value, option)
+      this.$set(this.form.prop, value, option);
     },
 
-    allPropChecked(){
+    allPropChecked() {
       let props = this.row.prop;
 
-      for(let key in props){
-        if(!this.form.prop[key]){
+      for (let key in props) {
+        if (!this.form.prop[key]) {
           return false;
         }
       }
@@ -187,14 +205,12 @@ export default {
 
     createOrder() {
       //检查是否选中所有属性
-      if(!this.allPropChecked()){
+      if (!this.allPropChecked()) {
         const h = this.$createElement;
         this.$msgbox({
-          title: '提示',
-          message: h('p', null, [
-            h('span', null, '请选择所有商品类型 '),
-          ]),
-          confirmButtonText: '确定',
+          title: "提示",
+          message: h("p", null, [h("span", null, "请选择所有商品类型 ")]),
+          confirmButtonText: "确定"
         });
         return;
       }
@@ -202,7 +218,7 @@ export default {
       this.form.product_id = this.row.id;
       this.form.count = this.num;
       this.form.product_snapshot = this.row;
-      this.form.status
+      this.form.status;
 
       let order = {
         detail: [this.form]
@@ -210,24 +226,58 @@ export default {
       order.user_id = session.user().id;
       order.sum = orderSum(order.detail);
       order.status = "created";
-      
+
       //提交订单并跳转至个人订单页面
       api("order/create", order).then(r => {
-        if(r.success){
+        if (r.success) {
           this.$router.push(`/my/order/${r.data.id}`);
         }
-      })
+      });
     }
   }
 };
 </script>
 
 <style>
+.product {
+  margin-top: 3rem;
+}
+
+.product-head {
+  margin: 2rem 0;
+}
+
+.product-head .container {
+  padding: 0.5rem 0;
+  border: solid #999;
+  border-width: 1px 0;
+}
+
+.product-head .item {
+  padding-right: 0.2rem;
+  font-size: 90%;
+}
+
+.product-head .item-home {
+  font-weight: 600;
+}
+
+.product-head .item-home:hover {
+  color: #409eff;
+}
+
 .overview .title h3 {
   margin: 0;
-  padding: 0.5rem 0;
+  padding: 0 0 0.6rem 0;
   font-size: 1.1rem;
 }
+
+.overview .desc {
+  font-size: 85%;
+  color: rgba(0, 0, 0, 0.7);
+  padding: 0 0 0 0.1rem;
+}
+
 .overview .price-card {
   margin: 1rem 0;
   background-color: #f9f9f9;
@@ -273,12 +323,12 @@ export default {
   cursor: pointer;
 }
 
-.pill-option .active{
+.pill-option .active {
   border-color: #e10;
 }
 
 .space {
-  margin: 1rem 0;
+  margin: 2.5rem 0;
 }
 
 .number {

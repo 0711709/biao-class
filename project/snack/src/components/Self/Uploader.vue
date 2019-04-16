@@ -33,7 +33,7 @@ export default {
 
   mounted() {
     this.setHeader();
-    this.fileList = this.file;
+    this.fileList = this.file || [];
   },
 
   methods: {

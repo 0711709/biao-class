@@ -70,7 +70,7 @@
         </el-card>
       </div>
       <div class="table-list">
-        <el-table :data="list" size="small" :row-class-name="tableRowClassName" style="width: 100%">
+        <el-table :data="list" size="small" :row-class-name="tableRowClassName" style="width: 100%" v-loading="loading">
           <el-table-column width="100" prop="id" label="ID"></el-table-column>
           <el-table-column width="120" prop="sum" label="总价"></el-table-column>
           <el-table-column width="120" label="支付方式">
@@ -123,7 +123,8 @@ export default {
           alipay: "支付宝",
           wechat: "微信支付"
         }
-      }
+      },
+      loading: true,
     };
   },
 
@@ -139,10 +140,12 @@ export default {
 
   methods: {
     read() {
+      this.loading = true;
       api("order/read", this.params).then(r => {
         if (r.success) {
           this.list = r.data;
           this.total = r.total;
+          this.loading = false;
         }
       });
     },

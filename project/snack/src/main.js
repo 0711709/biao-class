@@ -108,11 +108,19 @@ const router = new Router({
       ]
     }
   ]
+  ,
+  scrollBehavior(to, from, savedPosition) {
+    return {
+      x: 0,
+      y: 0
+    }
+  }
+
 })
 
 router.beforeEach((to, form, next) => {
-  if(/admin/.test(to.matched[0].path)) {
-    if(session.user() && session.user().IS_ADMIN){
+  if (/admin/.test(to.matched[0].path)) {
+    if (session.user() && session.user().IS_ADMIN) {
       next();
     } else {
       next(false);

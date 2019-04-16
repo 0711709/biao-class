@@ -4,20 +4,20 @@
     <div class="card-list carousel" v-loading="loading">
       <div class="container">
         <el-carousel :interval="3000" height="375px">
-          <el-carousel-item v-for="(item, index) in main_img" :key="index">
+          <el-carousel-item v-for="(item, index) in mainImg" :key="index">
             <img :src="item.url" alt>
           </el-carousel-item>
         </el-carousel>
       </div>
     </div>
-    <div class="card-list cat-product" v-loading="loading_new" :class="loading_drink? 'height': ''">
+    <div class="card-list cat-product" v-loading="loadingNew" :class="loadingNew? 'height': ''">
       <div class="container">
         <div class="head">
           <span class="title">每日新品</span>
           <span class="desc">每日更新, 惊喜不断</span>
         </div>
         <el-row :gutter="20">
-          <el-col :span="6" v-for="(it, index) in list_new" :key="index">
+          <el-col :span="6" v-for="(it, index) in listNew" :key="index">
             <router-link :to="'/product/' + it.id">
               <el-card class="card" shadow="hover" :body-style="{ padding: '0px' }">
                 <img :src="it.main_img[0].url" class="image">
@@ -34,14 +34,14 @@
         </el-row>
       </div>
     </div>
-    <div class="card-list cat-product" v-loading="loading_hot" :class="loading_drink? 'height': ''">
+    <div class="card-list cat-product" v-loading="loadingHot" :class="loadingHot? 'height': ''">
       <div class="container">
         <div class="head">
           <span class="title">热门</span>
           <span class="desc">感动人心 价格厚道</span>
         </div>
         <el-row :gutter="20">
-          <el-col :span="6" v-for="(it, index) in list_hot" :key="index">
+          <el-col :span="6" v-for="(it, index) in listHot" :key="index">
             <router-link :to="'/product/' + it.id">
               <el-card class="card" shadow="hover" :body-style="{ padding: '0px' }">
                 <img :src="it.main_img[0].url" class="image">
@@ -58,18 +58,14 @@
         </el-row>
       </div>
     </div>
-    <div
-      class="card-list cat-product"
-      v-loading="loading_meat"
-      :class="loading_drink? 'height': ''"
-    >
+    <div class="card-list cat-product" v-loading="loadingMeat" :class="loadingMeat? 'height': ''">
       <div class="container">
         <div class="head">
           <span class="title">肉类小吃</span>
           <span class="desc">便携美味, 解馋小食</span>
         </div>
         <el-row :gutter="20">
-          <el-col :span="6" v-for="(it, index) in list_meat" :key="index">
+          <el-col :span="6" v-for="(it, index) in listMeat" :key="index">
             <router-link :to="'/product/' + it.id">
               <el-card class="card" shadow="hover" :body-style="{ padding: '0px' }">
                 <img :src="it.main_img[0].url" class="image">
@@ -86,14 +82,14 @@
         </el-row>
       </div>
     </div>
-    <div class="card-list cat-product" v-loading="loading_nut" :class="loading_drink? 'height': ''">
+    <div class="card-list cat-product" v-loading="loadingNut" :class="loadingNut? 'height': ''">
       <div class="container">
         <div class="head">
           <span class="title">坚果小吃</span>
           <span class="desc">小果仁, 大能量</span>
         </div>
         <el-row :gutter="20">
-          <el-col :span="6" v-for="(it, index) in list_nut" :key="index">
+          <el-col :span="6" v-for="(it, index) in listNut" :key="index">
             <router-link :to="'/product/' + it.id">
               <el-card class="card" shadow="hover" :body-style="{ padding: '0px' }">
                 <img :src="it.main_img[0].url" class="image">
@@ -110,18 +106,14 @@
         </el-row>
       </div>
     </div>
-    <div
-      class="card-list cat-product"
-      v-loading="loading_drink"
-      :class="loading_drink? 'height': ''"
-    >
+    <div class="card-list cat-product" v-loading="loadingDrink" :class="loadingDrink? 'height': ''">
       <div class="container">
         <div class="head">
           <span class="title">冲饮乳品</span>
           <span class="desc">每天一杯, 健康一生</span>
         </div>
         <el-row :gutter="20">
-          <el-col :span="6" v-for="(it, index) in list_drink" :key="index">
+          <el-col :span="6" v-for="(it, index) in listDrink" :key="index">
             <router-link :to="'/product/' + it.id">
               <el-card class="card" shadow="hover" :body-style="{ padding: '0px' }">
                 <img :src="it.main_img[0].url" class="image">
@@ -149,18 +141,18 @@ export default {
   components: { SearchNav },
   data() {
     return {
-      list_new: [],
-      list_hot: [],
-      list_meat: [],
-      list_nut: [],
-      list_drink: [],
-      main_img: [],
+      listNew: [],
+      listHot: [],
+      listMeat: [],
+      listNut: [],
+      listDrink: [],
+      mainImg: [],
       loading: true,
-      loading_new: true,
-      loading_hot: true,
-      loading_meat: true,
-      loading_nut: true,
-      loading_drink: true
+      loadingNew: true,
+      loadingHot: true,
+      loadingMeat: true,
+      loadingNut: true,
+      loadingDrink: true
     };
   },
 
@@ -180,29 +172,17 @@ export default {
     },
 
     readAll() {
-      this.read(
-        "list_new",
-        { where: { and: { is_new: true } } },
-        "loading_new"
-      );
-      this.read(
-        "list_hot",
-        { where: { and: { is_hot: true } } },
-        "loading_hot"
-      );
-      this.read("list_meat", { where: { and: { cat_id: 7 } } }, "loading_meat");
-      this.read("list_nut", { where: { and: { cat_id: 3 } } }, "loading_nut");
-      this.read(
-        "list_drink",
-        { where: { and: { cat_id: 8 } } },
-        "loading_drink"
-      );
+      this.read("listNew", { where: { and: { is_new: true } } }, "loadingNew");
+      this.read("listHot", { where: { and: { is_hot: true } } }, "loadingHot");
+      this.read("listMeat", { where: { and: { cat_id: 7 } } }, "loadingMeat");
+      this.read("listNut", { where: { and: { cat_id: 3 } } }, "loadingNut");
+      this.read("listDrink", { where: { and: { cat_id: 8 } } }, "loadingDrink");
     },
 
     readMainImg() {
       api("product/find", { id: 17 }).then(r => {
         if (r.success) {
-          this.main_img = r.data.detail;
+          this.mainImg = r.data.detail;
           this.loading = false;
         }
       });
@@ -225,7 +205,6 @@ export default {
 .height {
   height: 332px;
 }
-
 
 .card-list {
   margin-bottom: 2rem;

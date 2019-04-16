@@ -1,7 +1,7 @@
  <template>
   <div class="home">
     <SearchNav/>
-    <div class="card-list carousel">
+    <div class="card-list carousel" v-loading="loading">
       <div class="container">
         <el-carousel :interval="3000" height="375px">
           <el-carousel-item v-for="(item, index) in main_img" :key="index">
@@ -10,7 +10,7 @@
         </el-carousel>
       </div>
     </div>
-    <div class="card-list cat-product">
+    <div class="card-list cat-product" v-loading="loading_new" :class="loading_drink? 'height': ''">
       <div class="container">
         <div class="head">
           <span class="title">每日新品</span>
@@ -23,7 +23,7 @@
                 <img :src="it.main_img[0].url" class="image">
                 <div style="padding: 14px;" class="text-center content">
                   <div class="title" :title="it.title">{{it.title | cutTitle}}</div>
-                  <div class="desc" :desc="it.desc">{{it.desc | cut}}</div>
+                  <div class="desc" :title="it.desc">{{it.desc | cut}}</div>
                   <div class="price">
                     <span class="rmb">{{it.price}}</span>
                   </div>
@@ -34,7 +34,7 @@
         </el-row>
       </div>
     </div>
-    <div class="card-list cat-product">
+    <div class="card-list cat-product" v-loading="loading_hot" :class="loading_drink? 'height': ''">
       <div class="container">
         <div class="head">
           <span class="title">热门</span>
@@ -47,7 +47,7 @@
                 <img :src="it.main_img[0].url" class="image">
                 <div style="padding: 14px;" class="text-center content">
                   <div class="title" :title="it.title">{{it.title | cutTitle}}</div>
-                  <div class="desc" :desc="it.desc">{{it.desc | cut}}</div>
+                  <div class="desc" :title="it.desc">{{it.desc | cut}}</div>
                   <div class="price">
                     <span class="rmb">{{it.price}}</span>
                   </div>
@@ -58,7 +58,11 @@
         </el-row>
       </div>
     </div>
-    <div class="card-list cat-product">
+    <div
+      class="card-list cat-product"
+      v-loading="loading_meat"
+      :class="loading_drink? 'height': ''"
+    >
       <div class="container">
         <div class="head">
           <span class="title">肉类小吃</span>
@@ -71,7 +75,7 @@
                 <img :src="it.main_img[0].url" class="image">
                 <div style="padding: 14px;" class="text-center content">
                   <div class="title" :title="it.title">{{it.title | cutTitle}}</div>
-                  <div class="desc" :desc="it.desc">{{it.desc | cut}}</div>
+                  <div class="desc" :title="it.desc">{{it.desc | cut}}</div>
                   <div class="price">
                     <span class="rmb">{{it.price}}</span>
                   </div>
@@ -82,7 +86,7 @@
         </el-row>
       </div>
     </div>
-    <div class="card-list cat-product">
+    <div class="card-list cat-product" v-loading="loading_nut" :class="loading_drink? 'height': ''">
       <div class="container">
         <div class="head">
           <span class="title">坚果小吃</span>
@@ -95,7 +99,7 @@
                 <img :src="it.main_img[0].url" class="image">
                 <div style="padding: 14px;" class="text-center content">
                   <div class="title" :title="it.title">{{it.title | cutTitle}}</div>
-                  <div class="desc" :desc="it.desc">{{it.desc | cut}}</div>
+                  <div class="desc" :title="it.desc">{{it.desc | cut}}</div>
                   <div class="price">
                     <span class="rmb">{{it.price}}</span>
                   </div>
@@ -106,7 +110,11 @@
         </el-row>
       </div>
     </div>
-    <div class="card-list cat-product">
+    <div
+      class="card-list cat-product"
+      v-loading="loading_drink"
+      :class="loading_drink? 'height': ''"
+    >
       <div class="container">
         <div class="head">
           <span class="title">冲饮乳品</span>
@@ -119,7 +127,7 @@
                 <img :src="it.main_img[0].url" class="image">
                 <div style="padding: 14px;" class="text-center content">
                   <div class="title" :title="it.title">{{it.title | cutTitle}}</div>
-                  <div class="desc" :desc="it.desc">{{it.desc | cut}}</div>
+                  <div class="desc" :title="it.desc">{{it.desc | cut}}</div>
                   <div class="price">
                     <span class="rmb">{{it.price}}</span>
                   </div>
@@ -146,7 +154,13 @@ export default {
       list_meat: [],
       list_nut: [],
       list_drink: [],
-      main_img: []
+      main_img: [],
+      loading: true,
+      loading_new: true,
+      loading_hot: true,
+      loading_meat: true,
+      loading_nut: true,
+      loading_drink: true
     };
   },
 
@@ -156,28 +170,42 @@ export default {
   },
 
   methods: {
-    read(list, params) {
+    read(list, params, load) {
       api("product/read", params).then(r => {
         if (r.success) {
           this[list] = r.data;
+          this[load] = false;
         }
       });
     },
 
     readAll() {
-      this.read("list_new", { where: { and: { is_new: true } } });
-      this.read("list_hot", { where: { and: { is_hot: true } } });
-      this.read("list_meat", { where: { and: { cat_id: 7 } } });
-      this.read("list_nut", { where: { and: { cat_id: 3 } } });
-      this.read("list_drink", { where: { and: { cat_id: 8 } } });
+      this.read(
+        "list_new",
+        { where: { and: { is_new: true } } },
+        "loading_new"
+      );
+      this.read(
+        "list_hot",
+        { where: { and: { is_hot: true } } },
+        "loading_hot"
+      );
+      this.read("list_meat", { where: { and: { cat_id: 7 } } }, "loading_meat");
+      this.read("list_nut", { where: { and: { cat_id: 3 } } }, "loading_nut");
+      this.read(
+        "list_drink",
+        { where: { and: { cat_id: 8 } } },
+        "loading_drink"
+      );
     },
 
     readMainImg() {
       api("product/find", { id: 17 }).then(r => {
-        if(r.success){
+        if (r.success) {
           this.main_img = r.data.detail;
+          this.loading = false;
         }
-      })
+      });
     }
   },
 
@@ -194,6 +222,11 @@ export default {
 </script>
 
 <style>
+.height {
+  height: 332px;
+}
+
+
 .card-list {
   margin-bottom: 2rem;
 }

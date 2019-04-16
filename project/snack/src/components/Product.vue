@@ -1,5 +1,5 @@
 <template>
-  <div class="product">
+  <div class="product" v-loading="loading">
     <div class="product-head">
       <div class="container">
         <router-link to="/" class="item item-home">首页</router-link>
@@ -170,7 +170,8 @@ export default {
       },
       form: {
         prop: {}
-      }
+      },
+      loading: true,
     };
   },
 
@@ -184,6 +185,7 @@ export default {
       api("product/find", this.findParams).then(r => {
         if (r.success) {
           this.row = r.data;
+          this.loading = false;
         }
       });
     },

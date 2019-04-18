@@ -198,7 +198,6 @@ export default {
       api(`captcha/${action}`, param).then(r => {
         if (r.success) {
           this.code = atob(r.data.result);
-          console.log(this.code);
           this.$message({
             message: "验证码发送成功",
             type: "success"

@@ -255,7 +255,7 @@ let is = {
     }
 };
 
-// export default is;
+export default is;
 
 export function call(type, value, ...args) {
     // 如果不是必填项,则没有值的话就不验证

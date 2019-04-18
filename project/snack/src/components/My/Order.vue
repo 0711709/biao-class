@@ -62,7 +62,14 @@
                 <div class="test-pay">测试支付为 0.01元</div>
                 <div class="order-pay">
                   <el-button size="mini" type="primary" @click="generatePaymentUrl('alipay')">支付宝</el-button>
-                  <!-- <el-button size="mini" type="success" @click="generatePaymentUrl('wechat')">微信支付</el-button> -->
+                  <el-tooltip
+                    class="item"
+                    effect="dark"
+                    content="若提示过期,请用支付宝测试"
+                    placement="top-end"
+                  >
+                    <el-button size="mini" type="success" @click="generatePaymentUrl('wechat')">微信支付</el-button>
+                  </el-tooltip>
                 </div>
               </div>
             </el-col>
@@ -70,7 +77,13 @@
         </el-card>
       </div>
       <div class="table-list">
-        <el-table :data="list" size="small" :row-class-name="tableRowClassName" style="width: 100%" v-loading="loading">
+        <el-table
+          :data="list"
+          size="small"
+          :row-class-name="tableRowClassName"
+          style="width: 100%"
+          v-loading="loading"
+        >
           <el-table-column width="100" prop="id" label="ID"></el-table-column>
           <el-table-column width="120" prop="sum" label="总价"></el-table-column>
           <el-table-column width="120" label="支付方式">
@@ -104,6 +117,7 @@
 
 <script>
 import session from "../../lib/session";
+import api from "../../lib/api";
 import { url } from "../../lib/help";
 
 export default {
@@ -124,7 +138,7 @@ export default {
           wechat: "微信支付"
         }
       },
-      loading: true,
+      loading: true
     };
   },
 
@@ -166,7 +180,6 @@ export default {
       api("order/find", { id }).then(r => {
         if (r.success) {
           this.orderDetail = r.data;
-          console.log(this.orderDetail);
         }
       });
     },
@@ -264,6 +277,10 @@ export default {
 .order .sum-numb {
   font-size: 110%;
   color: #e10;
+}
+
+.order .product-item {
+  padding-bottom: 0.5rem;
 }
 
 .order .product-item > * {

@@ -174,6 +174,7 @@
 <script>
 import admin from "../../mixin/admin";
 import Uploader from "../Self/Uploader";
+import api from "../../lib/api";
 
 export default {
   components: { Uploader },

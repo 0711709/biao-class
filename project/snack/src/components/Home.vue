@@ -135,7 +135,8 @@
 
 
 <script>
-import SearchNav from "./SearchNav.vue";
+import SearchNav from "./Self/SearchNav";
+import api from "../lib/api";
 
 export default {
   components: { SearchNav },

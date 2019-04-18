@@ -9,7 +9,7 @@
           </el-input>
           <button type="submit" hidden></button>
         </form>
-      </div> -->
+      </div>-->
     </div>
     <div class="filter">
       <el-row class="filter-divide">
@@ -74,13 +74,18 @@
           </el-card>
         </el-col>
       </el-row>
-      <el-pagination class="pagination text-center" background layout="prev, pager, next" :total="100"></el-pagination>
+      <el-pagination
+        class="pagination text-center"
+        background
+        layout="prev, pager, next"
+        :total="100"
+      ></el-pagination>
     </div>
   </div>
 </template>
 
 <script>
-import SearchNav from "./SearchNav"
+import SearchNav from "./Self/SearchNav";
 
 export default {
   components: { SearchNav },
@@ -93,11 +98,7 @@ export default {
     };
   },
 
-  methods: {
-    uo() {
-      console.log(1);
-    }
-  }
+  methods: {}
 };
 </script>
 

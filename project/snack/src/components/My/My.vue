@@ -1,5 +1,6 @@
 <template>
   <div class="my">
+    <SearchNav/>
     <div class="container">
       <el-row :gutter="30">
         <el-col :span="4">
@@ -27,7 +28,11 @@
 </template>
 
 <script>
-export default {};
+import SearchNav from "../Self/SearchNav";
+
+export default {
+  components: { SearchNav },
+};
 </script>
 
 <style>

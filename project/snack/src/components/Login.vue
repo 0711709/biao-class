@@ -23,6 +23,7 @@
 
 <script>
 import session from "../lib/session";
+import store from "../lib/store";
 
 export default {
   data() {
@@ -60,6 +61,8 @@ export default {
       }).then(r => {
         if (r.success) {
           if (r.data) {
+            // store.set("cart", r.data.cart);
+            this.mergeCart(r.data.cart);
             if (r.data.username === "admin") {
               r.data.IS_ADMIN = true;
               session.login(r.data.id, r.data, "/#/admin/user");
@@ -71,6 +74,22 @@ export default {
           }
         }
       });
+    },
+
+    //合并购物车数据
+    mergeCart(cart) {
+      let localCart = store.get("cart") || {};
+      let localCartArry = Object.keys(localCart);
+
+      localCartArry.forEach(it => {
+        if (cart[it]) {
+          cart[it].count += localCart[it].count;
+        } else {
+          cart[it] = localCart[it];
+        }
+      });
+
+      store.set("cart", cart);
     }
   }
 };

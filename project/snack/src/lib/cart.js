@@ -56,7 +56,6 @@ const output = {
     //移除购物车中的商品
     remove(product_id) {
         delete localCart[product_id];
-        console.log(2)
         this.sync();
         this.callPool();
     },

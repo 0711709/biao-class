@@ -53,6 +53,7 @@
 
 <script>
 import store from "../../lib/store";
+import api from "../../lib/api";
 import session from "../../lib/session";
 import cart from "../../lib/cart";
 import { orderSum } from "../../lib/help";
@@ -88,7 +89,6 @@ export default {
       this.tableData.forEach(it => {
         if (it.count == 0) {
           cart.remove(it.product_id);
-          console.log(1);
         }
       });
       this.handleSelectionChange(this.multipleSelection);

@@ -109,7 +109,7 @@ const router = new Router({
     }
   ]
   ,
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior() {
     return {
       x: 0,
       y: 0
@@ -129,6 +129,12 @@ router.beforeEach((to, form, next) => {
     next()
   }
 })
+
+Vue.filter('cutAll', function (value, max) {
+  if (!value) return '';
+  value = value.toString();
+  return value.slice(0, max) + (value.length > max ? '...' : '');
+});
 
 new Vue({
   router,

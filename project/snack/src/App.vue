@@ -8,7 +8,7 @@
           </el-col>
           <el-col :span="12" class="text-right">
             <span v-if="session.loggedin()">
-              <router-link class="nav-item" to="/my/cart">个人中心</router-link>
+              <router-link class="nav-item" to="/my/cart">用户{{session.user().phone | cutAll(3) }}</router-link>
               <span class="nav-item" @click="session.logout()">登出</span>
             </span>
             <span v-else>
@@ -59,13 +59,19 @@
 </template>
 
 <script>
-import session from "./lib/session.js"
+import session from "./lib/session.js";
 
 export default {
   name: "app",
   data() {
     return {
       session
+    };
+  },
+
+  filter: {
+    cutR(value) {
+      return value.length < 3 ? value : value.substring(0, 4) + "...";
     }
   }
 };
@@ -85,7 +91,7 @@ export default {
 }
 
 .nav-item:hover {
-  color: #409EFF;
+  color: #409eff;
 }
 
 .global-footer {
@@ -93,18 +99,18 @@ export default {
 }
 
 .global-footer .policy {
-   border-top: 1px solid #999;
+  border-top: 1px solid #999;
 }
 
 .footer-item {
   font-size: 1.1rem;
   font-weight: 500;
   margin: 1rem 0;
-  padding: .5rem;
-  border-right: 1px solid #999; 
+  padding: 0.5rem;
+  border-right: 1px solid #999;
 }
 
-.footer-item:last-child{
+.footer-item:last-child {
   border-right: 0;
 }
 
@@ -118,7 +124,7 @@ export default {
 }
 
 .info .f-left {
-  padding: 2rem  2rem 5rem;
+  padding: 2rem 2rem 5rem;
 }
 
 .info .f-left p {

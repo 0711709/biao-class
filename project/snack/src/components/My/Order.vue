@@ -195,7 +195,7 @@ export default {
         id: this.orderDetail.id,
         pay_by: type,
         fee: 0.01,
-        return_url: url(`/#my/order/${this.orderDetail.id}`)
+        return_url: url(`#/my/order/${this.orderDetail.id}`)
       }).then(r => {
         if (r.success) {
           this.orderDetail.$payment = r.data;

@@ -113,7 +113,11 @@ export default {
       this.error.nickname = this.error.username = this.error.info = false;
 
       //用户数据是否修改
-      if(this.saveMe.nickname === this.me.nickname && this.saveMe.username === this.me.username &&this.saveMe.info === this.me.info) {
+      if (
+        this.saveMe.nickname === this.me.nickname &&
+        this.saveMe.username === this.me.username &&
+        this.saveMe.info === this.me.info
+      ) {
         this.editModel = false;
         return;
       }
@@ -148,6 +152,9 @@ export default {
     },
 
     inValidateNickname() {
+      if (!this.me.nickname) {
+        return false;
+      }
       return (this.error.nickname = this.me.nickname.length > 20);
     },
 
@@ -164,6 +171,9 @@ export default {
     },
 
     inValidateInfo() {
+      if (!this.me.info) {
+        return false;
+      }
       return (this.error.info = this.me.info.length > 50);
     }
   }

@@ -52,7 +52,7 @@ export default {
 
   mounted() {
     //恢复数据
-    this.listCart = store.get("cart");
+    this.listCart = store.get("cart") || {};
     this.num = Object.keys(this.listCart).length;
     //推入函数
     cart.onChange(() => (this.listCart = store.get("cart")));

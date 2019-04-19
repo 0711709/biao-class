@@ -9,6 +9,8 @@
           <el-col :span="12" class="text-right">
             <span v-if="session.loggedin()">
               <router-link class="nav-item" to="/my/cart">个人中心</router-link>
+              <router-link class="nav-item" to="/my/order">我的订单</router-link>
+              <router-link v-if="session.user().IS_ADMIN" class="nav-item" to="/admin/user">管理面板</router-link>
               <span class="nav-item" @click="session.logout()">登出</span>
             </span>
             <span v-else>
@@ -16,7 +18,6 @@
               <router-link class="nav-item" to="/signup">注册</router-link>
             </span>
             <router-link class="nav-item" to="/help">帮助中心</router-link>
-            <router-link class="nav-item" to="/about">联系客服</router-link>
           </el-col>
         </el-row>
       </div>

@@ -61,10 +61,16 @@ export default {
       }).then(r => {
         if (r.success) {
           if (r.data) {
-            this.mergeCart(r.data.cart);
+            //本地购物车有商品在合并
+            if (store.get("cart")) {
+              this.mergeCart(r.data.cart);
+            } else {
+              store.set("cart", r.data.cart);
+            }
+            delete r.data.cart;
             if (r.data.username === "admin") {
               r.data.IS_ADMIN = true;
-              session.login(r.data.id, r.data, "/#/admin/user");
+              session.login(r.data.id, r.data, "/");
               return;
             }
             session.login(r.data.id, r.data, "/");
@@ -77,10 +83,14 @@ export default {
 
     //合并购物车数据
     mergeCart(cart) {
-      let localCart = store.get("cart") || {};
+      let localCart = store.get("cart");
       let localCartArry = Object.keys(localCart);
+      console.log(cart, localCartArry);
 
       localCartArry.forEach(it => {
+        if (!cart) {
+          cart = {};
+        }
         if (cart[it]) {
           cart[it].count += localCart[it].count;
         } else {

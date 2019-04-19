@@ -17,7 +17,7 @@
               <router-link class="nav-item" to="/login">登录</router-link>
               <router-link class="nav-item" to="/signup">注册</router-link>
             </span>
-            <router-link class="nav-item" to="/help">帮助中心</router-link>
+            <!-- <router-link class="nav-item" to="/help">帮助中心</router-link> -->
           </el-col>
         </el-row>
       </div>

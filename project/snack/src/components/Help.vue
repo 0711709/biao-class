@@ -1,5 +1,9 @@
 <template>
-  <div>help</div>
+  <div class="help">
+    <div class="container">
+      1
+    </div>
+  </div>
 </template>
 
 <script>

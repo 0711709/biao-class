@@ -27,7 +27,7 @@ export default {
 
         debounceValidate(field) {
             //如果某个字段和原值一样就不验证
-            if (this.form[field] == this.formCopy[field]) {
+            if (this.form.id &&this.form[field] == this.formCopy[field]) {
                 return;
             }
             if (this.timer) {

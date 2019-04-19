@@ -125,8 +125,14 @@ router.beforeEach((to, form, next) => {
     } else {
       next(false);
     }
+  } else if (/my/.test(to.matched[0].path)) {
+    if (session.user()) {
+      next();
+    } else {
+      next("/login");
+    }
   } else {
-    next()
+    next();
   }
 })
 

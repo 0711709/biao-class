@@ -8,7 +8,7 @@
           </el-col>
           <el-col :span="12" class="text-right">
             <span v-if="session.loggedin()">
-              <router-link class="nav-item" to="/my/cart">用户{{session.user().phone | cutAll(3) }}</router-link>
+              <router-link class="nav-item" to="/my/cart">个人中心</router-link>
               <span class="nav-item" @click="session.logout()">登出</span>
             </span>
             <span v-else>

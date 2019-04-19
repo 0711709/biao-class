@@ -173,11 +173,15 @@ export default {
     },
 
     readAll() {
-      this.read("listNew", { where: { and: { is_new: true } } }, "loadingNew");
-      this.read("listHot", { where: { and: { is_hot: true } } }, "loadingHot");
-      this.read("listMeat", { where: { and: { cat_id: 7 } } }, "loadingMeat");
-      this.read("listNut", { where: { and: { cat_id: 3 } } }, "loadingNut");
-      this.read("listDrink", { where: { and: { cat_id: 8 } } }, "loadingDrink");
+      this.read(
+        "listNew",
+        { limit: 4, where: { and: { is_new: true } } },
+        "loadingNew"
+      );
+      this.read("listHot", { limit: 4, where: { and: { is_hot: true } } }, "loadingHot");
+      this.read("listMeat", { limit: 4, where: { and: { cat_id: 7 } } }, "loadingMeat");
+      this.read("listNut", { limit: 4, where: { and: { cat_id: 3 } } }, "loadingNut");
+      this.read("listDrink", { limit: 4, where: { and: { cat_id: 8 } } }, "loadingDrink");
     },
 
     readMainImg() {

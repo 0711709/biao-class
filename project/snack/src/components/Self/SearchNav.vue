@@ -7,9 +7,11 @@
         </router-link>
       </el-col>
       <el-col :span="12">
-        <el-input placeholder="请输入内容" v-model="input" class="search" clearable>
-          <el-button slot="append" icon="el-icon-search"></el-button>
-        </el-input>
+        <form @submit.prevent="toSearch">
+          <el-input placeholder="请输入内容" v-model="search.keyword" class="search" clearable>
+            <el-button slot="append" icon="el-icon-search" @click="toSearch"></el-button>
+          </el-input>
+        </form>
       </el-col>
       <el-col :span="6" class="text-center">
         <Cart/>
@@ -26,18 +28,23 @@ export default {
 
   data() {
     return {
-      input: "",
-      list: {}
+      search: {
+        keyword: "",
+      },
     };
   },
 
   mounted() {},
 
-  methods: {}
+  methods: {
+    toSearch(){
+      this.$router.push({path: "/search", query: this.search})
+    }
+  }
 };
 </script>
 
-<style scoped>
+<style>
 .search-nav {
   margin: 2rem 0;
 }

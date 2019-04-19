@@ -21,28 +21,44 @@
       </el-row>
     </div>
     <div class="filter">
-      <el-row class="filter-divide" v-loading="loadingBrand" :class="loadingBrand? 'brand-height': ''">
+      <el-row
+        class="filter-divide"
+        v-loading="loadingBrand"
+        :class="loadingBrand? 'brand-height': ''"
+      >
         <el-col class="type" :span="4">品牌</el-col>
         <el-col :span="20">
           <el-row class="item">
-            <el-col :span="4" v-for="(it, index) in brandList" :key="index">{{it.name}}</el-col>
+            <el-col
+              :span="4"
+              v-for="(it, index) in brandList"
+              :key="index"
+              @click.native="setBrand(it)"
+              :class="query.brandId == it.id? 'active': ''"
+            >{{it.name}}</el-col>
           </el-row>
         </el-col>
       </el-row>
-      <el-row v-loading="loadingCat" :class="loadingCat? 'cat-height': ''">
+      <el-row>
         <el-col class="type" :span="4">分类</el-col>
         <el-col :span="20">
           <el-row class="item">
-            <el-col :span="4" v-for="(it, index) in catList" :key="index">{{it.name}}</el-col>
+            <el-col
+              :span="4"
+              v-for="(it, index) in catList"
+              :key="index"
+              @click.native="setCat(it)"
+              :class="query.catId == it.id? 'active': ''"
+            >{{it.name}}</el-col>
           </el-row>
         </el-col>
       </el-row>
     </div>
     <div class="bar">
       <el-radio-group v-model="radio" size="mini" @change="setSortBy">
-        <el-radio-button label="新品"></el-radio-button>
-        <el-radio-button label="价格"></el-radio-button>
-        <el-radio-button label="库存"></el-radio-button>
+        <el-radio-button @click.native="setSortUp" label="新品"></el-radio-button>
+        <el-radio-button @click.native="setSortUp" label="价格"></el-radio-button>
+        <el-radio-button @click.native="setSortUp" label="库存"></el-radio-button>
       </el-radio-group>
       <div class="price-group">
         <el-input size="mini" placeholder="最低价格" v-model="query.minPrice"></el-input>
@@ -57,24 +73,28 @@
         <el-checkbox label="有货"></el-checkbox>
       </el-checkbox-group>
     </div>
-    <div class="result">
-      <el-row :gutter="20">
-        <el-col :span="6" v-for="(it, index) in result" :key="index">
-          <router-link :to="'/product/' + it.id" v-if="it.main_img">
-            <el-card class="card" shadow="hover" :body-style="{ padding: '0px' }">
-              <img :src="it.main_img[0].url" class="image">
-              <div style="padding: 14px;" class="text-center content">
-                <div class="title" :title="it.title">{{it.title | cutAll(10)}}</div>
-                <div class="desc" :title="it.desc">{{it.desc | cutAll(15)}}</div>
-                <div class="price">
-                  <span class="rmb">{{it.price}}</span>
+    <div class="result" v-loading="loading" :class="loading? 'height': ''">
+      <div v-if="totalNull" class="search-tip">没找到相关产品，为你推荐以下商品</div>
+      <div>
+        <el-row :gutter="20">
+          <el-col :span="6" v-for="(it, index) in result" :key="index">
+            <router-link :to="'/product/' + it.id" v-if="it.main_img">
+              <el-card class="card" shadow="hover" :body-style="{ padding: '0px' }">
+                <img :src="it.main_img[0].url" class="image">
+                <div style="padding: 14px;" class="text-center content">
+                  <div class="title" :title="it.title">{{it.title | cutAll(10)}}</div>
+                  <div class="desc" :title="it.desc">{{it.desc | cutAll(15)}}</div>
+                  <div class="price">
+                    <span class="rmb">{{it.price}}</span>
+                  </div>
                 </div>
-              </div>
-            </el-card>
-          </router-link>
-        </el-col>
-      </el-row>
+              </el-card>
+            </router-link>
+          </el-col>
+        </el-row>
+      </div>
       <el-pagination
+        v-if="total > 12"
         class="pagination text-center"
         background
         layout="prev, pager, next"
@@ -101,16 +121,18 @@ export default {
       checkList: [],
       checkListCopy: ["包邮", "热门", "有货"],
       sortList: {
-        新品: ["id"],
-        价格: ["price", "up"],
-        库存: ["total"]
+        新品: "id",
+        价格: "price",
+        库存: "total"
       },
       result: [],
       total: null,
-      limit: 16,
+      limit: 12,
       page: 1,
+      loading: true,
       loadingCat: true,
       loadingBrand: true,
+      totalNull: false
     };
   },
 
@@ -119,6 +141,7 @@ export default {
     this.read("brand", "loadingBrand");
     this.query = { ...this.$route.query };
     this.query.sortBy = this.sortList[this.radio];
+    // this.query.brandId = this.query.catId = null;
     this.toggle();
     this.search();
   },
@@ -133,8 +156,45 @@ export default {
       });
     },
 
+    setCat(it) {
+      if (this.query.catId == it.id) {
+        this.query.catId = null;
+        this.page = 1;
+        this.reload();
+        return;
+      }
+      this.query.catId = it.id;
+      this.page = 1;
+      this.reload();
+    },
+
+    setBrand(it) {
+      if (this.query.brandId == it.id) {
+        this.query.brandId = null;
+        this.page = 1;
+        this.reload();
+        return;
+      }
+      this.query.brandId = it.id;
+      this.page = 1;
+      this.reload();
+    },
+
     setSortBy() {
       this.query.sortBy = this.sortList[this.radio];
+
+      this.page = 1;
+      this.reload();
+    },
+
+    setSortUp() {
+      if (!this.query.sortUp) {
+        this.query.sortUp = "1";
+      } else {
+        delete this.query.sortUp;
+      }
+
+      this.page = 1;
       this.reload();
     },
 
@@ -145,7 +205,7 @@ export default {
       this.checkList.forEach(it => {
         this.query[it] = true;
       });
-
+      this.page = 1;
       this.reload();
     },
 
@@ -154,14 +214,22 @@ export default {
     },
 
     search() {
+      this.totalNull = false;
+      this.loading = true;
+
       let q = this.query;
 
-      let keywordQuery = `"title" contains "${q.keyword}"`;
+      let keywordQuery = q.keyword
+        ? `"title" contains "${q.keyword}"`
+        : `"title" contains ""`;
       let minPriceQuery = q.minPrice ? `and "price" >= ${q.minPrice}` : "";
       let maxPriceQuery = q.minPrice ? `and "price" <= ${q.maxPrice}` : "";
       let freeShippingQuery = q["包邮"] ? `and "shipping_fee" = 0` : "";
       let isHotQuery = q["热门"] ? `and "is_hot" = 1` : "";
       let totalQuery = q["有货"] ? `and "total" > 0` : "";
+
+      let catQuery = q.catId ? `and "cat_id" = ${q.catId}` : "";
+      let brandQuery = q.brandId ? `and "brand_id" = ${q.brandId}` : "";
 
       let query = `where(
         ${keywordQuery} 
@@ -170,20 +238,34 @@ export default {
         ${freeShippingQuery} 
         ${isHotQuery} 
         ${totalQuery}
+        ${catQuery}
+        ${brandQuery}
         )`;
 
       let params = {
         query,
-        sort_by: q.sortBy,
+        sort_by: [q.sortBy || "id", q.sortUp ? "up" : "down"],
         limit: this.limit,
         page: this.page
       };
 
       api("product/read", params).then(r => {
         if (r.success) {
-          console.log(r.data);
           this.result = r.data;
           this.total = r.total;
+          this.loading = false;
+          if (r.total == 0) {
+            this.totalNull = true;
+            this.query = { ...{} };
+            // this.reload();
+            api("product/read").then(e => {
+              if (e.success) {
+                this.result = e.data;
+                this.total = e.total;
+                this.loading = false;
+              }
+            });
+          }
         }
       });
     },
@@ -192,7 +274,7 @@ export default {
       this.query.minPrice = this.query.maxPrice = null;
     },
 
-    handleCurrentChange(page){
+    handleCurrentChange(page) {
       this.page = page;
       this.search();
     }
@@ -211,12 +293,20 @@ export default {
 </script>
 
 <style scoped>
+.height {
+  height: 500px;
+}
+
 .cat-height {
-  height: 30px;
+  height: 50px;
 }
 
 .brand-height {
   height: 92px;
+}
+
+.filter .item .active {
+  color: #409eff;
 }
 
 .divide {
@@ -301,6 +391,13 @@ export default {
 
 .result .card .price {
   color: #e10;
+}
+
+.result .search-tip {
+  padding: 0.5rem 1rem;
+  font-size: 90%;
+  background: #fff8db;
+  margin-bottom: 1.5rem;
 }
 </style>
 

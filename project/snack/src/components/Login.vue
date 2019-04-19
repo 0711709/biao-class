@@ -61,7 +61,6 @@ export default {
       }).then(r => {
         if (r.success) {
           if (r.data) {
-            // store.set("cart", r.data.cart);
             this.mergeCart(r.data.cart);
             if (r.data.username === "admin") {
               r.data.IS_ADMIN = true;

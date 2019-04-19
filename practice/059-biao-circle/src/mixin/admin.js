@@ -9,6 +9,7 @@ export default {
             createOrCancel: false,
             list: {},
             current: {},
+            currentCopy: {},
             timer: null,
             errors: {
                 // username: { lengthBetween: true, regex: true }
@@ -38,6 +39,10 @@ export default {
         },
 
         debounceValidate(field) {
+            //如果某个字段和原值一样就不验证
+            if (this.current.id && this.current[field] == this.currentCopy[field]) {
+                return;
+            }
             if (this.timer) {
                 clearTimeout(this.timer);
             }
@@ -81,6 +86,10 @@ export default {
         validateForm() {
             let valid = true;
             for (let field in this.rules) {
+                //如果某个字段和原值一样就不验证
+                if (this.current.id && this.current[field] === this.currentCopy[field]) {
+                    continue;
+                }
                 if (!this.validate(field)) {
                     console.log(field, 2)
                     valid = false;

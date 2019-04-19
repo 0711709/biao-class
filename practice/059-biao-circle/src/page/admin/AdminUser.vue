@@ -51,7 +51,7 @@
             <td>{{it.nickname || "-"}}</td>
             <td>{{it.info || "-"}}</td>
             <td>
-              <button @click="createOrCancel=true; current=it">更新</button>
+              <button @click="createOrCancel=true; current=it; currentCopy={...it}">更新</button>
               <button @click="deleteUser(it.id)">删除</button>
             </td>
           </tr>
@@ -65,7 +65,6 @@
 <script>
 import admin from "../../mixin/admin";
 import api from "../../lib/api";
-
 
 export default {
   mixins: [admin],
@@ -115,8 +114,7 @@ export default {
         }
       }
     };
-  },
-
+  }
 };
 </script>
 

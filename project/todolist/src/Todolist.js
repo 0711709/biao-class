@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
-import "./style.css"
 import TodoItem from "./TodoItem"
+import "./style.css"
 
 class Todolist extends Component {
 
@@ -10,65 +10,64 @@ class Todolist extends Component {
       inputValue: "",
       list: ["学习 react"],
     }
+    this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleBtnClick = this.handleBtnClick.bind(this)
+    this.handleItemDelete = this.handleItemDelete.bind(this)
   }
 
   render() {
     return (
       <Fragment>
-        {/* JSX 注释方式 */}
-        {
-          // 单行注释方式
-        }
         <div>
           <label htmlFor="insetArea">输入内容</label>
           <input
             id="insetArea"
             className='input'
             value={this.state.inputValue}
-            onChange={this.handleInputChange.bind(this)}
+            onChange={this.handleInputChange}
           />
-          <button onClick={this.handleBtnClick.bind(this)}>提交</button>
+          <button onClick={this.handleBtnClick}>提交</button>
         </div>
         <ul>
-          {
-            this.state.list.map((item, index) => {
-              return (
-                <div>
-                  <TodoItem
-                    content={item}
-                    index={index}
-                    deleteItem={this.handleItemDelete.bind(this)}
-                  />
-                </div>
-              )
-            })
-          }
+          {this.getTodoItem()}
         </ul>
       </Fragment>
     )
   }
 
-  handleInputChange(e) {
-    this.setState({
-      inputValue: e.target.value,
+  getTodoItem() {
+    return this.state.list.map((item, index) => {
+      return (
+        <TodoItem
+          key={index}
+          content={item}
+          index={index}
+          deleteItem={this.handleItemDelete}
+        />
+      )
     })
+  }
+
+
+  handleInputChange(e) {
+    const value = e.target.value;
+    this.setState(() => ({
+      inputValue: value,
+    }))
   }
 
   handleBtnClick() {
-    this.setState({
-      list: [...this.state.list, this.state.inputValue],
+    this.setState((prevState) => ({
+      list: [...prevState.list, prevState.inputValue],
       inputValue: ""
-    })
+    }))
   }
 
   handleItemDelete(index) {
-    //immutable 
-    // state 不允许我们做任何改变
-    const list = [...this.state.list];
-    list.splice(index, 1);
-
-    this.setState({
-      list: list
+    this.setState((prevState) => {
+      const list = [...prevState.list];
+      list.splice(index, 1)
+      return { list }
     })
   }
 }

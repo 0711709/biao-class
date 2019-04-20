@@ -1,23 +1,23 @@
 import React, { Component } from "react";
 
 class TodoItem extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this)
     }
 
     render() {
+        const { content } = this.props
         return (
-            <div
-                onClick={this.handleClick}
-            >
-                {this.props.content}
+            <div onClick={this.handleClick}>
+                {content}
             </div>
         )
     }
 
     handleClick() {
-        this.props.deleteItem(this.props.index)
+        const { deleteItem, index } = this.props;
+        deleteItem(index);
     }
 }
 

@@ -18,7 +18,9 @@ class Todolist extends Component {
           // 单行注释方式
         }
         <div>
+          <label htmlFor="insetArea">输入内容</label>
           <input
+            id="insetArea"
             className='input'
             value={this.state.inputValue}
             onChange={this.handleInputChange.bind(this)}
@@ -28,7 +30,14 @@ class Todolist extends Component {
         <ul>
           {
             this.state.list.map((item, index) => {
-              return <li key={index} onClick={this.handleItemDelete.bind(this, index)}>{item}</li>
+              return (
+                <li
+                  key={index}
+                  onClick={this.handleItemDelete.bind(this, index)}
+                  dangerouslySetInnerHTML={{ __html: item }}
+                >
+                </li>
+              )
             })
           }
         </ul>

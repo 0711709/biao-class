@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-
+import "./style.css"
 class Todolist extends Component {
 
   constructor(props) {
@@ -13,11 +13,18 @@ class Todolist extends Component {
   render() {
     return (
       <Fragment>
-        <input
-          value={this.state.inputValue}
-          onChange={this.handleInputChange.bind(this)}
-        />
-        <button onClick={this.handleBtnClick.bind(this)}>提交</button>
+        {/* JSX 注释方式 */}
+        {
+          // 单行注释方式
+        }
+        <div>
+          <input
+            className='input'
+            value={this.state.inputValue}
+            onChange={this.handleInputChange.bind(this)}
+          />
+          <button onClick={this.handleBtnClick.bind(this)}>提交</button>
+        </div>
         <ul>
           {
             this.state.list.map((item, index) => {

@@ -6,7 +6,7 @@
           <router-link to="/" class="logo">
             <img src="../public/logo-sm.png" alt="logo">
           </router-link>
-          <div class="search">
+          <div class="search hidden-sm">
             <input type="search" placeholder="此功能未实现">
           </div>
         </div>
@@ -15,6 +15,7 @@
           <span class="loggedin" v-if="session.loggedin()">
             <router-link to="/member">{{session.user().username}}</router-link>
             <router-link to="/setting/me">设置</router-link>
+            <router-link v-if="session.user().IS_ADMIN" to="/admin">后台</router-link>
             <span @click="session.logout()">登出</span>
           </span>
           <span class="guest" v-else>

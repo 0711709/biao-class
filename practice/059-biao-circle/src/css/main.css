@@ -330,8 +330,7 @@ fieldset {
 
 #main .section .profile .thumb img {
     display: block;
-    width: 70px;
-    height: 70px;
+    width: 90%;
     border-radius: 2px;
 }
 
@@ -414,8 +413,16 @@ fieldset {
     position: relative;
 }
 
+.post:hover button {
+    display: inline-block;
+}
+
 .post .left {
     width: 10%;
+}
+
+.post .left img {
+    border-radius: 3px;
 }
 
 .post .right {
@@ -423,9 +430,29 @@ fieldset {
     margin-left: 2%;
 }
 
+.post .right .title {
+    padding-bottom: 1rem;
+}
+
+.post .right .info{
+    font-size: 80%;
+    color: rgba(0, 0, 0, .6)
+}
+
 .post .operate {
     position: absolute;
     right: 2%;
+}
+
+.post button {
+    display: none;
+    border-radius: 3px;
+    border: 1px solid #999;
+    outline: none;
+}
+.post .operate button:hover {
+    background: #aaa;
+    color: #000;
 }
 
 /* post 详情页样式 */
@@ -536,4 +563,16 @@ fieldset {
     margin: 0 .5rem;
     color: gray;
     font-weight: bold;
+}
+
+@media screen and (max-width: 500px) {
+  #app .hidden-sm,
+  #main .hidden-sm {
+      display: none;
+  }
+
+  #main .section-sm {
+      width: 100%;
+  }
+
 }

@@ -1,7 +1,7 @@
 <template>
   <div id="main">
     <div class="container">
-      <div class="section">
+      <div class="section section-sm">
         <div class="header">注册</div>
         <div id="sign-up">
           <form @submit.prevent="validateSignup">
@@ -30,7 +30,7 @@
           </form>
         </div>
       </div>
-      <div class="side">
+      <div class="side hidden-sm">
         <div class="box">
           <div class="header">表圈子</div>
           <div class="intro">十八相送一水黑</div>

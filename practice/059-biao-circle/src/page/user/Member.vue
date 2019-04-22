@@ -1,10 +1,10 @@
 <template>
   <div id="main">
     <div class="container">
-      <div class="section">
+      <div class="section section-sm">
         <div class="box profile">
           <div class="thumb">
-            <img src="../../../public/helloworld.jpg" alt="me">
+            <img src="../../../public/hello.png" alt="me">
           </div>
           <div class="me">
             <div>{{me.username}}</div>
@@ -30,7 +30,7 @@
           >
           <div class="box">
             <span>正文</span>
-            <span class="msg" v-bind:class="{error: error.content}">200字数以内</span>
+            <span class="msg" v-bind:class="{error: error.content}">2000字数以内</span>
           </div>
           <textarea rows="20" v-model="current.content"></textarea>
           <div class="box">
@@ -56,7 +56,7 @@
           </div>
         </div>
       </div>
-      <div class="side">
+      <div class="side hidden-sm">
         <div class="box">
           <div class="cell">社区指导原则</div>
           <div class="inner">
@@ -110,10 +110,10 @@ export default {
         return;
       }
 
-      if (this.current.content.length > 200) {
-        this.error.content = true;
-        return;
-      }
+      // if (this.current.content.length > 200) {
+      //   this.error.content = true;
+      //   return;
+      // }
 
       this.error.title = this.error.content = false;
       this.current.user_id = this.me.id;

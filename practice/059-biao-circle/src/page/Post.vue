@@ -1,7 +1,7 @@
 <template>
   <div id="main">
     <div class="container">
-      <div id="post" class="section">
+      <div id="post" class="section section-sm">
         <div v-if="current.title">
           <div class="box">
             <div class="title">{{current.title}}</div>
@@ -36,7 +36,7 @@
           <i class="fas fa-spinner"></i>
         </div>
       </div>
-      <div class="side">
+      <div class="side hidden-sm">
         <div class="box">
           <div class="me" v-if="session.user()">
             <router-link to="/member" class="post">{{session.user().username}}</router-link>

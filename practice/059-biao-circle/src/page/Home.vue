@@ -1,14 +1,18 @@
 <template>
   <div id="main">
     <div class="container">
-      <div class="section">
+      <div class="section section-sm">
         <div class="cat-group box">
-          <div class="cat active">全部</div>
+          <div class="cat" :class="cat=='all'? 'active': ''" @click="catRead('all')">全部</div>
+          <div class="cat" :class="cat==2? 'active': ''" @click="catRead(2)">前端</div>
+          <div class="cat" :class="cat==6? 'active': ''" @click="catRead(6)">JavaScript</div>
+          <div class="cat" :class="cat==3? 'active': ''" @click="catRead(3)">vue</div>
+          <div class="cat" :class="cat==4? 'active': ''" @click="catRead(4)">react</div>
         </div>
         <div class="box" v-for="(it,index) in list" :key="index">
           <div class="post">
             <div class="left">
-              <img src="..\..\public\helloworld.jpg" alt="img">
+              <img src="..\..\public\hello.png" alt="img">
             </div>
             <div class="right">
               <router-link :to="'post/' + it.id">
@@ -24,9 +28,15 @@
             </div>
           </div>
         </div>
-        <scrollLoad :page="1" :totalPage="totalPage" :pending="pending" @flip="onFlip"/>
+        <scrollLoad
+          v-if="scroll"
+          :page="1"
+          :totalPage="totalPage"
+          :pending="pending"
+          @flip="onFlip"
+        />
       </div>
-      <div class="side">
+      <div class="side hidden-sm">
         <div class="box" v-if="session.user()">
           <div class="me">
             <router-link to="/member" class="post">{{session.user().username}}</router-link>
@@ -69,10 +79,13 @@ export default {
       readParams: {
         limit: 8,
         page: 1,
-        with: [{ model: "user", relation: "belongs_to" }]
+        with: [{ model: "user", relation: "belongs_to" }],
+        where: {}
       },
       totalPage: 0,
-      pending: false
+      pending: false,
+      scroll: false,
+      cat: "all"
     };
   },
 
@@ -83,13 +96,35 @@ export default {
   methods: {
     read() {
       api("post/read", this.readParams).then(r => {
-        this.list = [...this.list, ...r.data];
-        this.pending = false;
-        this.totalPage = Math.ceil(r.total / this.readParams.limit);
+        if (r.success) {
+          let data = r.data || [];
+          this.list = [...this.list, ...data];
+          this.pending = false;
+          this.scroll = true;
+          this.totalPage = Math.ceil(r.total / this.readParams.limit);
+        }
       });
     },
 
+    catRead(cat) {
+      this.cat = cat;
+      this.scroll = false;
+      this.list = [];
+      this.readParams.page = 1;
+      if (cat == "all") {
+        delete this.readParams.where.and;
+        this.read();
+        return;
+      }
+      this.readParams.where.and = { cat_id: cat };
+      this.read();
+    },
+
     postDelete(id) {
+      if (!confirm("确定删除?")) {
+        return;
+      }
+
       api("post/delete", { id }).then(r => {
         if (r.success) {
           this.read();

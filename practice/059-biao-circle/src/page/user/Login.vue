@@ -1,7 +1,7 @@
 <template>
   <div id="main">
     <div class="container">
-      <div class="section">
+      <div class="section section-sm">
         <div class="header">登陆</div>
         <div id="log-in">
           <form @submit.prevent="login">
@@ -23,7 +23,7 @@
                 <h3>测试账号</h3>
                 <div>
                   <div>
-                    <span>管理员:</span>
+                    <span>账号:</span>
                     <span>test</span>
                   </div>
                   <div>
@@ -35,7 +35,7 @@
           </form>
         </div>
       </div>
-      <div class="side">
+      <div class="side hidden-sm">
         <div class="box">
           <div class="header">表圈子</div>
           <div class="intro">十八相送一水黑</div>

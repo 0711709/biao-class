@@ -1,6 +1,6 @@
 <template>
   <div class="scroll-load">
-    <div v-if="noMore">没有更多了</div>
+    <div v-if="noMore" class="no-more">已经到底了</div>
     <button v-else @click="next">
       <span v-if="pending">加载中...</span>
       <span v-else>加载更多</span>
@@ -72,5 +72,13 @@ export default {
   width: 100%;
   border: 0;
   background: #eeeeee;
+}
+
+.scroll-load .no-more {
+  display: inline-block;
+  margin: .5rem;
+  padding: .5rem;
+  font-size: 90%;
+  color: rgba(0, 0, 0, .6)
 }
 </style>

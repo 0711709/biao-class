@@ -74,7 +74,7 @@ export default {
     readPost() {
       api("post/find", {
         id: this.$route.params.id,
-        with: [{ model: "user", relation: "belongs_to" }]
+        with: [{ model: "user", relation: "belongs_to" }],
       }).then(r => {
         this.current = r.data;
       });
@@ -85,7 +85,8 @@ export default {
         where: {
           and: { post_id: this.$route.params.id }
         },
-        with: [{ model: "user", relation: "belongs_to" }]
+        with: [{ model: "user", relation: "belongs_to" }],
+        sort_by: ["id", "up"]
       }).then(r => {
         this.comment = r.data;
       });
@@ -95,7 +96,7 @@ export default {
       this.form.user_id = this.session.user().id;
       this.form.post_id = this.$route.params.id;
       this.form.create_at = dateFormatter.format(new Date());
-      
+
       if (!this.form.content || !this.form.user_id) {
         return;
       }

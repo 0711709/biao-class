@@ -43,7 +43,7 @@
         <div class="box" v-for="(it,index) in list" :key="index">
           <div class="post">
             <div class="left">
-              <img src="..\..\..\public\helloworld.jpg" alt="img">
+              <img src="..\..\..\public\hello.png" alt="img">
             </div>
             <div class="right">
               <router-link class="title" :to="'post/' + it.id">{{it.title}}</router-link>

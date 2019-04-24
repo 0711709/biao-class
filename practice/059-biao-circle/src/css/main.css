@@ -432,6 +432,7 @@ fieldset {
 
 .post .right .title {
     padding-bottom: 1rem;
+    display: inline-block;
 }
 
 .post .right .info{
@@ -490,9 +491,12 @@ fieldset {
     margin-right: .2rem;
 }
 
+#post .box.content,
 #post .comment .content  {
+    padding: 1rem .5rem;
     color: #000;;
     white-space: pre-wrap;
+    font-size: 95%;
 }
 
 #post .box.sub-comment form {

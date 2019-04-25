@@ -117,9 +117,15 @@ export default {
 
       this.error.title = this.error.content = false;
       this.current.user_id = this.me.id;
-      this.current.create_at = dateFormatter.format(new Date());
-      let url = "post/create"
-      if(this.current.id){url = "post/update"}
+     
+
+      let url
+      if (this.current.id) {
+        url = "post/update";
+      } else {
+        url = "post/create";
+        this.current.create_at = dateFormatter.format(new Date());
+      }
       api(url, this.current).then(r => {
         if (!r.success) {
           // return;
@@ -151,16 +157,16 @@ export default {
     },
 
     postEdit(it) {
-      this.current =it;
+      this.current = it;
       this.postOrCancel = true;
     },
 
     postDelete(id) {
-      api("post/delete", {id}).then(r => {
-        if(r.success){
+      api("post/delete", { id }).then(r => {
+        if (r.success) {
           this.thread();
         }
-      })
+      });
     }
   }
 };

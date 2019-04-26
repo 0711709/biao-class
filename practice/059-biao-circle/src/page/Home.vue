@@ -5,7 +5,8 @@
         <div class="cat-group box">
           <div class="cat" :class="cat=='all'? 'active': ''" @click="catRead('all')">全部</div>
           <div class="cat" :class="cat==2? 'active': ''" @click="catRead(2)">前端</div>
-          <div class="cat" :class="cat==6? 'active': ''" @click="catRead(6)">JavaScript</div>
+          <div class="cat" :class="cat==1? 'active': ''" @click="catRead(1)">JavaScript</div>
+          <div class="cat" :class="cat==6? 'active': ''" @click="catRead(6)">Git</div>
           <div class="cat" :class="cat==3? 'active': ''" @click="catRead(3)">vue</div>
           <div class="cat" :class="cat==4? 'active': ''" @click="catRead(4)">react</div>
         </div>

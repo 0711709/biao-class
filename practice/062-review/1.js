@@ -195,15 +195,39 @@ class User {
     }
 }
 
-//调用需要 new 
+//实例化需要 new 
 console.log(new User("lsd", 10, "female"))
 
 function Dog() {
     this.age = 5;
+    this.name = "ww"
     this.gender = "male";
     this.act = function(){
         console.log("act")
-    };
+    }
+
+    this.greeting = function () {
+        console.log("我叫" + this.name)
+    }
 }
 
-console.log( new Dog )
+console.log( new Dog );
+
+//原型 prototype 
+function Person(name, age, gender) {
+    this.name = name;
+    this.age = age;
+    this.gender = gender;
+}
+
+Person.prototype.greeting = function() {
+    console.log("我叫" + this.name);
+}
+
+let a = new Person('王花花', 19, "male");
+
+let b = new Person("赵柯爽", 20, "female");
+
+console.log(a,b);
+console.log(a.__proto__.greeting === b.__proto__.greeting)
+

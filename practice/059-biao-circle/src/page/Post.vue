@@ -23,7 +23,7 @@
               <div class="content">{{it.content}}</div>
             </div>
           </div>
-          <div class="box sub-comment" v-if="session.user()">
+          <div class="box sub-comment">
             <form @submit.prevent="commentCreate()">
               <div class="head">添加回复</div>
               <textarea placeholder="请尽量让自己的回复可以帮助其他人" v-model="form.content"></textarea>
@@ -93,6 +93,11 @@ export default {
     },
 
     commentCreate() {
+      if(!this.session.user()){
+        alert("请先登录在评论");
+        return;
+      }
+
       this.form.user_id = this.session.user().id;
       this.form.post_id = this.$route.params.id;
       this.form.create_at = dateFormatter.format(new Date());

@@ -18,7 +18,6 @@ import Signup from "./components/Signup.vue";
 import Login from "./components/Login.vue";
 import Recover from "./components/Recover.vue";
 import Search from "./components/Search.vue";
-import Help from "./components/Help.vue";
 
 import My from "./components/My/My.vue"
 import Setting from "./components/My/Setting.vue"
@@ -30,6 +29,8 @@ import AdminUser from "./components/Admin/AdminUser.vue"
 import AdminBrand from "./components/Admin/AdminBrand.vue"
 import AdminCat from "./components/Admin/AdminCat.vue"
 import AdminProduct from "./components/Admin/AdminProduct.vue"
+
+import NotFind from "./components/NotFind.vue"
 
 window.api = api;
 
@@ -62,10 +63,6 @@ const router = new Router({
     {
       path: "/search",
       component: Search
-    },
-    {
-      path: "/help",
-      component: Help
     },
     {
       path: "/my",
@@ -106,6 +103,10 @@ const router = new Router({
           component: AdminProduct,
         },
       ]
+    },
+    {
+      path: "*",
+      component: NotFind,
     }
   ]
   ,
@@ -130,6 +131,12 @@ router.beforeEach((to, form, next) => {
       next();
     } else {
       next("/login");
+    }
+  } else if (/login/.test(to.path) || /signup/.test(to.path)) {
+    if (session.user()) {
+      next(false)
+    } else {
+      next()
     }
   } else {
     next();

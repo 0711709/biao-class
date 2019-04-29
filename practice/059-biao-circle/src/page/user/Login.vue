@@ -85,8 +85,6 @@ export default {
         }
         if (user.username === "test") {
           user.IS_ADMIN = true;
-          session.login(user.id, user, "/#/admin");
-          return;
         }
         session.login(user.id, user, "/");
       });

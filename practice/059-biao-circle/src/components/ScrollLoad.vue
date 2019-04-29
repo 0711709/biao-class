@@ -36,9 +36,9 @@ export default {
 
       this.$emit("flip", ++this.current);
       //判断是否到最后一页
-      if (this.current === this.totalPage) {
-        return (this.noMore = true);
-      }
+      // if (this.current === this.totalPage) {
+      //   return (this.noMore = true);
+      // }
     },
 
     bindScroll() {

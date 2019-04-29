@@ -59,7 +59,6 @@ const router = new VueRouter({
 
 //路由守卫
 router.beforeEach((to, form, next) => {
-  console.log(to)
   if (/admin/.test(to.matched[0].path)) {
     if (session.user() && session.user().IS_ADMIN) {
       next();

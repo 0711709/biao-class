@@ -21,6 +21,8 @@ import AdminPost from "./page/admin/AdminPost.vue"
 import AdminCat from "./page/admin/AdminCat.vue"
 import AdminComment from "./page/admin/AdminComment.vue"
 
+import NotFind from "./page/NotFind.vue"
+
 Vue.use(VueRouter)
 
 Vue.config.productionTip = false
@@ -47,19 +49,37 @@ const router = new VueRouter({
         { path: "cat", component: AdminCat },
         { path: "comment", component: AdminComment },
       ]
+    },
+    {
+      path: "*",
+      component: NotFind,
     }
   ]
 })
 
+//路由守卫
 router.beforeEach((to, form, next) => {
+  console.log(to)
   if (/admin/.test(to.matched[0].path)) {
     if (session.user() && session.user().IS_ADMIN) {
       next();
     } else {
       next(false);
     }
+  } else if (/member/.test(to.path) || /setting/.test(to.path)) {
+    if (session.user()) {
+      next()
+    } else {
+      next(false)
+    }
+  } else if (/login/.test(to.path) || /signup/.test(to.path)) {
+    if (session.user()) {
+      next(false)
+    } else {
+      next()
+    }
   } else {
-    next();
+    next()
   }
 })
 

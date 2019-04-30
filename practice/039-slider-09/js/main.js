@@ -42,7 +42,7 @@ window.onload = function () {
     function move(fn, speed) {
         let isMove = true;
         //鼠标的进入时图片停止轮播
-        slider.addEventListener("mouseenter", () => {
+        slider.addEventListener("mouseover", () => {
             isMove = false;
         });
 

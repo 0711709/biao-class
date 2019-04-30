@@ -40,12 +40,29 @@ window.onload = function () {
 
     //自动滚动
     function move(fn, speed) {
-        //等图片就位后再执行滚动操作
+        let isMove = true;
+        //鼠标的进入时图片停止轮播
+        slider.addEventListener("mouseenter", () => {
+            isMove = false;
+        });
+
+        slider.addEventListener("mouseout", () => {
+            isMove = true;
+        });
+
         setInterval(() => {
-            getIndex();
-            fn();
+            if (isMove) {
+                //等图片就位后再执行滚动操作
+                getIndex();
+                fn();
+            }
+
         }, speed);
     }
+
+    setInterval(() => {
+
+    }, 1000)
 
     //点击滚动
     function moveClick(fn) {

@@ -1,9 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="file" />
+</body>
+
+
 <script src="http://unpkg.com/jquery"></script>
 <!-- <script src="http://unpkg.com/axios"></script> -->
 
 <script>
 
-    // //原生XML
+      // var formData = new FormData();
+    // var fileField = document.querySelector("input[type='file']");
+
+    // formData.append('username', 'abc123');
+    // formData.append('avatar', fileField.files[0]);
+
+    // fetch('https://example.com/profile/avatar', {
+    //     method: 'PUT',
+    //     body: formData
+    // })
+    //     .then(response => response.json())
+    //     .catch(error => console.error('Error:', error))
+    //     .then(response => console.log('Success:', response));
+
+
+    //原生XML
     // let http = new XMLHttpRequest();
 
 
@@ -13,16 +43,38 @@
     //     //转化成JSON格式
     //     console.log(JSON.parse(http.responseText));
     // });
+    let a = 0;
 
+    setInterval(() => {
+        if (a > 2) {
+            return;
+        }
+        a++;
+        // boot(a);
+    }, 2000);
+
+    function boot(a) {
+        let http = new XMLHttpRequest();
+
+
+        http.open('get', 'https://api.github.com/search/users?q=0711&page=' + a);
+        http.send(null);
+        http.addEventListener('load', () => {
+            //转化成JSON格式
+            console.log(JSON.parse(http.responseText));
+        });
+    }
 
     //es6写法
-    fetch('https://api.github.com/search/users?q=whh')
-        .then(response => {
-            return response.json();
-        })
-        .then(json => {
-            console.log(json);
-        });
+    // fetch('https://api.github.com/search/users?q=whh')
+    //     .then(response => {
+    //         console.log(response);
+    //         console.log(response.json())
+    //         return response.json();
+    //     })
+    //     .then(json => {
+    //         console.log(json);
+    //     });
 
 
     // //使用jQery
@@ -36,3 +88,5 @@
 
 
 </script>
+
+</html>

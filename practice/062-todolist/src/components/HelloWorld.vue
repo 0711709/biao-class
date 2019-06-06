@@ -4,17 +4,15 @@
       <input type="text" v-model="value">
     </form>
     <div>待办事项</div>
-    <div v-for="(item, index) in list" :key="index">
-      <div style="margin: 10px">
-        <input type="checkbox" @change="todo(index)">
-        <span>{{item}}</span>
-      </div>
+    <div v-for="(it, index) in list" :key="it.id">
+      <label style="margin: 10px">
+        <input type="checkbox" @change="todo(it,index)">
+        <span>{{it.value}}</span>
+      </label>
     </div>
     <div>已完成</div>
-    <div>
-      <div v-for="item in list2" :key="item">
-        <span>{{item}}</span>
-      </div>
+    <div v-for="it in list2" :key="it.id">
+      <span>{{it.value}}</span>
     </div>
   </div>
 </template>
@@ -25,19 +23,21 @@ export default {
     return {
       value: "",
       list: [],
-      list2: []
+      list2: [],
+      total: 0
     };
   },
 
   methods: {
     handleSubmit() {
-      this.list.push(this.value);
+      if (this.value == "") return;
+      this.total++;
+      this.list.push({ value: this.value, id: this.total });
       this.value = "";
     },
 
-    todo(index) {
-      console.log(index)
-      this.list2.push(this.list[index]);
+    todo(it, index) {
+      this.list2.push(it);
       this.list.splice(index, 1);
     }
   }
